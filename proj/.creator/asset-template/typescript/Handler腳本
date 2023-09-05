@@ -1,0 +1,22 @@
+/**
+ * @description 大厅网络逻辑流程控制器  
+ */
+import { EBundles } from "../../../../scripts/common/data/Bundles";
+import { Handler } from "../../../../scripts/framework/core/net/service/Handler";
+
+export default class <%Name%> extends Handler {
+    static module = EBundles[EBundles.unknown];
+    protected get service() { return App.serviceManager.get(<%Name%>Service); }
+    onLoad() {
+        super.onLoad();
+        this.addEventListeners()
+
+    }
+
+    private addEventListeners(): void {
+        this.on('SomeEvent', () => { })
+    }
+    
+
+
+}

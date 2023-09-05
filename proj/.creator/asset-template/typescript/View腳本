@@ -1,0 +1,46 @@
+// ---------- 引用 ----------------------------------------------------------------
+import { Node, _decorator, find } from "cc";
+import GameView from "../../../../scripts/framework/core/ui/GameView";
+import { inject } from "../../../../scripts/framework/defines/Decorators";
+
+// ---------- 常數 ----------------------------------------------------------------
+const { ccclass, property } = _decorator;
+
+@ccclass('<%Name%>')
+export default class <%Name%> extends GameView {
+    // ---------- 成員變數 --------------------------------------------------------
+
+
+    @inject("someNode", Node)
+    private someNode: Node = null
+    // ---------- 生命週期 --------------------------------------------------------
+    
+    onLoad() {
+        super.onLoad();
+        this.setEventTouch();
+    }
+    
+    start() {
+        this.init();
+    }
+
+    onDestroy() { }
+
+    // ---------- 框架呼叫 ------------------------------------------------------
+    
+    static logicType = SomeLogic;
+    public static getPrefabUrl() { return "prefabs/<%Name%>"; }
+
+    // ---------- 內部呼叫 --------------------------------------------------------
+
+    /** 初始化 自己初始化自己 */
+    private init() {
+    }
+    
+    /** 設置觸摸事件 */
+    private setEventTouch() {
+        this.someNode.on(NodeEventType.TOUCH_END, () => { });
+    }
+
+    // ---------- 外部部呼叫 ------------------------------------------------------
+}

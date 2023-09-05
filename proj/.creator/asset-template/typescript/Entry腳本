@@ -1,0 +1,60 @@
+// ---------- 引用 ----------------------------------------------------------------
+import { Entry } from "../../../scripts/framework/core/entry/Entry";
+import { registerEntry } from "../../../scripts/framework/defines/Decorators";
+
+// ---------- 常數 ----------------------------------------------------------------
+@registerEntry("<%Name%>", EBundles[EBundles.unknown], <%Name%>View) // 替換成<%Name%>所屬 bundle
+class <%Name%> extends Entry {
+    // ---------- 成員變數 --------------------------------------------------------
+    protected language = new SomeLanguage;
+
+    get data() {
+        return App.dataCenter.get(SomeData) as SomeData;
+    }
+    
+    // ---------- 生命週期 --------------------------------------------------------
+
+    // ---------- 框架呼叫 ------------------------------------------------------
+    protected addNetHandler(): void {
+        // App.handlerApp.get(TemplateHandler);
+    }
+    protected removeNetHandler(): void {
+        // 大廳的到登錄界面會自動初清除
+        // App.netHelper.destoryHandler(Template);
+    }
+    protected loadResources(completeCb: () => void): void {
+        this.loader.getLoadResources = () => {
+            let res: Resource.Data[] = [
+                // { preloadView: TaxiGameView, bundle: this.bundle },
+                // { url : "prefabs/map/ground" , bundle : this.bundle , type : Prefab},
+            ];
+            return res;
+        };
+        this.loader.onLoadComplete = (err) => {
+            if (err = Resource.LoaderError.SUCCESS) {
+                completeCb();
+            }
+        };
+        this.loader.loadResources();
+    }
+
+    protected initData(): void {
+        //初始化网络
+        // App.serviceApp.get(LobbyService,true);
+    }
+    protected pauseMessageQueue(): void {
+        
+    }
+    protected resumeMessageQueue(): void {
+        
+    }
+
+    /**@description 卸载bundle,即在自己bundle删除之前最后的一条消息 */
+    onUnloadBundle(): void {
+        super.onUnloadBundle();
+    }
+    
+    // ---------- 內部呼叫 --------------------------------------------------------
+
+    // ---------- 外部部呼叫 ------------------------------------------------------
+}

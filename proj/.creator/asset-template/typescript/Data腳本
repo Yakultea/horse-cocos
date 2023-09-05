@@ -1,0 +1,47 @@
+// ---------- 引用 ----------------------------------------------------------------
+import { EBundles } from "../../../../scripts/common/data/Bundles";
+import { GameDataBase } from "../../../../scripts/framework/data/GameDataBase";
+
+// ---------- 常數 ----------------------------------------------------------------
+interface I<%Name%> {
+    user: any;
+}
+
+export default class <%Name%> extends GameDataBase<I<%Name%>> {
+    // ---------- 成員變數 --------------------------------------------------------
+    /** 資料所有模組，由資料中心設定 */
+    static module = EBundles[EBundles.unknown]; // 替換成<%Name%>所屬 bundle
+
+    // ---------- 框架呼叫 ------------------------------------------------------
+    /** 初始化 Enryt自動執行 */
+    public init(...args: any[]): any {
+        this.data = {
+            user: {
+                name: 'JOJO',
+                age: 66
+            }
+        };
+    }
+
+    /** 銷燬(單列銷燬時呼叫) */
+    public onDestory(...args: any[]): any { }
+
+    /** 清理資料 */
+    public clear(...args: any[]): any { }
+
+    public debug() { Log.d(`${this.module}`); }
+    
+    // ---------- 框架呼叫 --------------------------------------------------------
+    // public setData(<%Name%>VO: I<%Name%>) {
+    //     this.data = {
+    //         value1: null,
+    //     };
+    // }
+
+    // ---------- 內部呼叫 --------------------------------------------------------
+    // ---------- 外部部呼叫 ------------------------------------------------------
+    /** user */
+    // public set user(value: IUser) { this.data.user = value; }
+    // public get user(): IUser { return this.data.user; }
+
+}

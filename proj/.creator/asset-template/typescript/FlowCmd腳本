@@ -1,0 +1,37 @@
+// ---------- 引用 ----------------------------------------------------------------
+import Flow, { FlowTrigger } from "../../../../../scripts/framework/core/flow/Flow";
+import { SingletonExtends } from "../../../../../scripts/framework/utils/SingletonExtends";
+import { FlowIDs } from "./FlowIDs";
+// ---------- 常數 ----------------------------------------------------------------
+
+class <%Name%> extends SingletonExtends {
+    // ---------- 成員變數 -------------------------------------------------------------
+    // ---------- 外部部呼叫 -----------------------------------------------------------
+
+    /** 執行命令 */
+    public execute() {
+        const flow: Flow = this.createFlow();
+        App.flowManager.registerFlow(flow);
+    }
+
+    // ---------- 內部呼叫 -------------------------------------------------------------
+    /** 創建flow */
+    private createFlow(): Flow {
+        const flow: Flow = new App.flowManager.Flow(FlowIDs.UNKNOWN);
+
+        flow.add(
+            FlowTrigger.CONCURRENT,
+            // new G1001Event(G1001Event.UNKNOWN, null),
+            // new G1001Event(G1001Event.UNKNOWN, null),
+        );
+
+        flow.add(
+            FlowTrigger.AFTER_PREVIOUS,
+            // new G1001Event(G1001Event.TEST_FLOW, null),
+            // new G1001Event(G1001Event.UNKNOWN, null),
+        );
+
+        return flow;
+    }
+}
+export default <%Name%>.instance();

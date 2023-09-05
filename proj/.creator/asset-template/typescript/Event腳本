@@ -1,0 +1,8 @@
+/** <%Name%>事件 event */
+
+import { FlowEvent } from "../../../../scripts/framework/core/flow/FlowEvent";
+
+export class <%Name%> extends FlowEvent <<%Name%>> {
+
+	public static DO_SOMETHING_EVENT = '<%Name%>:DO_SOMETHING_EVENT';
+}

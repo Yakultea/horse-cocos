@@ -1,0 +1,1 @@
+declare type TemplateView = import("../assets/bundles/template/script/view/TemplateView").default;

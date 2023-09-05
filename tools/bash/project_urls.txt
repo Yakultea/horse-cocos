@@ -1,0 +1,2 @@
+ssh://git@gitlab.riversense.tw:4022/egames/misa-bundles/g1001
+ssh://git@gitlab.riversense.tw:4022/egames/misa-bundles/slotFramework

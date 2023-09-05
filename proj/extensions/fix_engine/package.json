@@ -1,0 +1,35 @@
+{
+    "package_version": 2,
+    "version": "1.0.0",
+    "name": "fix_engine",
+    "description": "把对引擎的改动复制到Cocos Creator的安装目录下，如果没有执行过该插件时，在构建时，提示先执行本插件，以保证热更新相关代码替换",
+    "main": "./dist/main.js",
+    "author": "Zheng Fasheng",
+    "editor": ">=3.3.1",
+    "scripts": {
+        "build": "tsc -b",
+        "watch": "tsc -w"
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "项目工具",
+                "label": "引擎修正",
+                "message": "fixEngine"
+            }
+        ],
+        "messages": {
+            "fixEngine": {
+                "methods": [
+                    "fixEngine"
+                ]
+            },
+            "onBeforeBuild": {
+                "methods": [
+                    "onBeforeBuild"
+                ]
+            }
+        },
+        "builder": "./dist/Builder.js"
+    }
+}

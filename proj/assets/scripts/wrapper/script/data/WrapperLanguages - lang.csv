@@ -1,0 +1,29 @@
+,zh-tw,zh-cn,en,vn
+alertConfirm,確定,确定,confirm,Xác nhận
+alertCancel,取消,取消,cancel,Hủy
+networkError,網路訊號不穩，請重新連線。,网路讯号不稳，请重新连线。,"the online signal is unstable, please connect again.","Tình trạng mạng không ổn định, vui lòng thử lại."
+insufficientFund,金額不足，請重新選擇,金额不足，请重新选择,"insufficient amount, please choose again","Số dư không đủ, vui lòng chọn lại."
+insufficientFundError,金額不足，請至大廳儲值,金额不足，请至大厅储值,"insufficient amount, please go to the hall to store your value","Số dư không đủ, vui lòng ra sảnh nạp thêm."
+initError,遊戲伺服器連線中斷,游戏伺服器连线中断,game server connection interruption,Mất kết nối máy chủ trò chơi.
+loadGameError,遊戲加載錯誤,游戏加载错误,game loading error,Lỗi tải game.
+inProgress,遊戲進行中，無法離開,游戏进行中，无法离开,"in the game, unable to leave","Trò chơi đang tiến hành, không thể rời khỏi."
+exitGame,確定要離開遊戲嗎？,确定要离开游戏吗？,are you sure you want to leave the game?,Có chắc chắn muốn thoát khỏi trò chơi?
+exitGameOpenPage,離開目前遊戲開啟網站？,离开目前游戏开启网站？,leave the current game to open the website?,Rời khỏi trò chơi hiện tại để mở trang web?
+timeoutError,遊戲無法連線，請重新確認,游戏无法连线，请重新确认,"the game cannot be connected, please confirm again","Không thể kết nối với trò chơi, vui lòng thử lại."
+disconnect,連線逾時，請重新連線,连线逾时，请重新连线,"connection is over time, please re -connect","Đăng nhập quá hạn, vui lòng đăng nhập lại."
+pauseGameDisconnect,※遊戲中請勿離開遊戲畫面，感謝您的配合。,※游戏中请勿离开游戏画面，感谢您的配合。,"※ do not leave the game screen in the game, thank you for your cooperation.","※ Đang trong trò chơi vui lòng đừng rời khỏi màn hình, cảm ơn sự hợp tác của bạn."
+gameConflict,上一次的遊戲尚未結束，請回到上個遊戲繼續完成才能領到獎金喔,上一次的游戏尚未结束，请回到上个游戏继续完成才能领到奖金喔,"the last game has not yet ended, please return to the last game to continue to get the bonus","Trò chơi trước vẫn chưa kết thúc, vui lòng quay lại hoàn thành trò chơi trước để nhận tiền thưởng nhé."
+recommendGame,遊戲已滿桌，試試其他熱門遊戲。,游戏已满桌，试试其他热门游戏。,"the game is full, try other popular games.","Trò chơi đang hết bàn, thử các trò chơi khác trước nhé."
+gameCountdownTimeout,超過下注時間，待下一輪再操作。,超过下注时间，待下一轮再操作。,"more than the bet time, wait for the next round of operation.","Quá giờ đặt cược, đợi lượt sau nhé."
+code,編號：,编号：,serial number:,Số thứ tự:
+rotationPortraitMode,為了獲得更好的體驗，請轉到直向模式。,为了获得更好的体验，请转到直向模式。,"in order to get a better experience, go to the straight mode.","Để có trải nghiệm tốt hơn, vui lòng chuyển sang chế độ dọc."
+rotationLandscapeMode,為了獲得更好的體驗，請轉到橫向模式。,为了获得更好的体验，请转到横向模式。,"to get a better experience, go to the horizontal mode.","Để có trải nghiệm tốt hơn, vui lòng chuyển sang chế độ ngang."
+switchSlotTable1,將切換到,将切换到,switch to,Đang chuyển sang
+switchSlotTable2,號桌，並重新載入遊戲。,号桌，并重新载入游戏。,"table, and reload the game.","Số bàn, đang tải lại trò chơi..."
+successfulCopy,複製成功,复制成功,replication,Copy thành công.
+invalidData,資料異常,资料异常,abnormal data,Dữ liệu bất thường.
+wrapper1,"沒有正常離開遊戲,將幫您恢復到離開遊戲前的狀態","没有正常离开游戏,将帮您恢复到离开游戏前的状态","if you did not leave the game normally, it will help you restore to the state before leaving the game","Nếu bạn chưa thoát khỏi trò chơi hoàn toàn, hệ thống sẽ giúp bạn khôi phục lại trạng thái trước khi thoát."
+wrapper2,繼續遊戲,继续游戏,keep playing,Tiếp tục trò chơi
+wrapper3,已在其他位置登入,已在其他位置登入,login at another location.,Tài khoản đang được đăng nhập ở thiết bị khác 
+wrapper4,離開,离开,exit,Thoát
+wrapper5,恭喜玩家{0}在{1}獲得彩金{2},恭喜玩家{0}在{1}获得彩金{2},congratulations {0} won {1} prize. in {2}.,Chúc mừng người chơi {0} đã đoạt được tiền thưởng {2}tại {1}

@@ -1,0 +1,100 @@
+{
+    "mainGame": {
+        "topbar": {
+            "$type": "color",
+            "$value": "rgba(42, 26, 77, 0.8200)"
+        },
+        "mainHover": {
+            "$type": "color",
+            "$value": "#896acc"
+        },
+        "auxiliary": {
+            "$type": "color",
+            "$value": "#4e3487"
+        },
+        "main": {
+            "$type": "color",
+            "$value": "#ab84ff"
+        }
+    },
+    "yellow": {
+        "secondary": {
+            "$type": "color",
+            "$value": "rgba(255, 168, 0, 0.3000)"
+        },
+        "primary": {
+            "$type": "color",
+            "$value": "#ffd680"
+        }
+    },
+    "white": {
+        "textAuto01": {
+            "$type": "color",
+            "$value": "#ffffff"
+        },
+        "labelDefault01": {
+            "$type": "color",
+            "$value": "rgba(255, 255, 255, 0.6000)"
+        },
+        "hover01": {
+            "$type": "color",
+            "$value": "rgba(255, 255, 255, 0.3000)"
+        },
+        "default01": {
+            "$type": "color",
+            "$value": "rgba(255, 255, 255, 0.1500)"
+        },
+        "info01": {
+            "$type": "color",
+            "$value": "#ffffff"
+        }
+    },
+    "record": {
+        "5": {
+            "$type": "color",
+            "$value": "rgba(255, 255, 255, 0.0500)"
+        },
+        "10": {
+            "$type": "color",
+            "$value": "rgba(255, 255, 255, 0.2400)"
+        }
+    },
+    "green": {
+        "primary": {
+            "$type": "color",
+            "$value": "#3ae300"
+        }
+    },
+    "red": {
+        "primary": {
+            "$type": "color",
+            "$value": "#ff6433"
+        }
+    },
+    "background": {
+        "0": {
+            "$type": "color",
+            "$value": "#c9c9cc"
+        },
+        "20": {
+            "$type": "color",
+            "$value": "#a9a9ad"
+        },
+        "40": {
+            "$type": "color",
+            "$value": "#88898e"
+        },
+        "60": {
+            "$type": "color",
+            "$value": "#68696f"
+        },
+        "80": {
+            "$type": "color",
+            "$value": "#474951"
+        },
+        "100": {
+            "$type": "color",
+            "$value": "#272932"
+        }
+    }
+}

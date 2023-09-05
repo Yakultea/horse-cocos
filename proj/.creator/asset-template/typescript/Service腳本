@@ -1,0 +1,45 @@
+/**
+ * @description 子游戲連線服務
+ */
+// ---------- 引用 ----------------------------------------------------------------
+import { EBundles } from "../../../common/data/Bundles";
+import UrlModel from "../../../common/model/UrlModel";
+import { CommonService } from "../../../common/net/CommonService";
+import { WrapperEvent } from "../event/WrapperEvent";
+
+// ---------- 常數 ----------------------------------------------------------------
+export class <%Name%> extends CommonService {
+    // ---------- 成員變數 --------------------------------------------------------
+    static module = EBundles[EBundles.unknown];
+    module = EBundles[EBundles.unknown]; // 原則上 這邊不須指定 但因 init時 我需要知道此模組歸屬 故先指定。
+
+    protected clientType = "socketIO";
+    protected url = UrlModel.socket_url;
+
+    // ---------- 生命週期 --------------------------------------------------------
+    constructor() {
+        super();
+        this.init();
+    }
+
+    // ---------- 框架呼叫 ------------------------------------------------------
+    /**@description 網路連線成功 */
+    onOpen(ev: Event) {
+        super.onOpen(ev);
+        this.addSocketListeners();
+    }
+
+    /**@description 網路關閉 */
+    onClose(ev: Event) {
+        super.onClose(ev);
+    }
+
+    // ---------- 內部呼叫 --------------------------------------------------------
+    /** 新增 Socket 監聽 */
+    private addSocketListeners(): void {
+
+        this.on("echo", (response) => { });
+    }
+
+    // ---------- 外部部呼叫 ------------------------------------------------------
+}

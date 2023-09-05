@@ -1,0 +1,41 @@
+// ---------- 引用 ----------------------------------------------------------------
+
+
+// ---------- 常數 ----------------------------------------------------------------
+
+export class <%Name%> extends Sender {
+    // ---------- 成員變數 --------------------------------------------------------
+    static module = EBundles[EBundles.unknown];
+    protected get service() { return App.serviceManager.get(<%Name%>Service); }
+
+    // ---------- 生命週期 --------------------------------------------------------
+    // ---------- 框架呼叫 ------------------------------------------------------
+    // ---------- 內部呼叫 --------------------------------------------------------
+
+
+    // ---------- 外部部呼叫 ------------------------------------------------------
+
+    /** spin */
+    public spin() {
+        // const requestVO: IRequest = {
+        //     request: ESocketRequestName.SPIN,
+        //     params: {
+        //         ratioIndex: 0,
+        //         ratioValue: 0.25,
+        //         stakeIndex: 0,
+        //         stakeValue: 1
+        //     }
+        // };
+
+        // this.service.send(requestVO.request, requestVO, (response: ISpinRes) => {
+        //     if (response.status == Http.ServerStatus.SUCCESS) {
+        //         this.setToken(response);
+        //         GameStateModel.setData(response.engine.gameState)
+        //         dispatch(WrapperEvent.SPIN_RESPONSE, response.engine.gameState);
+        //     } else {
+        //         Log.e('NETWORK_ERROR: ', response);
+        //     }
+        // });
+    }
+
+}

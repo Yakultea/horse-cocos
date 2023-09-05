@@ -1,0 +1,73 @@
+// ---------- 引用 ----------------------------------------------------------------
+import { Prefab } from "cc";
+import { Resource } from "../../../../scripts/framework/core/asset/Resource";
+import ResourceLoader from "../../../../scripts/framework/core/asset/ResourceLoader";
+import { Logic } from "../../../../scripts/framework/core/logic/Logic";
+
+// ---------- 常數 ----------------------------------------------------------------
+export class <%Name%> extends Logic {
+    // ---------- 成員變數 --------------------------------------------------------
+    get data() { return App.dataCenter.get(SomeData); }
+    get view() { return this.gameView as SomeView; }
+
+    private loader = new ResourceLoader;
+
+    // ---------- 生命週期 --------------------------------------------------------
+
+    onLoad(gameview: GameView) {
+        super.onLoad(gameview);
+        this._init();
+    }
+
+    onDestroy() {
+        // 卸载资源
+        this.loader.unLoadResources();
+        // 清除缓存
+        this.data.clear();
+        super.onDestroy();
+    }
+
+
+    // ---------- 框架呼叫 ------------------------------------------------------
+    reset() { }
+
+    // ---------- 內部呼叫 --------------------------------------------------------
+
+    private _init() {
+        this.loadResources();
+    }
+
+    /** 資源加載 */
+    private loadResources() {
+        // 設定載入資源
+        this.loader.getLoadResources = () => {
+            let res: Resource.Data[] = [
+                // { url: "prefabs/SomeItem", bundle: this.bundle, type: Prefab },
+            ];
+
+            return res;
+        };
+
+        // 載入資源complete
+        this.loader.onLoadComplete = (err) => {
+            if (err = Resource.LoaderError.SUCCESS) {
+                // 初始化資源
+            }
+        };
+
+        // 執行載入動作
+        this.loader.loadResources();
+    }
+
+    // ---------- 外部部呼叫 ------------------------------------------------------
+    
+    // ---------- 監聽事件 --------------------------------------------------------
+    /** 框架onLoad呼叫 */
+    public addEvents() {
+        this.on(TemplateGameEvent.TEST_CONSOLE_LOG_JOJO,()=>this.testConsoleLogJojoHandler());
+    }
+
+    private testConsoleLogJojoHandler() {
+        Log.d('Hello JOJO');
+    }
+}

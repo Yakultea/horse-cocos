@@ -1,0 +1,83 @@
+{
+    "package_version": 2,
+    "version": "1.0.0",
+    "name": "hotupdate",
+    "description": "热更新版本文件生成工具",
+    "main": "./dist/main.js",
+    "panels": {
+        "default": {
+            "title": "热更新工具",
+            "type": "dockable",
+            "main": "dist/panels/default/script",
+            "size": {
+                "min-width": 900,
+                "min-height": 900,
+                "width": 500,
+                "height": 500
+            }
+        }
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "项目工具",
+                "label": "热更新",
+                "message": "showPanel"
+            }
+        ],
+        "messages": {
+            "showPanel": {
+                "methods": [
+                    "showPanel"
+                ]
+            },
+            "onAfterBuild": {
+                "methods": [
+                    "onAfterBuild"
+                ]
+            },
+            "onBeforeBuild": {
+                "methods": [
+                    "onBeforeBuild"
+                ]
+            },
+            "onPngCompressComplete": {
+                "methods": [
+                    "onPngCompressComplete"
+                ]
+            },
+            "updateCreateProgress": {
+                "methods": [
+                    "default.updateCreateProgress"
+                ]
+            },
+            "updateDeployProgress": {
+                "methods": [
+                    "default.updateDeployProgress"
+                ]
+            },
+            "onSetBuildDir": {
+                "methods": [
+                    "default.onSetBuildDir"
+                ]
+            },
+            "onSetProcess": {
+                "methods": [
+                    "default.onSetProcess"
+                ]
+            },
+            "onSetVersion" :{
+                "methods": [
+                    "default.onSetVersion"
+                ]
+            }
+        },
+        "builder": "./dist/Builder.js"
+    },
+    "author": "Zheng Fasheng",
+    "editor": ">=3.3.1",
+    "scripts": {
+        "build": "tsc -b",
+        "watch": "tsc -w"
+    }
+}

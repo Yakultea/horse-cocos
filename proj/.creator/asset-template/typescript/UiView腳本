@@ -1,0 +1,62 @@
+// ---------- 引用 ----------------------------------------------------------------
+import { Node, _decorator } from "cc";
+import UIView from "../../framework/core/ui/UIView";
+import { inject } from "../../framework/defines/Decorators";
+
+// ---------- 常數 ----------------------------------------------------------------
+const { ccclass } = _decorator;
+@ccclass('<%Name%>')
+export default class <%Name%> extends UIView {
+
+    // ---------- 成員變數 -------------------------------------------------------------
+    public static getPrefabUrl() { return "prefabs/view/<%Name%>"; }
+    
+    @inject("content", Node)
+    private content: Node = null;
+    // ---------- 生命週期 -------------------------------------------------------------
+    onLoad() {
+        super.onLoad();
+
+        this.show(this.args);
+    }
+
+    // ---------- 框架呼叫 -------------------------------------------------------------
+    protected get showAction() {
+        return (complete: () => void) => {
+            App.utils.showView(this.content, complete);
+        };
+    }
+
+    protected get closeAction() {
+        return (complete: () => void) => {
+            App.utils.hideView(this.content, complete);
+        };
+    }
+
+    // protected setAdapter(type: EOrientationType) {
+        // switch (type) {
+        //     case EOrientationType.LANDSCAPE:
+        //         CmmUtils.setWidget(null, [40, 0, false, 0]);
+        //         break;
+
+        //     case EOrientationType.PORTRAIT:
+
+        //         break;
+
+        //     default:
+        //         break;
+        // }
+    // }
+    // ---------- 內部呼叫 -------------------------------------------------------------
+    // ---------- 外部部呼叫 -----------------------------------------------------------
+
+    // ---------- 監聽事件 --------------------------------------------------------
+    /** 框架onLoad呼叫 */
+    // public addEvents() {
+    //     super.addEvents();
+    //     this.on('SomeEvent', (data)=>{
+    //     Log.d('someEventHandler');
+    // });
+    // }
+
+}

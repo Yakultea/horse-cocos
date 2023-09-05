@@ -1,0 +1,21 @@
+/**@description 公共事件定義 */
+export enum CommonEvent{
+    /**@description protobuf訊息測試 */
+    TEST_PROTO_MSG = "TEST_PROTO_MSG",
+    /**@description 二進位制流訊息測試 */
+    TEST_BINARY_MSG = "TEST_BINARY_MSG",
+    /**@description json訊息測試 */
+    TEST_JSON_MSG = "TEST_JSON_MSG",
+    /**@description 大廳連線成功 */
+    LOBBY_SERVICE_CONNECTED = "LOBBY_SERVICE_CONNECTED",
+    /**@description 大廳連線斷開 */
+    LOBBY_SERVICE_CLOSE = "LOBBY_SERVICE_CLOSE",
+    /**@description 遊戲連線成功 */
+    GAME_SERVICE_CONNECTED = "GAME_SERVICE_CONNECTED",
+    /**@description 遊戲連線斷開 */
+    GAME_SERVICE_CLOSE = "GAME_SERVICE_CLOSE",
+    /**@description 聊天連線成功 */
+    CHAT_SERVICE_CONNECTED = "CHAT_SERVICE_CONNECTED",
+    /**@description 聊天連線斷開 */
+    CHAT_SERVICE_CLOSE = "CHAT_SERVICE_CLOSE",
+}
