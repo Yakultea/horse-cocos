@@ -5,11 +5,11 @@
  * 程式碼執行時框架替換
 */
 // ---------- 引用 ----------------------------------------------------------------
-import { assetManager, CCString, Enum, Sprite, SpriteFrame, _decorator } from "cc";
+import { CCString, Enum, Sprite, SpriteFrame, _decorator } from "cc";
 import { Macro } from "../../defines/Macros";
 import { addExtraLoadResource, setSpriteSpriteFrame } from "../../plugin/CocosUtils";
 import { Resource } from "../asset/Resource";
-import ColorModel, { EColorKeys } from "../../../wrapper/script/model/ColorModel";
+import { EColorKeys } from "../../../game/model/ColorModel";
 
 // ---------- 常數 ----------------------------------------------------------------
 const { ccclass, property, menu } = _decorator;

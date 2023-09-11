@@ -93,7 +93,7 @@ export class BundleManager implements ISingleton{
          return;
       }
       item.handler.onStartLoadBundle(item);
-      Log.d(`loadBundle : ${item.bundle}`);
+      Log.w(`loadBundle : ${item.bundle}`);
       this._loadBundle(item.bundle, (err, bundle) => {
          if (err) {
             Log.e(`load bundle : ${item.bundle} fail !!!`);

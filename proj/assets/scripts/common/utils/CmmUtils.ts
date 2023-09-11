@@ -4,7 +4,7 @@
 
 import { Button, Color, Component, EventHandler, EventTouch, Label, Layers, Layout, Node, NodeEventType, Sprite, Tween, UIOpacity, UITransform, Widget, tween, v3 } from "cc";
 import { IlabelMarquee, Utils } from "../../framework/utils/Utils";
-import DefinitionModel from "../../wrapper/script/model/DefinitionModel";
+import DefinitionModel from "../../game/model/DefinitionModel";
 
 export interface ITweenNum {
     label: Label,

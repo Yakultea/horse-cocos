@@ -55,7 +55,7 @@ export class StageData extends GameData {
             let data = games[v];
             let entry = new Update.Config(`bundles.${v}.name`, v);
             this._entrys.set(v, entry);
-            if (!(v == EBundles[EBundles.wrapper] || v == Macro.BUNDLE_RESOURCES)) {
+            if (!(v == EBundles[EBundles.horseGame] || v == Macro.BUNDLE_RESOURCES)) {
                 this._games.push({ name: data.name, sort: data.sort, language: `bundles.${v}.name`, bundle: v });
             }
         })
@@ -83,9 +83,9 @@ export class StageData extends GameData {
      */
     isWrapperStage( bundle ?: string ){
         if ( bundle ){
-            return bundle == EBundles[EBundles.wrapper];
+            return bundle == EBundles[EBundles.horseGame];
         }else{
-            return this.where == EBundles[EBundles.wrapper];
+            return this.where == EBundles[EBundles.horseGame];
         }
     }
 

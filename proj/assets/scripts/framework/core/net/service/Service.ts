@@ -1,17 +1,13 @@
 import { DEBUG } from "cc/env";
+import UrlModel from "../../../../common/model/UrlModel";
+import SocketModel from "../../../../game/model/SocketModel";
 import { Macro } from "../../../defines/Macros";
-import { Codec, IMessage, Message } from "../message/Message";
 import { Net } from "../Net";
+import { Codec, IMessage, Message } from "../message/Message";
 import { ServerConnector } from "../socket/ServerConnector";
 import { Process } from "./Process";
-import SocketModel from "../../../../wrapper/script/model/SocketModel";
-import { sys } from "cc";
-import UrlModel from "../../../../common/model/UrlModel";
-
 
 /** @description 處理函式宣告 handleType 為你之前註冊的handleType型別的資料 返回值number 為處理函式需要的時間 */
-
-
 export abstract class Service extends ServerConnector implements IService {
     /**@description Service所屬模組，如Lobby,game */
     static module: string = Macro.UNKNOWN;
@@ -74,16 +70,16 @@ export abstract class Service extends ServerConnector implements IService {
 
     protected onOpen(ev: Event) {
         super.onOpen(ev);
-        App.serviceManager.onOpen(ev,this);
+        App.serviceManager.onOpen(ev, this);
     }
 
     protected onClose(ev: Event) {
         super.onClose(ev);
-        App.serviceManager.onClose(ev,this);
+        App.serviceManager.onClose(ev, this);
     }
     protected onError(ev: Event) {
         super.onError(ev);
-        App.serviceManager.onError(ev,this);
+        App.serviceManager.onError(ev, this);
     }
 
     protected onMessage(data: MessageEvent) {
@@ -106,7 +102,6 @@ export abstract class Service extends ServerConnector implements IService {
             this.onRecvHeartBeat();
             return;
         }
-
 
         super.onMessage(data);
         this._Process.onMessage(header);
@@ -147,7 +142,6 @@ export abstract class Service extends ServerConnector implements IService {
 
     public handMessage() { this._Process.handMessage(); }
 
-
     /**
      * @description 重置
      */
@@ -160,7 +154,6 @@ export abstract class Service extends ServerConnector implements IService {
         //this.resumeMessageQueue();
         super.close(isEnd);
     }
-
 
     /** socketIO 監聽事件 */
     public on(eventName: string, res: (event: any) => void): void {
@@ -209,19 +202,19 @@ export abstract class Service extends ServerConnector implements IService {
     private socketIOMessage(eventName: string, data: any, callback?: (event: any) => void) {
         if (DEBUG && !this.excludeType.includes(eventName)) {
             Log.w(`==================== emit ${eventName}`, data);
-        }        
-        
+        }
+
         let requestVO = {
             token: SocketModel.currentToken,
-            locale : UrlModel.getData().searchParams.l,
+            locale: UrlModel.getData().searchParams.l,
             ...data.params,
         }
-        if (data.spinId){
+        if (data.spinId) {
             requestVO.spinId = data.spinId
         }
         if (DEBUG && data.cheat) {
             requestVO.cheat = data.cheat
-        }        
+        }
 
         if (DEBUG && !this.excludeType.includes(eventName)) {
             Log.w(`==================== emit Final ${eventName}`, requestVO);

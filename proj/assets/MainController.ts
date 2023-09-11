@@ -1,14 +1,10 @@
-import { Asset, find, Game, _decorator, Node, Input, profiler, screen } from "cc";
+import { Asset, Game, Input, Node, _decorator, find, profiler, screen } from "cc";
 import { Config } from "./scripts/common/config/Config";
 import { DebugView } from "./scripts/common/debug/DebugView";
 import EventComponent from "./scripts/framework/componects/EventComponent";
-import UrlModel from "./scripts/common/model/UrlModel";
-import UrlUtils from "./scripts/common/utils/UrlUtils";
-import SocketModel from "./scripts/wrapper/script/model/SocketModel";
 import { EOrientationType } from "./scripts/framework/core/adapter/AdapterEvent";
-import WrapperData from "./scripts/wrapper/script/data/WrapperData";
-import { LogLevel } from "./scripts/framework/defines/Enums";
-import { DEBUG } from "cc/env";
+import HorseGameData from "./scripts/game/data/HorseGameData";
+
 // ---------- 常數 ----------------------------------------------------------------
 /**
  * @description 主控制器 
@@ -105,7 +101,7 @@ export default class MainController extends EventComponent {
     private setOrientation() {
         let canvasSize = screen.windowSize;
         const canvasSizeRate = canvasSize.width / canvasSize.height;
-        App.dataCenter.get(WrapperData).orientation = canvasSizeRate > 1 ? EOrientationType.LANDSCAPE : EOrientationType.PORTRAIT;
+        App.dataCenter.get(HorseGameData).orientation = canvasSizeRate > 1 ? EOrientationType.LANDSCAPE : EOrientationType.PORTRAIT;
     }
 
     // ---------- 外部部呼叫 ------------------------------------------------------

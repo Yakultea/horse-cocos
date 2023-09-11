@@ -3,8 +3,8 @@
  */
 
 // ---------- 引用 ----------------------------------------------------------------
-import { CCString, Enum, Label, _decorator, Color, Component, Node, Sprite, Button } from "cc";
-import ColorModel, { EUiColorKeys } from "../../../wrapper/script/model/ColorModel";
+import { Button, Component, Enum, Label, Sprite, _decorator } from "cc";
+import ColorModel, { EUiColorKeys } from "../../../game/model/ColorModel";
 
 // ---------- 常數 ----------------------------------------------------------------
 const { ccclass, property, menu, executeInEditMode } = _decorator;

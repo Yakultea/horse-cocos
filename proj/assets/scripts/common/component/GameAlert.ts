@@ -68,10 +68,10 @@ class GameAlertDialog extends EventComponent {
 
     public show(config: GameAlertConfig) {
         if (!config.confirmString) {
-            config.confirmString = App.getLanguage("alertConfirm", [], EBundles[EBundles.wrapper]);
+            config.confirmString = App.getLanguage("alertConfirm", [], EBundles[EBundles.horseGame]);
         }
         if (!config.cancelString) {
-            config.cancelString = App.getLanguage("alertCancel", [], EBundles[EBundles.wrapper]);
+            config.cancelString = App.getLanguage("alertCancel", [], EBundles[EBundles.horseGame]);
         }
         if (config.colorStyle) {
             this._content.getComponent(Sprite).color = config.colorStyle;
@@ -362,15 +362,15 @@ export default class GameAlert implements ISingleton {
     }
 
     private _show(config: GameAlertConfig, zOrder: number = ViewZOrder.Alert) {
-        if (!this.curPanel) {
-            log(App.cache);
-            let data = App.cache.get(EBundles[EBundles.slotFramework], "prefabs/GameAlert").data as Prefab;
-            this.curPanel = instantiate(data);
-            let dialog = this.curPanel.addComponent(GameAlertDialog);
-            App.uiManager.addView(this.curPanel, zOrder);
-            dialog.setFinishAlert(this.finishAlert.bind(this));
-            dialog.show(config);
-        }
+        // if (!this.curPanel) {
+        //     log(App.cache);
+        //     let data = App.cache.get(EBundles[EBundles.slotFramework], "prefabs/GameAlert").data as Prefab;
+        //     this.curPanel = instantiate(data);
+        //     let dialog = this.curPanel.addComponent(GameAlertDialog);
+        //     App.uiManager.addView(this.curPanel, zOrder);
+        //     dialog.setFinishAlert(this.finishAlert.bind(this));
+        //     dialog.show(config);
+        // }
     }
 }
 

@@ -32,7 +32,7 @@ export class CmmEntry extends EntryDelegate {
             let item = App.updateManager.getItem(config)!;
             if (bundle == Macro.BUNDLE_RESOURCES) {
                 item.handler = Singleton.instance.get(MainUpdateHandlerImpl) as MainUpdateHandlerImpl;
-            } else if (bundle == EBundles[EBundles.wrapper]) {
+            } else if (bundle == EBundles[EBundles.horseGame]) {
                 item.handler = Singleton.instance.get(HallUpdateHandlerImpl) as HallUpdateHandlerImpl;
             } else {
                 item.handler = Singleton.instance.get(BundleUpdateHandlerImpl) as BundleUpdateHandlerImpl;
@@ -47,8 +47,8 @@ export class CmmEntry extends EntryDelegate {
     getPersistBundle() {
         return [
             Macro.BUNDLE_RESOURCES,
-            EBundles[EBundles.wrapper],
-            EBundles[EBundles.slotFramework]
+            EBundles[EBundles.horseGame],
+            // EBundles[EBundles.slotFramework]
         ];
     }
 }

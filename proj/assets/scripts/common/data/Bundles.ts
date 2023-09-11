@@ -1,4 +1,3 @@
-import { Macro } from "../../framework/defines/Macros";
 
 /**
  * @description 語言包用到，定義好之前，請不要隨意修改順序，以免讀取語言包錯誤
@@ -6,13 +5,7 @@ import { Macro } from "../../framework/defines/Macros";
  */
 export enum EBundles {
     resources,
-    hall,
-    template,
-    g1001,
-    g9999,
-    wrapper,
-    slotFramework,
-    unknown
+    horseGame,
 }
 
 interface IBundles {
@@ -26,11 +19,11 @@ interface IBundles {
 
 /** 將Bundle綁訂到Common語系 */
 export const Bundles: IBundles = {
-    bundles: { }
+    bundles: {}
 };
 
 // 迴圈創建bundle資料 
-Object.values(EBundles).forEach((key,index) => {
+Object.values(EBundles).forEach((key, index) => {
     if (typeof key === "number") return
     Object.assign(Bundles.bundles, {
         [key]: {
@@ -39,4 +32,3 @@ Object.values(EBundles).forEach((key,index) => {
         },
     });
 });
-// Log.d('Bundles: ', Bundles);

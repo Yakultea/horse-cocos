@@ -1,6 +1,6 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { CCString, Enum, Label, _decorator, Color } from "cc";
-import ColorModel, { EColorKeys } from "../../../wrapper/script/model/ColorModel";
+import { CCString, Enum, Label, _decorator } from "cc";
+import { EColorKeys } from "../../../game/model/ColorModel";
 
 /**
  * @description 支援多語言
