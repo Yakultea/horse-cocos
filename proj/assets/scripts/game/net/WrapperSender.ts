@@ -1,24 +1,20 @@
 // ---------- 引用 ----------------------------------------------------------------
 import { sys } from "cc";
-import DefinitionModel from "../model/DefinitionModel";
+import { GameAlertConfig } from "../../common/component/GameAlert";
+import { ViewZOrder } from "../../common/config/Config";
+import { EBundles } from "../../common/data/Bundles";
+import { ExitUtils } from "../../common/utils/ExitUtils";
+import { Http } from "../../framework/core/net/http/Http";
+import { Sender } from "../../framework/core/net/service/Sender";
+import { HorseGameEvent } from "../event/HorseGameEvent";
 import GameStateModel from "../model/GameStateModel";
 import PlatformModel from "../model/PlatformModel";
-import SettingsModel from "../model/SettingsModel";
 import SlotTableModel from "../model/SlotTableModel";
 import SocketModel from "../model/SocketModel";
 import { IBetRecordsRes, ICloseSpinRes, ISlotTablesRes as IGetSlotTablesRes, IInitialRes, IResBase, ISpinRes, ITables, IUpdateAvatarRes, IUpdateSlotTableRes } from "../types/res-type";
 import { ESocketRequestName } from "../types/type";
 import { IRequest } from "./WrapperHandler";
 import { WrapperService } from "./WrapperService";
-import { Sender } from "../../framework/core/net/service/Sender";
-import { EBundles } from "../../common/data/Bundles";
-import { GameAlertConfig } from "../../common/component/GameAlert";
-import { ViewZOrder } from "../../common/config/Config";
-import { ExitUtils } from "../../common/utils/ExitUtils";
-import ServerModel, { EServerMode } from "../../common/model/ServerModel";
-import { Http } from "../../framework/core/net/http/Http";
-import { HorseGameEvent } from "../event/HorseGameEvent";
-
 
 // ---------- 常數 ----------------------------------------------------------------
 // 文件 https://gitlab.riversense.tw/egames/slot-worker-nodejs-2020/-/blob/feat/erase2/docs/data-model/erase-2/cheat.md
@@ -48,6 +44,7 @@ export interface ISettingsVO {
         ratioIndex?: number;
     };
 }
+
 export interface IGetSlotTablesVO {
     roomId?: number;
 }
@@ -56,9 +53,11 @@ export interface IBetRecordsVO {
     lt?: number;
     rows: number;
 }
+
 export interface IUpdateSlotTableVO {
     table: ITables;
 }
+
 export interface IStakeVO {
     ratioIndex: number,
     ratioValue: number,
@@ -81,7 +80,7 @@ export class WrapperSender extends Sender {
     }
 
     /** 顯示彈窗 */
-    private showAlert(message: string, options?: { needCloseAlert?: boolean,code?:string, callback?: Function; }) {
+    private showAlert(message: string, options?: { needCloseAlert?: boolean, code?: string, callback?: Function; }) {
         const config: GameAlertConfig = {
             text: message,
             confirmCb() { exit(); },
@@ -98,9 +97,8 @@ export class WrapperSender extends Sender {
         App.gameAlert.show(config, ViewZOrder.TopErrorAlert);
     }
 
-
-
     // ---------- 外部部呼叫 ------------------------------------------------------
+
     /** initial */
     public initial(): Promise<void> {
         const requestVO = {
@@ -134,10 +132,10 @@ export class WrapperSender extends Sender {
                     }
                     Log.d('*** 後端來的資料 ***', response);
                     this.setToken(response);
-                    DefinitionModel.setData(response.engine.definition);
-                    GameStateModel.setData(response.engine.gameState);
-                    PlatformModel.setData(response.platform);
-                    SettingsModel.setData(response.platform.player.settings);
+                    // DefinitionModel.setData(response.engine.definition);
+                    // GameStateModel.setData(response.engine.gameState);
+                    // PlatformModel.setData(response.platform);
+                    // SettingsModel.setData(response.platform.player.settings);
                     dispatch(HorseGameEvent.INIT_RESPONSE, response);
                     resolve();
                 } else {
@@ -202,6 +200,7 @@ export class WrapperSender extends Sender {
                 ...dataVO
             }
         };
+
         this.send(requestVO.request, requestVO, (response) => {
             if (response.status == Http.ServerStatus.SUCCESS) {
                 this.setToken(response);
@@ -220,6 +219,7 @@ export class WrapperSender extends Sender {
                 ...dataVO
             }
         };
+
         this.send(requestVO.request, requestVO, (response: IBetRecordsRes) => {
             if (response.status == Http.ServerStatus.SUCCESS) {
                 this.setToken(response);
@@ -239,6 +239,7 @@ export class WrapperSender extends Sender {
                 ...dataVO
             }
         };
+
         this.send(requestVO.request, requestVO, (response: IGetSlotTablesRes) => {
             if (response.status == Http.ServerStatus.SUCCESS) {
                 this.setToken(response);
@@ -259,6 +260,7 @@ export class WrapperSender extends Sender {
                 ...dataVO
             }
         };
+
         this.send(requestVO.request, requestVO, (response: IGetSlotTablesRes) => {
             if (response.status == Http.ServerStatus.SUCCESS) {
                 this.setToken(response);
@@ -279,6 +281,7 @@ export class WrapperSender extends Sender {
                 ...dataVO
             }
         };
+
         this.send(requestVO.request, requestVO, (response: IUpdateSlotTableRes) => {
             if (response.status == Http.ServerStatus.SUCCESS) {
                 this.setToken(response);
@@ -290,9 +293,6 @@ export class WrapperSender extends Sender {
 
                 // 重整網頁
                 window.parent.location.href = newUrl;
-
-                // // 重整網頁
-                // window.parent.location.reload();
             } else {
                 Log.e('NETWORK_ERROR: ', response);
                 this.showAlert(response.message, { needCloseAlert: false, code: response.code });
@@ -308,6 +308,7 @@ export class WrapperSender extends Sender {
                 ...dataVO
             }
         };
+
         this.send(requestVO.request, requestVO, (response: IUpdateSlotTableRes) => {
             if (response.status == Http.ServerStatus.SUCCESS) {
                 this.setToken(response);
@@ -331,6 +332,7 @@ export class WrapperSender extends Sender {
                 ...stakeVO,
             }
         };
+
         this.send(requestVO.request, requestVO, (response: any) => {
             if (response.status == Http.ServerStatus.SUCCESS) {
                 this.setToken(response);
@@ -364,11 +366,6 @@ export class WrapperSender extends Sender {
                 dispatch(HorseGameEvent.UPDATE_AVATAR_COMPLETED_RESPONSE);
             } else {
                 Log.e('NETWORK_ERROR: ', response);
-                // App.gameAlert.show({
-                //     text: response.message,
-                //     confirmCb() { },
-                //     bbrCb() { }
-                // });
             }
         });
     }

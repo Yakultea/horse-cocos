@@ -7,6 +7,7 @@ import UrlModel from "../../common/model/UrlModel";
 import { CommonService } from "../../common/net/CommonService";
 import { HorseGameEvent } from "../event/HorseGameEvent";
 import { ENotifyTypes, INotifyJackpotUpdate, INotifyLegendWin } from "../types/res-type";
+import { WrapperSender } from "./WrapperSender";
 
 // ---------- 常數 ----------------------------------------------------------------
 export class WrapperService extends CommonService {
@@ -29,6 +30,7 @@ export class WrapperService extends CommonService {
         super.onOpen(ev);
         this.addSocketListeners();
         dispatch(HorseGameEvent.WRAPPER_SERVICE_CONNECTED, this);
+        App.senderManager.get(WrapperSender).initial();
     }
 
     /**@description 網路關閉 */
@@ -52,12 +54,16 @@ export class WrapperService extends CommonService {
             dispatch(HorseGameEvent.ERROR_RESPONSE, response);
         });
 
-        this.on("notify", (response: INotifyJackpotUpdate | INotifyLegendWin) => {
-            if (response.type === ENotifyTypes.JACKPOT_UPDATE) {
-                dispatch(HorseGameEvent.NOTIFY_JACKPOT_RESPONSE, response as INotifyJackpotUpdate);
-            } else {
-                dispatch(HorseGameEvent.NOTIFY_BIG_WIN_RESPONSE, response as INotifyLegendWin);
-            }
+        // this.on("notify", (response: INotifyJackpotUpdate | INotifyLegendWin) => {
+        //     if (response.type === ENotifyTypes.JACKPOT_UPDATE) {
+        //         dispatch(HorseGameEvent.NOTIFY_JACKPOT_RESPONSE, response as INotifyJackpotUpdate);
+        //     } else {
+        //         dispatch(HorseGameEvent.NOTIFY_BIG_WIN_RESPONSE, response as INotifyLegendWin);
+        //     }
+        // });
+
+        this.on('drawNotify', (response) => {
+            console.warn('DDDDDDDDD', response)
         });
     }
 

@@ -1,10 +1,8 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { log, sys } from "cc";
-import { ENV } from "../config/env";
+import { sys } from "cc";
 import { BaseModel } from "../../framework/core/event/BaseModel";
+import { ENV } from "../config/env";
 import UrlUtils from "../utils/UrlUtils";
-import SocketModel from "../../wrapper/script/model/SocketModel";
-import { DEBUG } from "cc/env";
 // ---------- 常數 ----------------------------------------------------------------
 export interface IUrlModel {
     base_api: string;
@@ -59,6 +57,9 @@ class UrlModel extends BaseModel<IUrlModel> {
     public get searchParams() { return this.data.searchParams; }
     public setSearchParams() {
         if (sys.isNative) return;
+
+        const socketUrl = UrlUtils.getParam("socket_url");
+
         this.data.searchParams = {
             t: UrlUtils.getParam("t"),
             gn: UrlUtils.getParam("gn"),
@@ -71,19 +72,17 @@ class UrlModel extends BaseModel<IUrlModel> {
             wv: UrlUtils.getParam("wv"),
             gv: UrlUtils.getParam("gv"),
             client_type: UrlUtils.getParam("client_type"),
-            goback_url: UrlUtils.getParam("goback_url"), 
+            goback_url: UrlUtils.getParam("goback_url"),
             table: UrlUtils.getParam("table"),
-            
         };
-        const socketUrl = UrlUtils.getParam("socket_url");
+
         if (socketUrl) {
             let protocol = UrlUtils.getUrlProtocol();
             this.data.socket_url = `${protocol}//${socketUrl}`;
-
-            // 開發用
-            // this.data.socket_url = `https://${socketUrl}`;
         }
-        
+        // 開發用
+        this.data.socket_url = `https://socket-lottery.riversense.tw`;
+
         Log.d("url data ==> ", this.data);
     }
 

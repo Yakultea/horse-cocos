@@ -12,6 +12,7 @@ import HorseGameData from "./data/HorseGameData";
 import { HorseGameLanguage } from "./data/HorseGameLanguage";
 import SocketModel from "./model/SocketModel";
 import WrapperHandler from "./net/WrapperHandler";
+import { WrapperSender } from "./net/WrapperSender";
 import { WrapperService } from "./net/WrapperService";
 import HorseGameView from "./view/HorseGameView";
 
@@ -58,7 +59,6 @@ class HorseGameEntry extends Entry {
         this.initUrlConfig();
         // 初始化 wrapper socket
         App.serviceManager.get(WrapperService, true);
-
     }
 
     protected pauseMessageQueue(): void {

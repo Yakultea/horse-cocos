@@ -39,7 +39,6 @@ export default class HorseGameView extends GameView {
 
     static logicType = HorseGameLogic;
     static getPrefabUrl() {
-        // return `@WrapperView`; // 呼應到 main.scene > prefabs(node)
         return 'game/prefabs/HorseGameView';
     }
 
@@ -56,7 +55,7 @@ export default class HorseGameView extends GameView {
         this.service.heartbeat = HeartbeatJson; // 設定心跳包 框架做法 保留但不使用
         // !!!進入後臺的最大允許時間，超過了最大值，則進入網路重連
         this.service.maxEnterBackgroundTime = Config.MIN_INBACKGROUND_TIME;
-        //连接网络 
+        //连接网络
         this.service.connect();
         //是否启用网络
         this.service.enabled = true;
