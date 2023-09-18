@@ -1,11 +1,12 @@
 // ---------- 引用 ----------------------------------------------------------------
 
-import { _decorator } from "cc";
+import { _decorator, find, instantiate, Node, Prefab } from "cc";
 import { Config } from "../../common/config/Config";
 import { HeartbeatJson } from "../../common/protocol/HeartbetJson";
 import GameView from "../../framework/core/ui/GameView";
 import HorseGameData from "../data/HorseGameData";
 import { HorseGameLogic } from "../logic/HorseGameLogic";
+import GameConfigModel from "../model/GameConfigModel";
 import { WrapperService } from "../net/WrapperService";
 
 // ---------- 常數 ----------------------------------------------------------------
@@ -20,6 +21,7 @@ export default class HorseGameView extends GameView {
 
     // 邏輯
     private get service() { return App.serviceManager.get(WrapperService); }
+    private Game3D: Node = null;
 
     // ---------- 生命週期 --------------------------------------------------------
     onLoad() {
@@ -27,8 +29,8 @@ export default class HorseGameView extends GameView {
     }
 
     start() {
-        this.init();
         this.serviceInit();
+        this.init();
     }
 
     onDestroy() {
@@ -46,7 +48,12 @@ export default class HorseGameView extends GameView {
 
     /** 初始化 */
     private init() {
+        // const { horseGamePrefab } = GameConfigModel.getData().filePaths;
+        // const horseGamePf = App.cache.get(this.data.module, horseGamePrefab).data as Prefab;
+        // const horseGame = instantiate(horseGamePf);
 
+        // this.Game3D = find('Game3D');
+        // this.Game3D.addChild(horseGame);
     }
 
     // 網路組件

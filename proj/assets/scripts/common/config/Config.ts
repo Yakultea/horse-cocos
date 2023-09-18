@@ -39,9 +39,9 @@ export namespace Config {
     export const RECONNECT_TIME_OUT = 30;
 
     /**@description 進入後臺最大時間（單位秒）大於這個時間時就會進入重連*/
-    export const MAX_INBACKGROUND_TIME = 60*65; // 60
+    export const MAX_INBACKGROUND_TIME = 60 * 65; // 60
     /**@description 進入後臺最小時間（單位秒）大於這個時間時就會進入重連*/
-    export const MIN_INBACKGROUND_TIME = 60*60; // 5
+    export const MIN_INBACKGROUND_TIME = 60 * 60; // 5
 
     /**@description 網路重連彈出框tag */
     export const RECONNECT_ALERT_TAG = 100;
@@ -90,7 +90,6 @@ export enum NetPriority {
     Lobby,
     Wrapper
 }
-
 
 export enum EEnv {
     DEV = "dev",

@@ -1,28 +1,37 @@
 // ---------- 引用 ----------------------------------------------------------------
 import { BaseModel } from "../../framework/core/event/BaseModel";
-import { ITables } from "../types/res-type";
 
 // ---------- 常數 ----------------------------------------------------------------
+export interface IGameConfigModel {
+    /* 檔案路徑 */
+    filePaths: {
+        horseGamePrefab: string;
+    };
+}
 
 /**
  * Model 是用來儲存全部共用的資料 
  */
-class SlotTableModel extends BaseModel<ITables> {
+class GameConfigModel extends BaseModel<IGameConfigModel> {
     // ---------- 成員變數 --------------------------------------------------------
-    private static _instance: SlotTableModel = null;
-    public static Instance() { return this._instance || (this._instance = new SlotTableModel()); }
+    private static _instance: GameConfigModel = null;
+    public static Instance() { return this._instance || (this._instance = new GameConfigModel()); }
 
     constructor() {
         super();
         this.data = {
-            bet: null,
-            number: null,
-            roomId: null,
-            status: null,
-            win: null,
-
+            filePaths: {
+                horseGamePrefab: 'game/prefabs/HorseGame',
+            }
         };
     }
+
+    // ---------- 框架呼叫 --------------------------------------------------------
+    // public setData(GameModelVO: IGameConfigModel) {
+    //     this.data = {
+    //         value1: null,
+    //     };
+    // }
 
     // ---------- 內部呼叫 --------------------------------------------------------
 
@@ -39,4 +48,4 @@ class SlotTableModel extends BaseModel<ITables> {
     // }
 }
 
-export default SlotTableModel.Instance();
+export default GameConfigModel.Instance();

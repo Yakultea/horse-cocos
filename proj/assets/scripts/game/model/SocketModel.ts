@@ -26,8 +26,6 @@ class SocketModel extends BaseModel<ISocketModel> {
     constructor() {
         super();
         this.data = {
-            // 三星token: a2065113748440bc9582ee46ef778e9d
-            // 風暴戰神token: 12be873fea65486981f4aed9ac07e538
             currentToken: '',
             requestVO: null, // temperary storage for requestVO
             resendTimes: 0,
@@ -48,12 +46,8 @@ class SocketModel extends BaseModel<ISocketModel> {
 
     public set currentToken(token: string) {
         let urlToken = UrlUtils.getParam('t');
+
         localStorage.setItem(urlToken, token);
-        // if (token) {
-        //     localStorage.setItem(urlToken, token);
-        // } else {
-        //     localStorage.removeItem(urlToken);
-        // }
         this.data.currentToken = token;
     }
 }

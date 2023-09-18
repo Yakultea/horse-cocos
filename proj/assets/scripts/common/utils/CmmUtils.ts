@@ -4,7 +4,6 @@
 
 import { Button, Color, Component, EventHandler, EventTouch, Label, Layers, Layout, Node, NodeEventType, Sprite, Tween, UIOpacity, UITransform, Widget, tween, v3 } from "cc";
 import { IlabelMarquee, Utils } from "../../framework/utils/Utils";
-import DefinitionModel from "../../game/model/DefinitionModel";
 
 export interface ITweenNum {
     label: Label,
@@ -95,10 +94,6 @@ export class CmmUtils extends Utils {
      * @returns string 格式化後的數字
      */
     public static formatNumber(number: number, isZeroPadding: boolean = false, useThousandsSeparator: boolean = true, decimalPlaces?: number): string {
-        // 若未指定小數點位數，則依後端位數為主
-        if (decimalPlaces === undefined) {
-            decimalPlaces = DefinitionModel.getData().digital;
-        }
         let formattedNumber = number.toFixed(decimalPlaces);
 
         if (isZeroPadding) {

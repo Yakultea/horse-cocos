@@ -98,15 +98,13 @@ class HorseGameEntry extends Entry {
         UrlModel.setSearchParams();
         const urlToken = UrlUtils.getTokenFromUrl();
         const localStorageToken = localStorage.getItem(urlToken);
+
         if (localStorageToken) {
             SocketModel.currentToken = localStorageToken;
         } else {
             localStorage.clear();
             SocketModel.currentToken = urlToken;
         }
-
-        // 開發用
-        // SocketModel.currentToken = urlToken;
     }
 
     // ---------- 外部部呼叫 -----------------------------------------------------------

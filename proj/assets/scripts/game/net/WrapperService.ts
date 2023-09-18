@@ -6,7 +6,7 @@ import { EBundles } from "../../common/data/Bundles";
 import UrlModel from "../../common/model/UrlModel";
 import { CommonService } from "../../common/net/CommonService";
 import { HorseGameEvent } from "../event/HorseGameEvent";
-import { ENotifyTypes, INotifyJackpotUpdate, INotifyLegendWin } from "../types/res-type";
+import { IDrawNotify } from "../types/res-type";
 import { WrapperSender } from "./WrapperSender";
 
 // ---------- 常數 ----------------------------------------------------------------
@@ -29,14 +29,14 @@ export class WrapperService extends CommonService {
     onOpen(ev: Event) {
         super.onOpen(ev);
         this.addSocketListeners();
-        dispatch(HorseGameEvent.WRAPPER_SERVICE_CONNECTED, this);
+        dispatch(HorseGameEvent.SERVICE_CONNECTED, this);
         App.senderManager.get(WrapperSender).initial();
     }
 
     /**@description 網路關閉 */
     onClose(ev: Event) {
         super.onClose(ev);
-        dispatch(HorseGameEvent.WRAPPER_SERVICE_CLOSE, { data: { event: ev, _this: this } });
+        dispatch(HorseGameEvent.SERVICE_CLOSE, { data: { event: ev, _this: this } });
     }
 
     // ---------- 內部呼叫 --------------------------------------------------------
@@ -54,16 +54,8 @@ export class WrapperService extends CommonService {
             dispatch(HorseGameEvent.ERROR_RESPONSE, response);
         });
 
-        // this.on("notify", (response: INotifyJackpotUpdate | INotifyLegendWin) => {
-        //     if (response.type === ENotifyTypes.JACKPOT_UPDATE) {
-        //         dispatch(HorseGameEvent.NOTIFY_JACKPOT_RESPONSE, response as INotifyJackpotUpdate);
-        //     } else {
-        //         dispatch(HorseGameEvent.NOTIFY_BIG_WIN_RESPONSE, response as INotifyLegendWin);
-        //     }
-        // });
-
-        this.on('drawNotify', (response) => {
-            console.warn('DDDDDDDDD', response)
+        this.on('drawNotify', (response: IDrawNotify) => {
+            dispatch(HorseGameEvent.DRAW_NOTIFY_RESPONSE, response);
         });
     }
 
