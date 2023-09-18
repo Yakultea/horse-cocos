@@ -2,14 +2,14 @@
   "ver": "2.3.4",
   "importer": "fbx",
   "imported": true,
-  "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651",
+  "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489",
   "files": [
     "__original-animation-0.cconb"
   ],
   "subMetas": {
     "30679": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@30679",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@30679",
       "displayName": "",
       "id": "30679",
       "name": "doors_16_Material0.mesh",
@@ -26,7 +26,7 @@
     },
     "73494": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@73494",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@73494",
       "displayName": "",
       "id": "73494",
       "name": "doors_27_Material0.mesh",
@@ -43,7 +43,7 @@
     },
     "73569": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@73569",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@73569",
       "displayName": "",
       "id": "73569",
       "name": "doors_10_Material0.mesh",
@@ -60,7 +60,7 @@
     },
     "5766d": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@5766d",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@5766d",
       "displayName": "",
       "id": "5766d",
       "name": "gate_body_Material0.mesh",
@@ -77,7 +77,7 @@
     },
     "b9a16": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@b9a16",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@b9a16",
       "displayName": "",
       "id": "b9a16",
       "name": "doors_28_Material0.mesh",
@@ -94,7 +94,7 @@
     },
     "a799e": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@a799e",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@a799e",
       "displayName": "",
       "id": "a799e",
       "name": "doors_1_Material0.mesh",
@@ -111,7 +111,7 @@
     },
     "71de5": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@71de5",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@71de5",
       "displayName": "",
       "id": "71de5",
       "name": "doors_20_Material0.mesh",
@@ -128,7 +128,7 @@
     },
     "b791a": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@b791a",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@b791a",
       "displayName": "",
       "id": "b791a",
       "name": "doors_22_Material0.mesh",
@@ -145,7 +145,7 @@
     },
     "ea021": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@ea021",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@ea021",
       "displayName": "",
       "id": "ea021",
       "name": "doors_12_Material0.mesh",
@@ -162,7 +162,7 @@
     },
     "d0b61": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@d0b61",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@d0b61",
       "displayName": "",
       "id": "d0b61",
       "name": "doors_14_Material0.mesh",
@@ -179,7 +179,7 @@
     },
     "292b8": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@292b8",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@292b8",
       "displayName": "",
       "id": "292b8",
       "name": "doors_17_Material0.mesh",
@@ -196,7 +196,7 @@
     },
     "904ec": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@904ec",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@904ec",
       "displayName": "",
       "id": "904ec",
       "name": "doors_15_Material0.mesh",
@@ -213,7 +213,7 @@
     },
     "eeb58": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@eeb58",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@eeb58",
       "displayName": "",
       "id": "eeb58",
       "name": "doors_4_Material0.mesh",
@@ -230,7 +230,7 @@
     },
     "76eb9": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@76eb9",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@76eb9",
       "displayName": "",
       "id": "76eb9",
       "name": "doors_7_Material0.mesh",
@@ -247,7 +247,7 @@
     },
     "3ab80": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@3ab80",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@3ab80",
       "displayName": "",
       "id": "3ab80",
       "name": "doors_9_Material0.mesh",
@@ -264,7 +264,7 @@
     },
     "3b029": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@3b029",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@3b029",
       "displayName": "",
       "id": "3b029",
       "name": "doors_24_Material0.mesh",
@@ -281,7 +281,7 @@
     },
     "63a7b": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@63a7b",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@63a7b",
       "displayName": "",
       "id": "63a7b",
       "name": "doors_11_Material0.mesh",
@@ -298,7 +298,7 @@
     },
     "09b43": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@09b43",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@09b43",
       "displayName": "",
       "id": "09b43",
       "name": "doors_26_Material0.mesh",
@@ -315,7 +315,7 @@
     },
     "8c9d1": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@8c9d1",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@8c9d1",
       "displayName": "",
       "id": "8c9d1",
       "name": "doors_21_Material0.mesh",
@@ -332,7 +332,7 @@
     },
     "53f69": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@53f69",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@53f69",
       "displayName": "",
       "id": "53f69",
       "name": "doors_25_Material0.mesh",
@@ -349,7 +349,7 @@
     },
     "a0d4d": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@a0d4d",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@a0d4d",
       "displayName": "",
       "id": "a0d4d",
       "name": "doors_8_Material0.mesh",
@@ -366,7 +366,7 @@
     },
     "cf91f": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@cf91f",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@cf91f",
       "displayName": "",
       "id": "cf91f",
       "name": "doors_5_Material0.mesh",
@@ -383,7 +383,7 @@
     },
     "a3a04": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@a3a04",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@a3a04",
       "displayName": "",
       "id": "a3a04",
       "name": "doors_18_Material0.mesh",
@@ -400,7 +400,7 @@
     },
     "eecdd": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@eecdd",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@eecdd",
       "displayName": "",
       "id": "eecdd",
       "name": "doors_3_Material0.mesh",
@@ -417,7 +417,7 @@
     },
     "b0408": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@b0408",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@b0408",
       "displayName": "",
       "id": "b0408",
       "name": "doors_13_Material0.mesh",
@@ -434,7 +434,7 @@
     },
     "171cf": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@171cf",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@171cf",
       "displayName": "",
       "id": "171cf",
       "name": "doors_6_Material0.mesh",
@@ -451,7 +451,7 @@
     },
     "e2fc5": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@e2fc5",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@e2fc5",
       "displayName": "",
       "id": "e2fc5",
       "name": "doors_23_Material0.mesh",
@@ -468,7 +468,7 @@
     },
     "dc57b": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@dc57b",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@dc57b",
       "displayName": "",
       "id": "dc57b",
       "name": "doors_19_Material0.mesh",
@@ -485,7 +485,7 @@
     },
     "fdd06": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@fdd06",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@fdd06",
       "displayName": "",
       "id": "fdd06",
       "name": "doors_2_Material0.mesh",
@@ -502,7 +502,7 @@
     },
     "8702d": {
       "importer": "gltf-mesh",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@8702d",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@8702d",
       "displayName": "",
       "id": "8702d",
       "name": "board.mesh",
@@ -519,7 +519,7 @@
     },
     "73b7f": {
       "importer": "gltf-animation",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@73b7f",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@73b7f",
       "displayName": "",
       "id": "73b7f",
       "name": "Take 001.animation",
@@ -542,7 +542,7 @@
     },
     "dfe29": {
       "importer": "gltf-embeded-image",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@dfe29",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@dfe29",
       "displayName": "",
       "id": "dfe29",
       "name": "file3.image",
@@ -559,7 +559,7 @@
     },
     "a562b": {
       "importer": "texture",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@a562b",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@a562b",
       "displayName": "",
       "id": "a562b",
       "name": "file3.texture",
@@ -571,7 +571,7 @@
         "mipfilter": "none",
         "anisotropy": 0,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "cc9212a1-f21a-4c74-9531-cf4597134651@dfe29"
+        "imageUuidOrDatabaseUri": "3a16b32c-3185-418d-ae06-ae3da3afa489@dfe29"
       },
       "ver": "1.0.22",
       "imported": true,
@@ -582,7 +582,7 @@
     },
     "fc03b": {
       "importer": "gltf-scene",
-      "uuid": "cc9212a1-f21a-4c74-9531-cf4597134651@fc03b",
+      "uuid": "3a16b32c-3185-418d-ae06-ae3da3afa489@fc03b",
       "displayName": "",
       "id": "fc03b",
       "name": "gate.prefab",
@@ -601,7 +601,7 @@
     "imageMetas": [
       {
         "name": "file3",
-        "uri": "cc9212a1-f21a-4c74-9531-cf4597134651@dfe29"
+        "uri": "3a16b32c-3185-418d-ae06-ae3da3afa489@dfe29"
       }
     ],
     "fbx": {
@@ -622,58 +622,58 @@
         ]
       }
     ],
-    "redirect": "cc9212a1-f21a-4c74-9531-cf4597134651@fc03b",
+    "redirect": "3a16b32c-3185-418d-ae06-ae3da3afa489@fc03b",
     "assetFinder": {
       "meshes": [
-        "cc9212a1-f21a-4c74-9531-cf4597134651@5766d",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@b9a16",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@a799e",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@71de5",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@b791a",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@ea021",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@d0b61",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@292b8",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@904ec",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@eeb58",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@76eb9",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@3ab80",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@3b029",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@63a7b",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@09b43",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@8c9d1",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@53f69",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@a0d4d",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@cf91f",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@30679",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@73569",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@a3a04",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@eecdd",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@b0408",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@171cf",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@e2fc5",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@dc57b",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@73494",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@fdd06",
-        "cc9212a1-f21a-4c74-9531-cf4597134651@8702d"
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@5766d",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@b9a16",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@a799e",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@71de5",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@b791a",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@ea021",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@d0b61",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@292b8",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@904ec",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@eeb58",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@76eb9",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@3ab80",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@3b029",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@63a7b",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@09b43",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@8c9d1",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@53f69",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@a0d4d",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@cf91f",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@30679",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@73569",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@a3a04",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@eecdd",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@b0408",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@171cf",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@e2fc5",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@dc57b",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@73494",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@fdd06",
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@8702d"
       ],
       "skeletons": [],
       "textures": [
-        "cc9212a1-f21a-4c74-9531-cf4597134651@a562b"
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@a562b"
       ],
       "materials": [
         "648b4b60-a6cf-4923-9c69-c23858427641",
         "e9027602-4da1-48a9-a578-0253a48f0453",
         "bb13bb99-c4c4-4604-b77f-fccd26597767",
         "3701fbbe-1d4f-457f-af06-d0bff2347026",
-        "16b44dbd-be99-4ed8-bc61-f7881d5e8f59",
+        "aaabb15c-fec2-4c8f-a26e-861b0ffeb2d1",
         "7ae438e4-2879-461f-aac2-dfd84ee225ca",
         "b0c3e811-a120-48e4-8243-751d28d81b9f"
       ],
       "scenes": [
-        "cc9212a1-f21a-4c74-9531-cf4597134651@fc03b"
+        "3a16b32c-3185-418d-ae06-ae3da3afa489@fc03b"
       ]
     },
     "dumpMaterials": true,
-    "materialDumpDir": "db://assets/resources/Materials_gate"
+    "materialDumpDir": "db://assets/resources/game/fbx/Materials_gate"
   }
 }
