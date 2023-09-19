@@ -6,7 +6,7 @@ import { EBundles } from "../../common/data/Bundles";
 import UrlModel from "../../common/model/UrlModel";
 import { CommonService } from "../../common/net/CommonService";
 import { HorseGameEvent } from "../event/HorseGameEvent";
-import { IDrawNotify } from "../types/res-type";
+import { IHorseAnime } from "../types/res-type";
 import { WrapperSender } from "./WrapperSender";
 
 // ---------- 常數 ----------------------------------------------------------------
@@ -54,8 +54,8 @@ export class WrapperService extends CommonService {
             dispatch(HorseGameEvent.ERROR_RESPONSE, response);
         });
 
-        this.on('drawNotify', (response: IDrawNotify) => {
-            dispatch(HorseGameEvent.DRAW_NOTIFY_RESPONSE, response);
+        this.on('horseAnime', (response) => {
+            dispatch(HorseGameEvent.HORSE_ANIME_RESPONSE, response);
         });
     }
 

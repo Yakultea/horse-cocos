@@ -4,13 +4,16 @@ import { DEBUG } from "cc/env";
 import { EOrientationType } from "../../framework/core/adapter/AdapterEvent";
 import { GameDataBase } from "../../framework/data/GameDataBase";
 import { Macro } from "../../framework/defines/Macros";
-import { IDrawNotify, IFrameData } from "../types/res-type";
+import { IHorseAnime, IFrameData } from "../types/res-type";
 
 // ---------- 常數 ----------------------------------------------------------------
 interface IHorseGameData {
     frameData: IFrameData[];
+    id: string;
     skin: number[];
     rider: number[];
+    result: number[];
+    periodId: string;
 }
 
 export default class HorseGameData extends GameDataBase<IHorseGameData> {
@@ -26,8 +29,11 @@ export default class HorseGameData extends GameDataBase<IHorseGameData> {
     public init(...args: any[]): any {
         this.data = {
             frameData: [],
+            id: '',
             skin: [],
             rider: [],
+            result: [],
+            periodId: '',
         };
     }
 
@@ -43,12 +49,8 @@ export default class HorseGameData extends GameDataBase<IHorseGameData> {
 
     // ---------- 外部部呼叫 ------------------------------------------------------
 
-    public setData(res: IDrawNotify) {
-        const { frameData, skin, rider } = res.horseAnime;
-
-        this.data.frameData = frameData;
-        this.data.skin = skin;
-        this.data.rider = rider;
+    public setData(res: IHorseAnime) {
+        this.data = res;
 
         if (DEBUG) {
             Log.d('*** setData *** ', this.data);

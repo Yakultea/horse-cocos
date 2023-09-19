@@ -6,7 +6,7 @@ import ResourceLoader from "../../framework/core/asset/ResourceLoader";
 import { Logic } from "../../framework/core/logic/Logic";
 import HorseGameData from "../data/HorseGameData";
 import { HorseGameEvent } from "../event/HorseGameEvent";
-import { IDrawNotify } from "../types/res-type";
+import { IHorseAnime } from "../types/res-type";
 import HorseGameView from "../view/HorseGameView";
 
 // ---------- 常數 ----------------------------------------------------------------
@@ -77,8 +77,8 @@ export class HorseGameLogic extends Logic {
             this.orientationHandler(event.data);
         });
 
-        this.on(HorseGameEvent.DRAW_NOTIFY_RESPONSE, (event: HorseGameEvent) => {
-            this.parseDrawNotify(event.data);
+        this.on(HorseGameEvent.HORSE_ANIME_RESPONSE, (event: HorseGameEvent) => {
+            this.parseHorseAnime(event.data);
         });
     }
 
@@ -86,7 +86,7 @@ export class HorseGameLogic extends Logic {
         this.data.orientation = type;
     };
 
-    private parseDrawNotify(data: IDrawNotify) {
+    private parseHorseAnime(data: IHorseAnime) {
         this.data.setData(data);
     }
 }

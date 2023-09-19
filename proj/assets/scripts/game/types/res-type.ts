@@ -22,10 +22,11 @@ export interface IHorses {
     y: number;
 }
 
-export interface IDrawNotify {
-    horseAnime: {
-        frameData: IFrameData[];
-        skin: number[];
-        rider: number[];
-    };
+export interface IHorseAnime {
+    frameData: IFrameData[];
+    id: string;
+    skin: number[];
+    rider: number[];
+    result: number[];
+    periodId: string;
 }

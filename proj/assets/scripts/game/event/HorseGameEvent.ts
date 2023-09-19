@@ -14,5 +14,8 @@ export class HorseGameEvent extends FlowEvent<HorseGameEvent | any> {
     public static INIT_RESPONSE = "HorseGameEvent:INIT_RESPONSE"; // init res
     public static WARN_RESPONSE = "HorseGameEvent:SERVICE_WARN"; // warn res
     public static ERROR_RESPONSE = "HorseGameEvent:ERROR_RESPONSE"; // error res
-    public static DRAW_NOTIFY_RESPONSE = "HorseGameEvent:DRAW_NOTIFY_RESPONSE"; // error res
+    public static HORSE_ANIME_RESPONSE = "HorseGameEvent:HORSE_ANIME_RESPONSE";
+
+    // =================== GAME ===================
+    public static PARSE_COMPLETED = "HorseGameEvent:PARSE_COMPLETED";
 }

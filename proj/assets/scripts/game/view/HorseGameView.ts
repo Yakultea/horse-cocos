@@ -8,6 +8,7 @@ import HorseGameData from "../data/HorseGameData";
 import { HorseGameLogic } from "../logic/HorseGameLogic";
 import GameConfigModel from "../model/GameConfigModel";
 import { WrapperService } from "../net/WrapperService";
+import { HorseGameEvent } from "../event/HorseGameEvent";
 
 // ---------- 常數 ----------------------------------------------------------------
 
@@ -75,6 +76,10 @@ export default class HorseGameView extends GameView {
     /** 框架onLoad呼叫 */
     public addEvents() {
         super.addEvents();
+
+        // this.on(HorseGameEvent.PARSE_COMPLETED, (event: HorseGameEvent) => {
+            
+        // });
     }
 }
 
