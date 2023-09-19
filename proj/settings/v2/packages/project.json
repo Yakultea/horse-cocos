@@ -6,7 +6,8 @@
       "height": 720,
       "fitHeight": true,
       "fitWidth": true
-    }
+    },
+    "highQuality": false
   },
   "layer": [
     {
