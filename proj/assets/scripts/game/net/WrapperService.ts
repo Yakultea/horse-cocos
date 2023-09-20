@@ -55,7 +55,7 @@ export class WrapperService extends CommonService {
         });
 
         this.on('horseAnime', (response) => {
-            dispatch(HorseGameEvent.HORSE_ANIME_RESPONSE, response);
+            dispatch(HorseGameEvent.HORSE_ANIME_RESPONSE, { data: response });
         });
     }
 

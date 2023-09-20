@@ -86,7 +86,7 @@ export class HorseGameLogic extends Logic {
         this.data.orientation = type;
     };
 
-    private parseHorseAnime(data: IHorseAnime) {
-        this.data.setData(data);
+    private parseHorseAnime(data: any) {
+        this.data.setData(data.data);
     }
 }
