@@ -10,9 +10,7 @@
   "_techIdx": 0,
   "_defines": [
     {
-      "DCC_APP_NAME": 5,
-      "USE_ALBEDO_MAP": true,
-      "USE_NORMAL_MAP": true
+      "DCC_APP_NAME": 5
     },
     {},
     {}
@@ -48,10 +46,6 @@
   ],
   "_props": [
     {
-      "mainTexture": {
-        "__uuid__": "c692f7ff-4e93-4340-8078-6cd521d7a88f@cfcad",
-        "__expectedType__": "cc.Texture2D"
-      },
       "shininessExponent": 2,
       "specularColor": {
         "__type__": "cc.Color",
@@ -67,11 +61,7 @@
         "z": 0,
         "w": 0
       },
-      "normalStrength": 0.154,
-      "normalMap": {
-        "__uuid__": "c692f7ff-4e93-4340-8078-6cd521d7a88f@cfcad",
-        "__expectedType__": "cc.Texture2D"
-      }
+      "normalStrength": 0.154
     },
     {},
     {}

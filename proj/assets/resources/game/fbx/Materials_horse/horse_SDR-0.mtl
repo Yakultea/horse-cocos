@@ -46,8 +46,11 @@
   ],
   "_props": [
     {
+      "occlusion": 0.221,
+      "roughness": 0.211,
+      "specularIntensity": 0.301,
       "mainTexture": {
-        "__uuid__": "bb271d90-12b8-414c-98d8-e9f9caaf01f1@ac183",
+        "__uuid__": "cac3a2c1-9d9f-4fbd-a9a0-a26d7344ea36@ac183",
         "__expectedType__": "cc.Texture2D"
       }
     },

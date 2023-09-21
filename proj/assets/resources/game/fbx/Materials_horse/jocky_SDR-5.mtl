@@ -10,8 +10,6 @@
   "_techIdx": 0,
   "_defines": [
     {
-      "HAS_SECOND_UV": true,
-      "USE_NORMAL_MAP": true,
       "USE_ALBEDO_MAP": true
     },
     {},
@@ -48,15 +46,15 @@
   ],
   "_props": [
     {
-      "occlusion": 0.143,
-      "roughness": 0.384,
-      "specularIntensity": 0.62,
-      "mainTexture": {
-        "__uuid__": "bb271d90-12b8-414c-98d8-e9f9caaf01f1@c4d01",
-        "__expectedType__": "cc.Texture2D"
+      "emissive": {
+        "__type__": "cc.Color",
+        "r": 19,
+        "g": 0,
+        "b": 0,
+        "a": 255
       },
-      "normalMap": {
-        "__uuid__": "bb271d90-12b8-414c-98d8-e9f9caaf01f1@8852e",
+      "mainTexture": {
+        "__uuid__": "cac3a2c1-9d9f-4fbd-a9a0-a26d7344ea36@c4d01",
         "__expectedType__": "cc.Texture2D"
       }
     },

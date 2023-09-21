@@ -46,8 +46,25 @@
   ],
   "_props": [
     {
+      "tilingOffset": {
+        "__type__": "cc.Vec4",
+        "x": 2,
+        "y": 3,
+        "z": 0,
+        "w": 0
+      },
+      "mainColor": {
+        "__type__": "cc.Color",
+        "r": 194,
+        "g": 233,
+        "b": 196,
+        "a": 255
+      },
+      "roughness": 0.71,
+      "specularIntensity": 0.205,
+      "normalStrength": 0.2,
       "mainTexture": {
-        "__uuid__": "320e2788-3385-4244-bdb0-62d6f67b5c21@386a4",
+        "__uuid__": "0dda6167-61db-4ab0-a2dc-541ab03f8c3a@386a4",
         "__expectedType__": "cc.Texture2D"
       }
     },

@@ -9,9 +9,7 @@
   },
   "_techIdx": 1,
   "_defines": [
-    {
-      "USE_ALBEDO_MAP": true
-    },
+    {},
     {},
     {}
   ],
@@ -48,11 +46,7 @@
     {
       "occlusion": 0.324,
       "roughness": 0.572,
-      "specularIntensity": 0.228,
-      "mainTexture": {
-        "__uuid__": "c692f7ff-4e93-4340-8078-6cd521d7a88f@5189c",
-        "__expectedType__": "cc.Texture2D"
-      }
+      "specularIntensity": 0.228
     },
     {},
     {}

@@ -10,7 +10,9 @@
   "_techIdx": 0,
   "_defines": [
     {
-      "DCC_APP_NAME": 5,
+      "HAS_SECOND_UV": true,
+      "USE_TWOSIDE": true,
+      "USE_SPECULAR_GLOSSINESS_MAP": true,
       "USE_SPECULAR_MAP": true
     },
     {},
@@ -49,24 +51,24 @@
     {
       "mainColor": {
         "__type__": "cc.Color",
-        "r": 87,
-        "g": 87,
-        "b": 87,
+        "r": 112,
+        "g": 112,
+        "b": 112,
         "a": 255
       },
-      "shininessExponent": 20,
-      "specularColor": {
-        "__type__": "cc.Color",
-        "r": 0,
-        "g": 0,
-        "b": 0,
-        "a": 255
-      },
-      "specularMap": {
-        "__uuid__": "42527879-2b65-4148-9dfa-46f1896ffa1d@6c48a",
+      "shininessExponentMap": {
+        "__uuid__": "4267f543-d518-4c72-8d2f-41c1729be220@91dcf",
         "__expectedType__": "cc.Texture2D"
       },
-      "specularFactor": 15.3
+      "shininessExponent": 120,
+      "specularGlossinessMap": {
+        "__uuid__": "4267f543-d518-4c72-8d2f-41c1729be220@91dcf",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "specularMap": {
+        "__uuid__": "4267f543-d518-4c72-8d2f-41c1729be220@91dcf",
+        "__expectedType__": "cc.Texture2D"
+      }
     },
     {},
     {}

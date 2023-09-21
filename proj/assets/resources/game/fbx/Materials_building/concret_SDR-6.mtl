@@ -10,7 +10,6 @@
   "_techIdx": 0,
   "_defines": [
     {
-      "USE_VERTEX_COLOR": true,
       "HAS_SECOND_UV": true,
       "USE_ALBEDO_MAP": true
     },
@@ -48,10 +47,16 @@
   ],
   "_props": [
     {
-      "occlusion": 0.205,
-      "roughness": 0.4,
+      "tilingOffset": {
+        "__type__": "cc.Vec4",
+        "x": 3,
+        "y": 3,
+        "z": 0,
+        "w": 0
+      },
+      "roughness": 0.8,
       "mainTexture": {
-        "__uuid__": "c692f7ff-4e93-4340-8078-6cd521d7a88f@47b1b",
+        "__uuid__": "4267f543-d518-4c72-8d2f-41c1729be220@7a71f",
         "__expectedType__": "cc.Texture2D"
       }
     },

@@ -10,8 +10,8 @@
   "_techIdx": 0,
   "_defines": [
     {
-      "USE_VERTEX_COLOR": true,
-      "HAS_SECOND_UV": true
+      "HAS_SECOND_UV": true,
+      "USE_ALBEDO_MAP": true
     },
     {},
     {}
@@ -47,16 +47,18 @@
   ],
   "_props": [
     {
-      "mainColor": {
-        "__type__": "cc.Color",
-        "r": 159,
-        "g": 160,
-        "b": 163,
-        "a": 255
+      "tilingOffset": {
+        "__type__": "cc.Vec4",
+        "x": 3,
+        "y": 3,
+        "z": 0,
+        "w": 0
       },
-      "occlusion": 0.205,
-      "roughness": 0.393,
-      "specularIntensity": 0.618
+      "roughness": 0.8,
+      "mainTexture": {
+        "__uuid__": "4267f543-d518-4c72-8d2f-41c1729be220@7a71f",
+        "__expectedType__": "cc.Texture2D"
+      }
     },
     {},
     {}

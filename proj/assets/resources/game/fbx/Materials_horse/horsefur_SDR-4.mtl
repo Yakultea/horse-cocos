@@ -47,14 +47,15 @@
   ],
   "_props": [
     {
-      "roughness": 0.433,
-      "specularIntensity": 0.355,
+      "roughness": 0.605,
+      "specularIntensity": 0.401,
+      "normalStrength": 1.247,
       "mainTexture": {
-        "__uuid__": "bb271d90-12b8-414c-98d8-e9f9caaf01f1@265a7",
+        "__uuid__": "cac3a2c1-9d9f-4fbd-a9a0-a26d7344ea36@265a7",
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "bb271d90-12b8-414c-98d8-e9f9caaf01f1@386a4",
+        "__uuid__": "cac3a2c1-9d9f-4fbd-a9a0-a26d7344ea36@312ba",
         "__expectedType__": "cc.Texture2D"
       }
     },

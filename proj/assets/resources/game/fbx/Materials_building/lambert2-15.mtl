@@ -10,8 +10,7 @@
   "_techIdx": 1,
   "_defines": [
     {
-      "DCC_APP_NAME": 5,
-      "USE_ALBEDO_MAP": true
+      "DCC_APP_NAME": 5
     },
     {},
     {}
@@ -47,10 +46,6 @@
   ],
   "_props": [
     {
-      "mainTexture": {
-        "__uuid__": "c692f7ff-4e93-4340-8078-6cd521d7a88f@957bc",
-        "__expectedType__": "cc.Texture2D"
-      },
       "albedoScale": 0.800000011920929
     },
     {},
