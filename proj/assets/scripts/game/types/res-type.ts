@@ -1,5 +1,6 @@
 export interface IInitialRes extends IResBase {
     engine: any;
+    code?: number;
 }
 
 export interface IResBase {

@@ -1,0 +1,210 @@
+{
+  "__type__": "cc.Material",
+  "_name": "",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "fc0ce5f8-063d-42da-b13a-2fad25abb951",
+    "__expectedType__": "cc.EffectAsset"
+  },
+  "_techIdx": 0,
+  "_defines": [
+    {
+      "HAS_SECOND_UV": true,
+      "USE_ALBEDO_MAP": true,
+      "USE_NORMAL_MAP": true
+    },
+    {
+      "INVERSE_ALPHA_TEST": true
+    },
+    {
+      "INVERSE_ALPHA_TEST": true
+    },
+    {},
+    {
+      "INVERSE_ALPHA_TEST": true
+    },
+    {
+      "INVERSE_ALPHA_TEST": true
+    },
+    {},
+    {}
+  ],
+  "_states": [
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    },
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    },
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    },
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    },
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    },
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    },
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    },
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    }
+  ],
+  "_props": [
+    {
+      "occlusion": 0.232,
+      "roughness": 0.401,
+      "metallic": 0.041,
+      "specularIntensity": 0.076,
+      "emissive": {
+        "__type__": "cc.Color",
+        "r": 10,
+        "g": 0,
+        "b": 2,
+        "a": 255
+      },
+      "anisotropyIntensity": 0.6537,
+      "anisotropyRotation": 0.0516,
+      "mainTexture": {
+        "__uuid__": "79463066-036e-47da-b22f-c3289eff7a10@6c48a",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "normalMap": {
+        "__uuid__": "cac3a2c1-9d9f-4fbd-a9a0-a26d7344ea36@6b754",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "roughnessTRT": 0,
+      "IntensityTRT": 0.6,
+      "baseColorTRT": {
+        "__type__": "cc.Color",
+        "r": 104,
+        "g": 63,
+        "b": 59,
+        "a": 255
+      }
+    },
+    {
+      "occlusion": 0.232,
+      "roughness": 0.401,
+      "metallic": 0.041,
+      "specularIntensity": 0.076,
+      "emissive": {
+        "__type__": "cc.Color",
+        "r": 10,
+        "g": 0,
+        "b": 2,
+        "a": 255
+      },
+      "anisotropyIntensity": 0.6537,
+      "anisotropyRotation": 0.0516,
+      "mainTexture": {
+        "__uuid__": "cac3a2c1-9d9f-4fbd-a9a0-a26d7344ea36@ac183",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "normalMap": {
+        "__uuid__": "cac3a2c1-9d9f-4fbd-a9a0-a26d7344ea36@6b754",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "roughnessTRT": 0,
+      "IntensityTRT": 0.6,
+      "baseColorTRT": {
+        "__type__": "cc.Color",
+        "r": 104,
+        "g": 63,
+        "b": 59,
+        "a": 255
+      }
+    },
+    {
+      "occlusion": 0.232,
+      "roughness": 0.401,
+      "metallic": 0.041,
+      "specularIntensity": 0.076,
+      "emissive": {
+        "__type__": "cc.Color",
+        "r": 10,
+        "g": 0,
+        "b": 2,
+        "a": 255
+      },
+      "anisotropyIntensity": 0.6537,
+      "anisotropyRotation": 0.0516,
+      "mainTexture": {
+        "__uuid__": "cac3a2c1-9d9f-4fbd-a9a0-a26d7344ea36@ac183",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "normalMap": {
+        "__uuid__": "cac3a2c1-9d9f-4fbd-a9a0-a26d7344ea36@6b754",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "roughnessTRT": 0,
+      "IntensityTRT": 0.6,
+      "baseColorTRT": {
+        "__type__": "cc.Color",
+        "r": 104,
+        "g": 63,
+        "b": 59,
+        "a": 255
+      }
+    },
+    {},
+    {},
+    {},
+    {},
+    {}
+  ]
+}

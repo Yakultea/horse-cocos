@@ -2,7 +2,6 @@ import { DEBUG } from "cc/env";
 import { EventProcessor } from "../../event/EventProcessor";
 import { Macro } from "../../../defines/Macros";
 import { Message } from "../message/Message";
-import SocketModel from "../../../../wrapper/script/model/SocketModel";
 
 /**
  * @description 該物件只用於對網路資料的傳送

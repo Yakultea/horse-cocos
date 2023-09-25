@@ -70,9 +70,16 @@ export class WrapperSender extends Sender {
                 }
             },
         };
+
         return new Promise((resolve, reject) => {
             this.send('initial', requestVO, (response: IInitialRes) => {
                 if (response.status == Http.ServerStatus.SUCCESS) {
+                    if (response.code) { // 須知:有code 就是錯的 
+                        Log.e('NETWORK_ERROR: ', response);
+                        this.showAlert(response.message, { needCloseAlert: false });
+                        return;
+                    }
+
                     Log.d('*** 後端來的資料 ***', response);
                     this.setToken(response);
                     dispatch(HorseGameEvent.INIT_RESPONSE, response);
