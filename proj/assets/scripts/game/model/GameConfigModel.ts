@@ -5,7 +5,7 @@ import { BaseModel } from "../../framework/core/event/BaseModel";
 export interface IGameConfigModel {
     /* 檔案路徑 */
     filePaths: {
-        horseGamePrefab: string;
+        horseMaterials: string;
     };
 }
 
@@ -21,7 +21,7 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
         super();
         this.data = {
             filePaths: {
-                horseGamePrefab: 'game/prefabs/HorseGame',
+                horseMaterials: 'game/material',
             }
         };
     }

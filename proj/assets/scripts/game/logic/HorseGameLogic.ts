@@ -1,5 +1,6 @@
 // ---------- 引用 ----------------------------------------------------------------
 
+import { Material } from "cc";
 import { AdapterEvent, EOrientationType } from "../../framework/core/adapter/AdapterEvent";
 import { Resource } from "../../framework/core/asset/Resource";
 import ResourceLoader from "../../framework/core/asset/ResourceLoader";
@@ -8,6 +9,7 @@ import HorseGameData from "../data/HorseGameData";
 import { HorseGameEvent } from "../event/HorseGameEvent";
 import { IHorseAnime } from "../types/res-type";
 import HorseGameView from "../view/HorseGameView";
+import GameConfigModel from "../model/GameConfigModel";
 
 // ---------- 常數 ----------------------------------------------------------------
 export class HorseGameLogic extends Logic {
@@ -48,10 +50,12 @@ export class HorseGameLogic extends Logic {
 
     /** 資源加載 */
     private loadResources() {
+        const { horseMaterials } = GameConfigModel.getData().filePaths;
+
         // // 設定載入資源
         this.loader.getLoadResources = () => {
             let res: Resource.Data[] = [
-                // { url: "prefabs/SomeItem", bundle: this.bundle, type: Prefab },
+                { dir: horseMaterials, bundle: this.bundle, type: Material },
             ];
 
             return res;

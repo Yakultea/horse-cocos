@@ -7,10 +7,9 @@
     "__uuid__": "1baf0fc9-befa-459c-8bdd-af1a450a0319",
     "__expectedType__": "cc.EffectAsset"
   },
-  "_techIdx": 1,
+  "_techIdx": 0,
   "_defines": [
     {
-      "USE_INSTANCING": true,
       "USE_ALBEDO_MAP": true
     },
     {},
@@ -47,9 +46,15 @@
   ],
   "_props": [
     {
-      "roughness": 0.795,
+      "emissive": {
+        "__type__": "cc.Color",
+        "r": 19,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      },
       "mainTexture": {
-        "__uuid__": "0dda6167-61db-4ab0-a2dc-541ab03f8c3a@9a420",
+        "__uuid__": "84507414-6ea4-49ff-9233-74a5acd0778e@6c48a",
         "__expectedType__": "cc.Texture2D"
       }
     },
