@@ -1,8 +1,6 @@
 // ---------- 引用 ----------------------------------------------------------------
 
-import { _decorator, Node } from "cc";
-import { Config } from "../../common/config/Config";
-import { HeartbeatJson } from "../../common/protocol/HeartbetJson";
+import { _decorator } from "cc";
 import GameView from "../../framework/core/ui/GameView";
 import HorseGameData from "../data/HorseGameData";
 import { HorseGameLogic } from "../logic/HorseGameLogic";
@@ -17,10 +15,7 @@ export default class HorseGameView extends GameView {
 
     // ---------- 成員變數 --------------------------------------------------------
     get data() { return App.dataCenter.get(HorseGameData) as HorseGameData; };
-
-    // 邏輯
-    private get service() { return App.serviceManager.get(WrapperService); }
-    private Game3D: Node = null;
+    get service() { return App.serviceManager.get(WrapperService); }
 
     // ---------- 生命週期 --------------------------------------------------------
     onLoad() {
@@ -28,7 +23,6 @@ export default class HorseGameView extends GameView {
     }
 
     start() {
-        this.serviceInit();
         this.init();
     }
 
@@ -53,18 +47,6 @@ export default class HorseGameView extends GameView {
 
         // this.Game3D = find('Game3D');
         // this.Game3D.addChild(horseGame);
-    }
-
-    // 網路組件
-    private serviceInit() {
-        //初始化网络类型设置
-        this.service.heartbeat = HeartbeatJson; // 設定心跳包 框架做法 保留但不使用
-        // !!!進入後臺的最大允許時間，超過了最大值，則進入網路重連
-        this.service.maxEnterBackgroundTime = Config.MIN_INBACKGROUND_TIME;
-        //连接网络
-        this.service.connect();
-        //是否启用网络
-        this.service.enabled = true;
     }
 
     // ---------- 外部部呼叫 ------------------------------------------------------

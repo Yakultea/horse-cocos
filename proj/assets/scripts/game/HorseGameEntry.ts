@@ -3,8 +3,9 @@
  */
 // ---------- 引用 ----------------------------------------------------------------
 import { Material } from "cc";
-import { CmmEntry } from "../common/entry/CmmEntry";
+import { Config } from "../common/config/Config";
 import UrlModel from "../common/model/UrlModel";
+import { HeartbeatJson } from "../common/protocol/HeartbetJson";
 import UrlUtils from "../common/utils/UrlUtils";
 import { Resource } from "../framework/core/asset/Resource";
 import { Entry } from "../framework/core/entry/Entry";
@@ -30,7 +31,8 @@ class HorseGameEntry extends Entry {
     /**@description 是否是主包入口，只能有一個主包入口 */
     isMain = true;
 
-    private delegate: CmmEntry = new CmmEntry();
+    private checkInterval: number = null;
+
     // ---------- 生命週期 -------------------------------------------------------------
 
     // ---------- 框架呼叫 -------------------------------------------------------------
@@ -45,11 +47,6 @@ class HorseGameEntry extends Entry {
         App.handlerManager.destory(WrapperHandler);
     }
 
-    // protected openGameView(userData?: any): void {
-    //     super.openGameView();
-    //     App.entryManager.onCheckUpdate();
-    // }
-
     /** 載入模組資源 */
     protected loadResources(completeCb: () => void) {
         const { horseMaterials } = GameConfigModel.getData().filePaths;
@@ -63,24 +60,28 @@ class HorseGameEntry extends Entry {
             return res;
         };
 
+        this.loader.onLoadProgress = (loadedCount, total, data) => {
+            App.gameLoading.setLoading(loadedCount, total, data);
+        };
+
         // 載入資源complete
         this.loader.onLoadComplete = (err) => {
             if (err = Resource.LoaderError.SUCCESS) {
-                // 執行openGameView();
-                completeCb();
+                GameConfigModel.isLoadResourcesCompleted = true;
             }
         };
 
         // 執行載入動作
         this.loader.loadResources();
+        this.checkCompleted(completeCb);
     }
 
     /** 初始化遊戲資料 */
     protected initData(): void {
-        // 初始化urlF
         this.initUrlConfig();
         // 初始化 wrapper socket
         App.serviceManager.get(WrapperService, true);
+        this.serviceInit();
     }
 
     protected pauseMessageQueue(): void {
@@ -94,7 +95,9 @@ class HorseGameEntry extends Entry {
     /**@description 管理器通知自己進入GameView */
     onEnter(userData?: any) {
         super.onEnter(userData);
+
         Log.d(`--------------onEnterLogin--------------`);
+        App.gameLoading.show();
     }
 
     /**@description 這個位置說明自己GameView 進入onLoad完成 */
@@ -103,6 +106,7 @@ class HorseGameEntry extends Entry {
         //關閉除登入之外的介lo面
 
         App.uiManager.closeExcept([HorseGameView]);
+        App.gameLoading.complete();
     }
 
     /**@description 解除安裝bundle,即在自己bundle刪除之前最後的一條訊息 */
@@ -129,6 +133,26 @@ class HorseGameEntry extends Entry {
         }
     }
 
+    /** 網路組件 */
+    private serviceInit() {
+        //初始化网络类型设置
+        this.service.heartbeat = HeartbeatJson; // 設定心跳包 框架做法 保留但不使用
+        // !!!進入後臺的最大允許時間，超過了最大值，則進入網路重連
+        this.service.maxEnterBackgroundTime = Config.MIN_INBACKGROUND_TIME;
+        //连接网络
+        this.service.connect();
+        //是否启用网络
+        this.service.enabled = true;
+    }
+
+    private checkCompleted(callback: Function) {
+        this.checkInterval = setInterval(() => {
+            if (GameConfigModel.isLoadResourcesCompleted && GameConfigModel.isSocketInited) {
+                callback();
+                clearInterval(this.checkInterval);
+            }
+        }, 100);
+    }
+
     // ---------- 外部部呼叫 -----------------------------------------------------------
 }
-// App.entryManager.register(WrapperEntry);

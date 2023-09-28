@@ -7,6 +7,8 @@ export interface IGameConfigModel {
     filePaths: {
         horseMaterials: string;
     };
+    isLoadResourcesCompleted: boolean;
+    isSocketInited: boolean;
 }
 
 /**
@@ -22,7 +24,9 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
         this.data = {
             filePaths: {
                 horseMaterials: 'game/material',
-            }
+            },
+            isLoadResourcesCompleted: false,
+            isSocketInited: false,
         };
     }
 
@@ -37,9 +41,11 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
 
     // ---------- 外部部呼叫 ------------------------------------------------------
 
-    /** value1 */
-    // public get value1() { return this.data.value1; }
-    // public set value1(value: number) { this.data.value1 = value; }
+    public get isLoadResourcesCompleted() { return this.data.isLoadResourcesCompleted; }
+    public set isLoadResourcesCompleted(value: boolean) { this.data.isLoadResourcesCompleted = value; }
+
+    public get isSocketInited() { return this.data.isSocketInited; }
+    public set isSocketInited(value: boolean) { this.data.isSocketInited = value; }
 
     // public reset() {
     //     this.data = {

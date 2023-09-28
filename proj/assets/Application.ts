@@ -1,5 +1,7 @@
-import { Game, Node, Tween, game, profiler, tween } from "cc";
+import { Node } from "cc";
+import { DEBUG } from "cc/env";
 import Alert from "./scripts/common/component/Alert";
+import GameAlert from "./scripts/common/component/GameAlert";
 import GlobalAudio from "./scripts/common/component/GlobalAudio";
 import Loading from "./scripts/common/component/Loading";
 import Tips from "./scripts/common/component/Tips";
@@ -12,16 +14,12 @@ import { StageData } from "./scripts/common/data/StageData";
 import { CmmEntry } from "./scripts/common/entry/CmmEntry";
 import { CommonLanguage } from "./scripts/common/language/CommonLanguage";
 import { CmmUtils } from "./scripts/common/utils/CmmUtils";
-import { LogLevel } from "./scripts/framework/defines/Enums";
 import { Framewok } from "./scripts/framework/Framework";
-import Singleton from "./scripts/framework/utils/Singleton";
-import { FlowManager } from "./scripts/framework/core/flow/FlowManager";
 import CommandManager from "./scripts/framework/core/command/CommandManager";
-import GameAlert from "./scripts/common/component/GameAlert";
-import { DEBUG } from "cc/env";
-import UrlModel from "./scripts/common/model/UrlModel";
-import UrlUtils from "./scripts/common/utils/UrlUtils";
-import SocketModel from "./scripts/wrapper/script/model/SocketModel";
+import { FlowManager } from "./scripts/framework/core/flow/FlowManager";
+import { LogLevel } from "./scripts/framework/defines/Enums";
+import Singleton from "./scripts/framework/utils/Singleton";
+import GameLoading from "./scripts/common/component/GameLoading";
 
 /**@description 游戏所有运行单例的管理 */
 export class Application extends Framewok implements GameEventInterface {
@@ -66,10 +64,10 @@ export class Application extends Framewok implements GameEventInterface {
         return Singleton.instance.get(UILoading) as UILoading;
     }
 
-    // /**@description 遊戲載入時的全屏Loading,顯示載入進度 */
-    // get gameLoading(): GameLoading {
-    //     return Singleton.instance.get(GameLoading) as GameLoading;
-    // }
+    /**@description 遊戲載入時的全屏Loading,顯示載入進度 */
+    get gameLoading(): GameLoading {
+        return Singleton.instance.get(GameLoading) as GameLoading;
+    }
 
     /**@description 彈出提示框,帶一到兩個按鈕 */
     get alert() {
