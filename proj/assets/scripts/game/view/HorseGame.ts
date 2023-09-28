@@ -33,6 +33,8 @@ export class HorseGame extends EventComponent {
 
     start(): void {
         this.init();
+
+        // track (634, 414)
     }
 
     onDestroy(): void {
@@ -133,7 +135,7 @@ export class HorseGame extends EventComponent {
     /** 框架onLoad呼叫 */
     public addEvents() {
         this.on(HorseGameEvent.PARSE_COMPLETED, () => {
-            this.startGame();
+            // this.startGame();
         });
     }
 }
