@@ -1,15 +1,11 @@
 // ---------- 引用 ----------------------------------------------------------------
 
-import { Material } from "cc";
 import { AdapterEvent, EOrientationType } from "../../framework/core/adapter/AdapterEvent";
-import { Resource } from "../../framework/core/asset/Resource";
 import ResourceLoader from "../../framework/core/asset/ResourceLoader";
 import { Logic } from "../../framework/core/logic/Logic";
 import HorseGameData from "../data/HorseGameData";
 import { HorseGameEvent } from "../event/HorseGameEvent";
-import { IHorseAnime } from "../types/res-type";
 import HorseGameView from "../view/HorseGameView";
-import GameConfigModel from "../model/GameConfigModel";
 
 // ---------- 常數 ----------------------------------------------------------------
 export class HorseGameLogic extends Logic {
@@ -27,13 +23,8 @@ export class HorseGameLogic extends Logic {
     }
 
     onDestroy() {
-        // 卸载资源
-        // this.loader.unLoadResources();
-        // 清除缓存
-        // this.data.clear();
-        // super.onDestroy();
-    }
 
+    }
 
     // ---------- 框架呼叫 ------------------------------------------------------
     reset() { }
@@ -44,32 +35,6 @@ export class HorseGameLogic extends Logic {
         if ((<any>window).parent?.hideLogo) {
             (<any>window).parent?.hideLogo();
         }
-
-        this.loadResources();
-    }
-
-    /** 資源加載 */
-    private loadResources() {
-        const { horseMaterials } = GameConfigModel.getData().filePaths;
-
-        // // 設定載入資源
-        this.loader.getLoadResources = () => {
-            let res: Resource.Data[] = [
-                { dir: horseMaterials, bundle: this.bundle, type: Material },
-            ];
-
-            return res;
-        };
-
-        // 載入資源complete
-        this.loader.onLoadComplete = (err) => {
-            if (err = Resource.LoaderError.SUCCESS) {
-                // 初始化資源
-            }
-        };
-
-        // 執行載入動作
-        this.loader.loadResources();
     }
 
     // ---------- 外部部呼叫 ------------------------------------------------------

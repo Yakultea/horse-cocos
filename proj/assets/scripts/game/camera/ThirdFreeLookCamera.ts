@@ -92,7 +92,27 @@ export class ThirdFreeLookCamera extends Component {
 		this._isDown = false;
 	}
 
-	update(dt: number) {
+	// update(dt: number) {
+	// 	if (this.target) {
+	// 		switch (this.cameraType) {
+	// 			case ThirdPersonCameraType.Follow:
+	// 				this._setFollow();
+	// 				// this.setMove();
+	// 				break;
+	// 			case ThirdPersonCameraType.FollowTrackRotation:
+	// 				this._setFollowTrackRotation();
+	// 				break;
+	// 			case ThirdPersonCameraType.FollowIndependentRotation:
+	// 				this._setMove();
+	// 				break;
+	// 			case ThirdPersonCameraType.RotationAround:
+	// 				this._setRotationAround();
+	// 				break;
+	// 		}
+	// 	}
+	// }
+
+	lateUpdate(dt: number) {
 		if (this.target) {
 			switch (this.cameraType) {
 				case ThirdPersonCameraType.Follow:

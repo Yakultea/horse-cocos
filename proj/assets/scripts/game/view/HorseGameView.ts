@@ -1,14 +1,12 @@
 // ---------- 引用 ----------------------------------------------------------------
 
-import { _decorator, find, instantiate, Node, Prefab } from "cc";
+import { _decorator, Node } from "cc";
 import { Config } from "../../common/config/Config";
 import { HeartbeatJson } from "../../common/protocol/HeartbetJson";
 import GameView from "../../framework/core/ui/GameView";
 import HorseGameData from "../data/HorseGameData";
 import { HorseGameLogic } from "../logic/HorseGameLogic";
-import GameConfigModel from "../model/GameConfigModel";
 import { WrapperService } from "../net/WrapperService";
-import { HorseGameEvent } from "../event/HorseGameEvent";
 
 // ---------- 常數 ----------------------------------------------------------------
 
@@ -75,11 +73,7 @@ export default class HorseGameView extends GameView {
 
     /** 框架onLoad呼叫 */
     public addEvents() {
-        super.addEvents();
 
-        // this.on(HorseGameEvent.PARSE_COMPLETED, (event: HorseGameEvent) => {
-            
-        // });
     }
 }
 

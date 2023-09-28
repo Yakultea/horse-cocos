@@ -2,17 +2,19 @@
  * @description 登入流程 , 不用匯出
  */
 // ---------- 引用 ----------------------------------------------------------------
+import { Material } from "cc";
 import { CmmEntry } from "../common/entry/CmmEntry";
 import UrlModel from "../common/model/UrlModel";
 import UrlUtils from "../common/utils/UrlUtils";
+import { Resource } from "../framework/core/asset/Resource";
 import { Entry } from "../framework/core/entry/Entry";
 import { registerEntry } from "../framework/defines/Decorators";
 import { Macro } from "../framework/defines/Macros";
 import HorseGameData from "./data/HorseGameData";
 import { HorseGameLanguage } from "./data/HorseGameLanguage";
+import GameConfigModel from "./model/GameConfigModel";
 import SocketModel from "./model/SocketModel";
 import WrapperHandler from "./net/WrapperHandler";
-import { WrapperSender } from "./net/WrapperSender";
 import { WrapperService } from "./net/WrapperService";
 import HorseGameView from "./view/HorseGameView";
 
@@ -23,6 +25,7 @@ class HorseGameEntry extends Entry {
     // ---------- 成員變數 -------------------------------------------------------------
     protected language = new HorseGameLanguage;
     get data() { return App.dataCenter.get(HorseGameData); }
+    get service() { return App.serviceManager.get(WrapperService); }
 
     /**@description 是否是主包入口，只能有一個主包入口 */
     isMain = true;
@@ -35,22 +38,41 @@ class HorseGameEntry extends Entry {
     /** 新增該模組網路事件 */
     protected addNetHandler(): void {
         App.handlerManager.get(WrapperHandler);
-
     }
 
     /** 移除本模組網路事件 */
     protected removeNetHandler(): void {
-        // App.handlerManager.destory(WrapperHandler);
+        App.handlerManager.destory(WrapperHandler);
     }
+
+    // protected openGameView(userData?: any): void {
+    //     super.openGameView();
+    //     App.entryManager.onCheckUpdate();
+    // }
 
     /** 載入模組資源 */
-    protected loadResources(completeCb: () => void): void {
-        completeCb();
-    }
+    protected loadResources(completeCb: () => void) {
+        const { horseMaterials } = GameConfigModel.getData().filePaths;
 
-    protected openGameView(userData?: any): void {
-        super.openGameView();
-        App.entryManager.onCheckUpdate();
+        // // 設定載入資源
+        this.loader.getLoadResources = () => {
+            let res: Resource.Data[] = [
+                { dir: horseMaterials, bundle: this.bundle, type: Material },
+            ];
+
+            return res;
+        };
+
+        // 載入資源complete
+        this.loader.onLoadComplete = (err) => {
+            if (err = Resource.LoaderError.SUCCESS) {
+                // 執行openGameView();
+                completeCb();
+            }
+        };
+
+        // 執行載入動作
+        this.loader.loadResources();
     }
 
     /** 初始化遊戲資料 */

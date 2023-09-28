@@ -8,9 +8,6 @@ export class HorseGameEvent extends FlowEvent<HorseGameEvent | any> {
     public static SERVICE_CLOSE = "HorseGameEvent:SERVICE_CONNECTED"; // 網路關閉
 
     // =================== REQUEST & RESPONSE ===================
-    // REQUEST:
-
-    // RESPONSE:
     public static INIT_RESPONSE = "HorseGameEvent:INIT_RESPONSE"; // init res
     public static WARN_RESPONSE = "HorseGameEvent:SERVICE_WARN"; // warn res
     public static ERROR_RESPONSE = "HorseGameEvent:ERROR_RESPONSE"; // error res

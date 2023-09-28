@@ -84,10 +84,7 @@ export class HorseGame extends EventComponent {
         }
 
         this.frameDataIndex = 0;
-
-        this.scheduleOnce(() => {
-            this.schedule(this.playHorseRun, this.framePerTime, macro.REPEAT_FOREVER);
-        }, 1);
+        this.schedule(this.playHorseRun, this.framePerTime, macro.REPEAT_FOREVER);
     }
 
     private playHorseRun() {
@@ -107,7 +104,7 @@ export class HorseGame extends EventComponent {
             const horse = this.horseMap.get(horseNumber);
 
             tween(horse)
-                .to(this.framePerTime, {
+                .to(this.framePerTime + 0.01, {
                     position: v3(x, 0, y),
                     eulerAngles: v3(0, -rotation, 0)
                 })
@@ -135,7 +132,7 @@ export class HorseGame extends EventComponent {
     // ---------- 監聽事件 --------------------------------------------------------
     /** 框架onLoad呼叫 */
     public addEvents() {
-        this.on(HorseGameEvent.PARSE_COMPLETED, (event: HorseGameEvent) => {
+        this.on(HorseGameEvent.PARSE_COMPLETED, () => {
             this.startGame();
         });
     }
