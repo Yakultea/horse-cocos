@@ -15,16 +15,28 @@
       "USE_NORMAL_MAP": true
     },
     {
+      "HAS_SECOND_UV": true,
+      "USE_ALBEDO_MAP": true,
+      "USE_NORMAL_MAP": true,
       "INVERSE_ALPHA_TEST": true
     },
     {
+      "HAS_SECOND_UV": true,
+      "USE_ALBEDO_MAP": true,
+      "USE_NORMAL_MAP": true,
       "INVERSE_ALPHA_TEST": true
     },
     {},
     {
+      "HAS_SECOND_UV": true,
+      "USE_ALBEDO_MAP": true,
+      "USE_NORMAL_MAP": true,
       "INVERSE_ALPHA_TEST": true
     },
     {
+      "HAS_SECOND_UV": true,
+      "USE_ALBEDO_MAP": true,
+      "USE_NORMAL_MAP": true,
       "INVERSE_ALPHA_TEST": true
     },
     {},
@@ -106,104 +118,131 @@
   ],
   "_props": [
     {
-      "occlusion": 0.232,
-      "roughness": 0.401,
-      "metallic": 0.041,
-      "specularIntensity": 0.076,
-      "emissive": {
-        "__type__": "cc.Color",
-        "r": 10,
-        "g": 0,
-        "b": 2,
-        "a": 255
-      },
-      "anisotropyIntensity": 0.6537,
-      "anisotropyRotation": 0.0516,
+      "occlusion": 0.23,
+      "roughness": 0.4,
+      "metallic": 0.04,
+      "specularIntensity": 0.08,
+      "anisotropyIntensity": 0.65,
+      "anisotropyRotation": 0.05,
       "mainTexture": {
         "__uuid__": "fc1b624e-b318-471c-af7e-5f79bebf74ad@6c48a",
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "cac3a2c1-9d9f-4fbd-a9a0-a26d7344ea36@6b754",
+        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@6b754",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,
       "IntensityTRT": 0.6,
       "baseColorTRT": {
         "__type__": "cc.Color",
-        "r": 104,
-        "g": 63,
-        "b": 59,
+        "r": 127,
+        "g": 68,
+        "b": 45,
         "a": 255
       }
     },
     {
-      "occlusion": 0.232,
-      "roughness": 0.401,
-      "metallic": 0.041,
-      "specularIntensity": 0.076,
-      "emissive": {
-        "__type__": "cc.Color",
-        "r": 10,
-        "g": 0,
-        "b": 2,
-        "a": 255
-      },
-      "anisotropyIntensity": 0.6537,
-      "anisotropyRotation": 0.0516,
+      "occlusion": 0.23,
+      "roughness": 0.4,
+      "metallic": 0.04,
+      "specularIntensity": 0.08,
+      "anisotropyIntensity": 0.65,
+      "anisotropyRotation": 0.05,
       "mainTexture": {
-        "__uuid__": "f8142bba-a1d5-406a-9b27-38eeb7e639af@6c48a",
+        "__uuid__": "79463066-036e-47da-b22f-c3289eff7a10@6c48a",
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "cac3a2c1-9d9f-4fbd-a9a0-a26d7344ea36@6b754",
+        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@6b754",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,
       "IntensityTRT": 0.6,
       "baseColorTRT": {
         "__type__": "cc.Color",
-        "r": 104,
-        "g": 63,
-        "b": 59,
+        "r": 127,
+        "g": 68,
+        "b": 45,
         "a": 255
       }
     },
     {
-      "occlusion": 0.232,
-      "roughness": 0.401,
-      "metallic": 0.041,
-      "specularIntensity": 0.076,
-      "emissive": {
-        "__type__": "cc.Color",
-        "r": 10,
-        "g": 0,
-        "b": 2,
-        "a": 255
-      },
-      "anisotropyIntensity": 0.6537,
-      "anisotropyRotation": 0.0516,
+      "occlusion": 0.23,
+      "roughness": 0.4,
+      "metallic": 0.04,
+      "specularIntensity": 0.08,
+      "anisotropyIntensity": 0.65,
+      "anisotropyRotation": 0.05,
       "mainTexture": {
-        "__uuid__": "f8142bba-a1d5-406a-9b27-38eeb7e639af@6c48a",
+        "__uuid__": "79463066-036e-47da-b22f-c3289eff7a10@6c48a",
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "cac3a2c1-9d9f-4fbd-a9a0-a26d7344ea36@6b754",
+        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@6b754",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,
       "IntensityTRT": 0.6,
       "baseColorTRT": {
         "__type__": "cc.Color",
-        "r": 104,
-        "g": 63,
-        "b": 59,
+        "r": 127,
+        "g": 68,
+        "b": 45,
         "a": 255
       }
     },
     {},
-    {},
-    {},
+    {
+      "occlusion": 0.23,
+      "roughness": 0.4,
+      "metallic": 0.04,
+      "specularIntensity": 0.08,
+      "anisotropyIntensity": 0.65,
+      "anisotropyRotation": 0.05,
+      "mainTexture": {
+        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@ac183",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "normalMap": {
+        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@6b754",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "roughnessTRT": 0,
+      "IntensityTRT": 0.6,
+      "baseColorTRT": {
+        "__type__": "cc.Color",
+        "r": 127,
+        "g": 68,
+        "b": 45,
+        "a": 255
+      }
+    },
+    {
+      "occlusion": 0.23,
+      "roughness": 0.4,
+      "metallic": 0.04,
+      "specularIntensity": 0.08,
+      "anisotropyIntensity": 0.65,
+      "anisotropyRotation": 0.05,
+      "mainTexture": {
+        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@ac183",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "normalMap": {
+        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@6b754",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "roughnessTRT": 0,
+      "IntensityTRT": 0.6,
+      "baseColorTRT": {
+        "__type__": "cc.Color",
+        "r": 127,
+        "g": 68,
+        "b": 45,
+        "a": 255
+      }
+    },
     {},
     {}
   ]

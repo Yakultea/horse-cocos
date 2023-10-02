@@ -1,5 +1,5 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { _decorator, macro, Node, tween, v3 } from "cc";
+import { _decorator, JsonAsset, macro, Node, tween, v3 } from "cc";
 import EventComponent from "../../framework/componects/EventComponent";
 import { inject } from "../../framework/defines/Decorators";
 import { ThirdFreeLookCamera } from "../camera/ThirdFreeLookCamera";
@@ -22,9 +22,12 @@ export class HorseGame extends EventComponent {
     @inject("Camera", ThirdFreeLookCamera)
     private camera: ThirdFreeLookCamera = null;
 
+    @property(JsonAsset)
+    dataJson: JsonAsset = null!;
+
     private horseMap: Map<number, Node> = new Map();
     private frameDataIndex: number = 0;
-    private framePerTime: number = 0.5;
+    private framePerTime: number = 0.1;
 
     // ---------- 生命週期 --------------------------------------------------------
     onLoad(): void {
@@ -34,7 +37,12 @@ export class HorseGame extends EventComponent {
     start(): void {
         this.init();
 
-        // track (634, 414)
+        this.data.setData(this.dataJson.json.data);
+
+        this.scheduleOnce(()=>{
+            App.gameLoading.complete();
+            this.startGame();
+        }, 5)
     }
 
     onDestroy(): void {
@@ -49,15 +57,6 @@ export class HorseGame extends EventComponent {
         for (let i = 1; i <= this.horses.children.length; i++) {
             this.horseMap.set(i, this.horses.children[i - 1]);
         }
-
-        // tween(this.horseMap.get(1))
-        //     .to(5, {
-        //         position: new Vec3(500, 0, 223.5)
-        //     })
-        //     .to(10, {
-        //         position: new Vec3(1200, 0, 523.5)
-        //     })
-        //     .start();
     }
 
     private startGame() {

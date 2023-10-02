@@ -126,19 +126,139 @@
       ],
       "subMetas": {}
     },
-    "73b7f": {
+    "7f3dc": {
       "importer": "gltf-animation",
-      "uuid": "e75388dc-704f-4fc5-9793-ca524f16d1ff@73b7f",
+      "uuid": "e75388dc-704f-4fc5-9793-ca524f16d1ff@7f3dc",
       "displayName": "",
-      "id": "73b7f",
-      "name": "Take 001.animation",
+      "id": "7f3dc",
+      "name": "walk.animation",
       "userData": {
         "gltfIndex": 0,
         "wrapMode": 2,
         "sample": 30,
         "span": {
           "from": 0,
-          "to": 56.66666793823242
+          "to": 5.3
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "7cece": {
+      "importer": "gltf-animation",
+      "uuid": "e75388dc-704f-4fc5-9793-ca524f16d1ff@7cece",
+      "displayName": "",
+      "id": "7cece",
+      "name": "ready.animation",
+      "userData": {
+        "gltfIndex": 0,
+        "wrapMode": 2,
+        "speed": 1,
+        "sample": 30,
+        "span": {
+          "from": 5.333333333333333,
+          "to": 8
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "117bc": {
+      "importer": "gltf-animation",
+      "uuid": "e75388dc-704f-4fc5-9793-ca524f16d1ff@117bc",
+      "displayName": "",
+      "id": "117bc",
+      "name": "run_01.animation",
+      "userData": {
+        "gltfIndex": 0,
+        "wrapMode": 2,
+        "speed": 1,
+        "sample": 30,
+        "span": {
+          "from": 8.033333333333333,
+          "to": 10.066666666666666
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "12da1": {
+      "importer": "gltf-animation",
+      "uuid": "e75388dc-704f-4fc5-9793-ca524f16d1ff@12da1",
+      "displayName": "",
+      "id": "12da1",
+      "name": "run_02.animation",
+      "userData": {
+        "gltfIndex": 0,
+        "wrapMode": 2,
+        "speed": 1,
+        "sample": 30,
+        "span": {
+          "from": 10.1,
+          "to": 12.1
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "e79e7": {
+      "importer": "gltf-animation",
+      "uuid": "e75388dc-704f-4fc5-9793-ca524f16d1ff@e79e7",
+      "displayName": "",
+      "id": "e79e7",
+      "name": "idle_01.animation",
+      "userData": {
+        "gltfIndex": 0,
+        "wrapMode": 2,
+        "speed": 1,
+        "sample": 30,
+        "span": {
+          "from": 12.133333333333333,
+          "to": 13.633333333333333
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "734f9": {
+      "importer": "gltf-animation",
+      "uuid": "e75388dc-704f-4fc5-9793-ca524f16d1ff@734f9",
+      "displayName": "",
+      "id": "734f9",
+      "name": "idle_02.animation",
+      "userData": {
+        "gltfIndex": 0,
+        "wrapMode": 2,
+        "speed": 1,
+        "sample": 30,
+        "span": {
+          "from": 13.666666666666666,
+          "to": 15.666666666666666
         },
         "events": []
       },
@@ -670,10 +790,45 @@
         "fps": 30,
         "splits": [
           {
-            "name": "Take 001",
+            "name": "walk",
             "from": 0,
-            "to": 56.66666793823242,
+            "to": 5.3,
             "wrapMode": 2
+          },
+          {
+            "name": "ready",
+            "from": 5.333333333333333,
+            "to": 8,
+            "wrapMode": 2,
+            "speed": 1
+          },
+          {
+            "name": "run_01",
+            "from": 8.033333333333333,
+            "to": 10.066666666666666,
+            "wrapMode": 2,
+            "speed": 1
+          },
+          {
+            "name": "run_02",
+            "from": 10.1,
+            "to": 12.1,
+            "wrapMode": 2,
+            "speed": 1
+          },
+          {
+            "name": "idle_01",
+            "from": 12.133333333333333,
+            "to": 13.633333333333333,
+            "wrapMode": 2,
+            "speed": 1
+          },
+          {
+            "name": "idle_02",
+            "from": 13.666666666666666,
+            "to": 15.666666666666666,
+            "wrapMode": 2,
+            "speed": 1
           }
         ]
       }

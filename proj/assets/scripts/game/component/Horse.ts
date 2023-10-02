@@ -13,13 +13,13 @@ export class Horse extends EventComponent {
     // ---------- 成員變數 --------------------------------------------------------
     private get data() { return App.dataCenter.get(HorseGameData); }
 
-    @inject("player_gp/horse_gp/saddle_lod", SkinnedMeshRenderer)
+    @inject("horse_gp/player_gp/horse_gp/saddle_lod", SkinnedMeshRenderer)
     private saddle: SkinnedMeshRenderer = null;
 
-    @inject("player_gp/horse_gp/new_horse", SkinnedMeshRenderer)
+    @inject("horse_gp/player_gp/horse_gp/new_horse", SkinnedMeshRenderer)
     private horseBody: SkinnedMeshRenderer = null;
 
-    @inject("player_gp/jockey_gp/jockey", SkinnedMeshRenderer)
+    @inject("horse_gp/player_gp/jockey_gp/jockey", SkinnedMeshRenderer)
     private jockey: SkinnedMeshRenderer = null;
 
     private horseNumber: number = null;

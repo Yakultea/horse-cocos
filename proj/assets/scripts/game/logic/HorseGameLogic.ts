@@ -56,6 +56,6 @@ export class HorseGameLogic extends Logic {
     };
 
     private parseHorseAnime(data: any) {
-        this.data.setData(data.data);
+        // this.data.setData(data.data);
     }
 }
