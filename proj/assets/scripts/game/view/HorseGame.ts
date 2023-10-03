@@ -27,7 +27,8 @@ export class HorseGame extends EventComponent {
 
     private horseMap: Map<number, Node> = new Map();
     private frameDataIndex: number = 0;
-    private framePerTime: number = 0.1;
+    private framePerTime: number = 0.15;
+    private focusHorse: Node = null;
 
     // ---------- 生命週期 --------------------------------------------------------
     onLoad(): void {
@@ -37,12 +38,12 @@ export class HorseGame extends EventComponent {
     start(): void {
         this.init();
 
-        this.data.setData(this.dataJson.json.data);
+        // this.data.setData(this.dataJson.json.data);
 
-        this.scheduleOnce(()=>{
-            App.gameLoading.complete();
-            this.startGame();
-        }, 5)
+        // this.scheduleOnce(()=>{
+        //     App.gameLoading.complete();
+        //     this.startGame();
+        // }, 5)
     }
 
     onDestroy(): void {
@@ -78,9 +79,9 @@ export class HorseGame extends EventComponent {
             horse.eulerAngles = v3(0, 0, 0);
             horseScript.setData(horseData);
 
-            if (horseNumber == 1) { //預設先看1號馬
-                this.camera.target = horse;
-                this.camera.lookAt = horse;
+            if (horseNumber == 5) {
+                this.focusHorse = horse;
+                this.schedule(this.setCameraTarget, 2, macro.REPEAT_FOREVER);
             }
         }
 
@@ -90,18 +91,20 @@ export class HorseGame extends EventComponent {
 
     private playHorseRun() {
         const { frameData } = this.data.getData();
-        const firstFrameData = frameData[this.frameDataIndex];
+        const frame = frameData[this.frameDataIndex];
         const totalFrame = frameData.length;
 
         if (totalFrame == this.frameDataIndex + 1) {
             this.unschedule(this.playHorseRun);
+            this.unschedule(this.setCameraTarget);
             return;
         }
 
         this.frameDataIndex++;
 
-        for (let i = 0; i < firstFrameData.horses.length; i++) {
-            const { horseNumber, x, y, rotation } = firstFrameData.horses[i];
+        for (let i = 0; i < frame.horses.length; i++) {
+            const { horseNumber, x, y, rotation } = frame.horses[i];
+            const { rankNumbers } = frame;
             const horse = this.horseMap.get(horseNumber);
 
             tween(horse)
@@ -110,7 +113,17 @@ export class HorseGame extends EventComponent {
                     eulerAngles: v3(0, -rotation, 0)
                 })
                 .start();
+            
+            if (Number(rankNumbers[0]) == horseNumber) {
+                this.focusHorse = horse;
+            }
         }
+    }
+
+    private setCameraTarget() {
+        this.camera.target = this.focusHorse;
+        this.camera.lookAt = this.focusHorse;
+        // this.camera.setCameraFocus();
     }
 
     // ---------- 外部部呼叫 ------------------------------------------------------
@@ -134,7 +147,7 @@ export class HorseGame extends EventComponent {
     /** 框架onLoad呼叫 */
     public addEvents() {
         this.on(HorseGameEvent.PARSE_COMPLETED, () => {
-            // this.startGame();
+            this.startGame();
         });
     }
 }

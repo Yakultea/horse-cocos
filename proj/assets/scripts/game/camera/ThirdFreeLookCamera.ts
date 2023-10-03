@@ -1,11 +1,11 @@
 
-import { Button, Component, Enum, EventMouse, IVec3Like, Input, Node, Quat, Vec3, _decorator, input } from 'cc';
+import { Component, Enum, EventMouse, IVec3Like, Input, Node, Quat, Vec3, _decorator, input } from 'cc';
 import { Quaternion } from './Quaternion';
 import { VectorTool } from './VectorTool';
 const { ccclass, property } = _decorator;
 
 export enum ThirdPersonCameraType {
-	/** 相機緊跟著目標，不會旋轉 */ //(40, 20, 10)
+	/** 相機緊跟著目標，不會旋轉 */ //(150, 100, 70)
 	Follow = 0,
 	/** 相機會旋轉緊跟著目標正後方，旋轉不可控 */
 	FollowTrackRotation = 1,
@@ -67,16 +67,6 @@ export class ThirdFreeLookCamera extends Component {
 		this.cameraType == ThirdPersonCameraType.Follow && this.node.lookAt(this.target.worldPosition);
 	}
 
-	public clickEvent(btnTarget: Node, handler: string, customEventData?: string): void {
-		const event = new Component.EventHandler();
-		event.target = this.node;
-		event.component = "ThirdFreeLookCamera";
-		event.handler = handler;
-		if (customEventData) event.customEventData = customEventData;
-
-		btnTarget.getComponent(Button).clickEvents.push(event);
-	}
-
 	private _mouseDown(e: EventMouse) {
 		this._isDown = true;
 	}
@@ -91,26 +81,6 @@ export class ThirdFreeLookCamera extends Component {
 	private _mouseUp(e: EventMouse) {
 		this._isDown = false;
 	}
-
-	// update(dt: number) {
-	// 	if (this.target) {
-	// 		switch (this.cameraType) {
-	// 			case ThirdPersonCameraType.Follow:
-	// 				this._setFollow();
-	// 				// this.setMove();
-	// 				break;
-	// 			case ThirdPersonCameraType.FollowTrackRotation:
-	// 				this._setFollowTrackRotation();
-	// 				break;
-	// 			case ThirdPersonCameraType.FollowIndependentRotation:
-	// 				this._setMove();
-	// 				break;
-	// 			case ThirdPersonCameraType.RotationAround:
-	// 				this._setRotationAround();
-	// 				break;
-	// 		}
-	// 	}
-	// }
 
 	lateUpdate(dt: number) {
 		if (this.target) {
@@ -130,6 +100,12 @@ export class ThirdFreeLookCamera extends Component {
 					break;
 			}
 		}
+	}
+
+	public setCameraFocus() {
+		let temp: Vec3 = new Vec3();
+		Vec3.add(temp, this.lookAt.worldPosition, this.positionOffset);
+		this.node.position = this.node.position.lerp(temp, 0.1);
 	}
 
 	private _setRotationAround(): void {
