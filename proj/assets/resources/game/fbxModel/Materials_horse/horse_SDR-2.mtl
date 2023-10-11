@@ -11,29 +11,24 @@
   "_defines": [
     {
       "HAS_SECOND_UV": true,
-      "USE_ALBEDO_MAP": true,
-      "USE_NORMAL_MAP": true
+      "USE_ALBEDO_MAP": true
     },
     {
       "HAS_SECOND_UV": true,
-      "USE_ALBEDO_MAP": true,
-      "USE_NORMAL_MAP": true
+      "USE_ALBEDO_MAP": true
     },
     {
       "HAS_SECOND_UV": true,
-      "USE_ALBEDO_MAP": true,
-      "USE_NORMAL_MAP": true
+      "USE_ALBEDO_MAP": true
     },
     {},
     {
       "HAS_SECOND_UV": true,
-      "USE_ALBEDO_MAP": true,
-      "USE_NORMAL_MAP": true
+      "USE_ALBEDO_MAP": true
     },
     {
       "HAS_SECOND_UV": true,
-      "USE_ALBEDO_MAP": true,
-      "USE_NORMAL_MAP": true
+      "USE_ALBEDO_MAP": true
     },
     {},
     {}
@@ -121,11 +116,7 @@
       "anisotropyIntensity": 0.65,
       "anisotropyRotation": 0.05,
       "mainTexture": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@ac183",
-        "__expectedType__": "cc.Texture2D"
-      },
-      "normalMap": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@6b754",
+        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@ac183",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,
@@ -146,11 +137,7 @@
       "anisotropyIntensity": 0.65,
       "anisotropyRotation": 0.05,
       "mainTexture": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@ac183",
-        "__expectedType__": "cc.Texture2D"
-      },
-      "normalMap": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@6b754",
+        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@ac183",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,
@@ -171,11 +158,7 @@
       "anisotropyIntensity": 0.65,
       "anisotropyRotation": 0.05,
       "mainTexture": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@ac183",
-        "__expectedType__": "cc.Texture2D"
-      },
-      "normalMap": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@6b754",
+        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@ac183",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,
@@ -197,11 +180,7 @@
       "anisotropyIntensity": 0.65,
       "anisotropyRotation": 0.05,
       "mainTexture": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@ac183",
-        "__expectedType__": "cc.Texture2D"
-      },
-      "normalMap": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@6b754",
+        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@ac183",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,
@@ -222,11 +201,7 @@
       "anisotropyIntensity": 0.65,
       "anisotropyRotation": 0.05,
       "mainTexture": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@ac183",
-        "__expectedType__": "cc.Texture2D"
-      },
-      "normalMap": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@6b754",
+        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@ac183",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,

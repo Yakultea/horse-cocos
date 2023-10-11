@@ -1,5 +1,5 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { _decorator, Node, SkinnedMeshRenderer } from "cc";
+import { _decorator, Node, SkeletalAnimation, SkinnedMeshRenderer, tween } from "cc";
 import EventComponent from "../../framework/componects/EventComponent";
 import { inject } from "../../framework/defines/Decorators";
 import HorseGameData from "../data/HorseGameData";
@@ -13,16 +13,18 @@ export class Horse extends EventComponent {
     // ---------- 成員變數 --------------------------------------------------------
     private get data() { return App.dataCenter.get(HorseGameData); }
 
-    @inject("horse_gp/player_gp/horse_gp/saddle_lod", SkinnedMeshRenderer)
+    @inject("horse_gp/saddle", SkinnedMeshRenderer)
     private saddle: SkinnedMeshRenderer = null;
 
-    @inject("horse_gp/player_gp/horse_gp/new_horse", SkinnedMeshRenderer)
+    @inject("horse_gp/new_horse", SkinnedMeshRenderer)
     private horseBody: SkinnedMeshRenderer = null;
 
-    @inject("horse_gp/player_gp/jockey_gp/jockey", SkinnedMeshRenderer)
+    @inject("horse_gp/jockey", SkinnedMeshRenderer)
     private jockey: SkinnedMeshRenderer = null;
 
     private horseNumber: number = null;
+    private horseAnimations: SkeletalAnimation = null;
+    private curAniName: string = null;
 
     // ---------- 生命週期 --------------------------------------------------------
     onLoad(): void {
@@ -42,7 +44,7 @@ export class Horse extends EventComponent {
     // ---------- 內部呼叫 --------------------------------------------------------
     /** 初始化 */
     private init() {
-
+        this.horseAnimations = this.node.getComponent(SkeletalAnimation);
     }
 
     // ---------- 外部部呼叫 ------------------------------------------------------
@@ -60,6 +62,23 @@ export class Horse extends EventComponent {
         this.saddle.setMaterial(saddleMat, 0);
         this.horseBody.setMaterial(horseBodyMat, 0);
         this.jockey.setMaterial(jockeyMat, 0);
+    }
+
+    public playAnimation(name: string) {
+        this.curAniName = name;
+        this.horseAnimations.play(name);
+    }
+
+    public setAniSpeed(speed: number) {
+        const state = this.horseAnimations.getState(this.curAniName);
+
+        tween(state)
+            .to(0.3, {
+                speed: speed
+            })
+            .start();
+
+        // state.speed = speed;
     }
 
     /** 顯示 */

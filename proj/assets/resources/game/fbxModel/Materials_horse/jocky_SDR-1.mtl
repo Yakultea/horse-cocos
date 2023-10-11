@@ -11,6 +11,7 @@
   "_defines": [
     {
       "HAS_SECOND_UV": true,
+      "USE_NORMAL_MAP": true,
       "USE_ALBEDO_MAP": true
     },
     {},
@@ -47,8 +48,13 @@
   ],
   "_props": [
     {
+      "roughness": 0.664,
       "mainTexture": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@c4d01",
+        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@c4d01",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "normalMap": {
+        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@8cbf6",
         "__expectedType__": "cc.Texture2D"
       }
     },

@@ -50,11 +50,11 @@
       "roughness": 0.6,
       "specularIntensity": 0.4,
       "mainTexture": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@265a7",
+        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@265a7",
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "e75388dc-704f-4fc5-9793-ca524f16d1ff@312ba",
+        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@312ba",
         "__expectedType__": "cc.Texture2D"
       }
     },

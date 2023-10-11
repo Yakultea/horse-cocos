@@ -82,6 +82,7 @@ class UrlModel extends BaseModel<IUrlModel> {
         }
         // 開發用
         this.data.socket_url = `https://socket-lottery.riversense.tw`;
+        // this.data.socket_url = `http://192.168.40.2:61680/`;
 
         Log.d("url data ==> ", this.data);
     }

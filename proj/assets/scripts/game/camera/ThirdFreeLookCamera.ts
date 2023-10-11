@@ -149,12 +149,12 @@ export class ThirdFreeLookCamera extends Component {
 		this._right = new Vec3();
 		this._up = new Vec3();
 		Vec3.transformQuat(this._forward, Vec3.FORWARD, this.node.rotation);
-		//Vec3.transformQuat(this._right, Vec3.RIGHT, this.node.rotation);
-		//Vec3.transformQuat(this._up, Vec3.UP, this.node.rotation);
+		Vec3.transformQuat(this._right, Vec3.RIGHT, this.node.rotation);
+		Vec3.transformQuat(this._up, Vec3.UP, this.node.rotation);
 
 		this._forward.multiplyScalar(this.positionOffset.z);
-		//this._right.multiplyScalar(this.positionOffset.x);
-		//this._up.multiplyScalar(this.positionOffset.y);
+		this._right.multiplyScalar(this.positionOffset.x);
+		this._up.multiplyScalar(this.positionOffset.y);
 		let desiredPos = new Vec3();
 		desiredPos = desiredPos.add(this.lookAt.worldPosition).subtract(this._forward).add(this._right).add(this._up);
 		this.node.position = this.node.position.lerp(desiredPos, this.moveSmooth);

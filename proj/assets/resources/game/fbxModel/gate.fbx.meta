@@ -517,19 +517,44 @@
       ],
       "subMetas": {}
     },
-    "73b7f": {
+    "de4d3": {
       "importer": "gltf-animation",
-      "uuid": "c3ba5525-e6e4-4b4f-b9cc-1f3ba7a8de89@73b7f",
+      "uuid": "c3ba5525-e6e4-4b4f-b9cc-1f3ba7a8de89@de4d3",
       "displayName": "",
-      "id": "73b7f",
-      "name": "Take 001.animation",
+      "id": "de4d3",
+      "name": "open.animation",
       "userData": {
         "gltfIndex": 0,
-        "wrapMode": 2,
+        "wrapMode": 1,
+        "speed": 20,
         "sample": 30,
         "span": {
           "from": 0,
-          "to": 56.66666793823242
+          "to": 3.3333333333333335
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "6e9e1": {
+      "importer": "gltf-animation",
+      "uuid": "c3ba5525-e6e4-4b4f-b9cc-1f3ba7a8de89@6e9e1",
+      "displayName": "",
+      "id": "6e9e1",
+      "name": "close.animation",
+      "userData": {
+        "gltfIndex": 0,
+        "wrapMode": 1,
+        "speed": 1,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.3333333333333333
         },
         "events": []
       },
@@ -614,10 +639,18 @@
         "fps": 30,
         "splits": [
           {
-            "name": "Take 001",
+            "name": "open",
             "from": 0,
-            "to": 56.66666793823242,
-            "wrapMode": 2
+            "to": 3.3333333333333335,
+            "wrapMode": 1,
+            "speed": 20
+          },
+          {
+            "name": "close",
+            "from": 0,
+            "to": 0.3333333333333333,
+            "wrapMode": 1,
+            "speed": 1
           }
         ]
       }
