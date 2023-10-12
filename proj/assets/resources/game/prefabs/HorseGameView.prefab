@@ -83,7 +83,7 @@
         "__id__": 161
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 177
@@ -291,6 +291,8 @@
       "__id__": 0
     },
     "fileId": "5dp4pcoXJFJbESPI5Ojt3l",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -301,7 +303,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 12
@@ -444,7 +446,7 @@
         "__id__": 74
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 102
@@ -806,6 +808,8 @@
       "__id__": 0
     },
     "fileId": "d0MtrhPApGvKeLSNy9vXsk",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -1110,6 +1114,8 @@
       "__id__": 0
     },
     "fileId": "1d/K0B4kFPUoFOwr9hjMLd",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -1739,6 +1745,8 @@
       "__id__": 0
     },
     "fileId": "20/xP7co1AM74jnzpFLXsx",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -2368,6 +2376,8 @@
       "__id__": 0
     },
     "fileId": "fftQDOlp5BjqWLlmQE2PeS",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -2443,6 +2453,8 @@
       "__id__": 0
     },
     "fileId": "d5K3of1M5FOpk4ovJiE1L2",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -4002,6 +4014,8 @@
       "__id__": 0
     },
     "fileId": "6auzA5GHNDyKztKw3HMl3O",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -4075,6 +4089,8 @@
       "__id__": 0
     },
     "fileId": "e8+8e4ymtPVKRjuhdmyYBz",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {

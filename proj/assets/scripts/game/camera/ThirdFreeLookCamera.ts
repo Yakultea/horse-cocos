@@ -5,11 +5,11 @@ import { VectorTool } from './VectorTool';
 const { ccclass, property } = _decorator;
 
 export enum ThirdPersonCameraType {
-	/** 相機緊跟著目標，不會旋轉 */ //(150, 100, 70)
+	/** 相機緊跟著目標，不會旋轉 */
 	Follow = 0,
 	/** 相機會旋轉緊跟著目標正後方，旋轉不可控 */
 	FollowTrackRotation = 1,
-	/** 相機緊跟著目標，可以自由旋轉 */ //要調整z
+	/** 相機緊跟著目標，可以自由旋轉 */ //要調整z (0, 30, 250)
 	FollowIndependentRotation = 2,
 	/** 相機繞著目標旋轉 */
 	RotationAround = 3, // 要設定camera的pos
@@ -109,7 +109,7 @@ export class ThirdFreeLookCamera extends Component {
 	}
 
 	private _setRotationAround(): void {
-		Quaternion.RotationAroundNode(this.node, this.lookAt.position, Vec3.UP, 0.1);
+		Quaternion.RotationAroundNode(this.node, this.lookAt.position, Vec3.UP, 0.5);
 		this.node.lookAt(this.lookAt.position);
 	}
 
@@ -118,7 +118,7 @@ export class ThirdFreeLookCamera extends Component {
 		Vec3.add(temp, this.lookAt.worldPosition, this.positionOffset);
 		this.node.position = this.node.position.lerp(temp, this.moveSmooth);
 
-		// this.node.lookAt(this.target.worldPosition);
+		this.node.lookAt(this.target.worldPosition);
 	}
 
 	private _setFollowTrackRotation() {

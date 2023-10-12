@@ -3,7 +3,7 @@ import { Animation, Game, JsonAsset, Node, Vec3, _decorator, director, game, mac
 import MathUtil from "../../common/utils/MathUtil";
 import EventComponent from "../../framework/componects/EventComponent";
 import { inject } from "../../framework/defines/Decorators";
-import { ThirdFreeLookCamera } from "../camera/ThirdFreeLookCamera";
+import { ThirdFreeLookCamera, ThirdPersonCameraType } from "../camera/ThirdFreeLookCamera";
 import { Horse } from "../component/Horse";
 import HorseGameData from "../data/HorseGameData";
 import { HorseGameEvent } from "../event/HorseGameEvent";
@@ -41,9 +41,9 @@ export class HorseGame extends EventComponent {
 
     private horseMap: Map<number, IHorseConfig> = new Map();
     private frameDataIndex: number = 0;
-    private framePerTime: number = 0.04;
+    private framePerTime: number = 0.08;
     private focusHorse: Node = null;
-    private startRunDelay: number = 2;
+    private startRunDelay: number = 3;
     private needSlow: boolean = false;
     private oldTick = director.tick;
 
@@ -55,7 +55,7 @@ export class HorseGame extends EventComponent {
     start(): void {
         this.init();
         director.tick = (dt: number) => { //複寫遊戲整體速率
-            this.oldTick.call(director, dt * (this.needSlow ? 0.15 : 1));
+            this.oldTick.call(director, dt * (this.needSlow ? 0.1 : 1));
         }
 
         // this.data.setData(this.dataJson.json.data);
@@ -97,8 +97,12 @@ export class HorseGame extends EventComponent {
         }
 
         this.unschedule(this.playHorseRun);
-        this.unschedule(this.setCameraTarget);
+        // this.unschedule(this.setCameraTarget);
         this.switchCamera(true);
+        this.camera.cameraType = ThirdPersonCameraType.RotationAround;
+        this.camera.node.setPosition(484, 62, 300);
+        this.camera.node.eulerAngles = v3(-11, 43, 0);
+        this.camera.positionOffset = v3(0, 30, 250);
         this.needSlow = false;
 
         const { frameData, rider, skin } = this.data.getData();
@@ -119,12 +123,13 @@ export class HorseGame extends EventComponent {
             horse.eulerAngles = v3(0, 0, 0);
             horse.setPosition(315, 0, y);
             this.gate.play('close');
-            horseScript.playAnimation('idle02');
-            horseScript.setAniSpeed(Math.random()*3);
+            horseScript.playAnimation(`idle0${MathUtil.getRandomNumber(1, 2)}`);
+            horseScript.setAniSpeed(Math.random() * 2);
 
             this.scheduleOnce(() => {
-                horseScript.playAnimation(`run0${MathUtil.getRandomNumber(1, 2)}`);
-                horseScript.setAniSpeed(3);
+                // horseScript.playAnimation(`run0${MathUtil.getRandomNumber(1, 2)}`);
+                horseScript.playAnimation(`run02`);
+                horseScript.setAniSpeed(MathUtil.getRandomNumber(3, 4));
                 this.gate.play('open');
             }, this.startRunDelay);
 
@@ -150,25 +155,44 @@ export class HorseGame extends EventComponent {
 
     private playHorseRun() {
         const { frameData } = this.data.getData();
-        const frame = frameData[this.frameDataIndex];
+        const previousFrame = frameData[this.frameDataIndex - 1];
+        const currentFrame = frameData[this.frameDataIndex];
         const totalFrame = frameData.length;
 
         if (totalFrame == this.frameDataIndex + 1) {
             this.unschedule(this.playHorseRun);
-            this.unschedule(this.setCameraTarget);
+            // this.unschedule(this.setCameraTarget);
             return;
         }
-
+        this.camera.cameraType = ThirdPersonCameraType.FollowIndependentRotation;
         this.frameDataIndex++;
 
         if (this.frameDataIndex == this.data.firstRankIndex - 9) {
             this.switchCamera(false);
-            this.needSlow = true;
         }
 
-        for (let i = 0; i < frame.horses.length; i++) {
-            const { horseNumber, x, y, rotation } = frame.horses[i];
-            const { rankNumbers } = frame;
+        if (this.frameDataIndex == this.data.firstRankIndex) {
+            this.needSlow = true;
+            setTimeout(() => {
+                this.needSlow = false;
+            }, 500);
+        }
+
+        if (currentFrame.goalNumbers.length > previousFrame?.goalNumbers.length && !this.needSlow) {
+            this.needSlow = true;
+            setTimeout(() => {
+                this.needSlow = false;
+            }, 500);
+        }
+
+        if (this.frameDataIndex == totalFrame - 90) {
+            // this.camera.positionOffset = v3(-300, 30, 0);
+            this.camera.cameraType = ThirdPersonCameraType.Follow;
+        }
+
+        for (let i = 0; i < currentFrame.horses.length; i++) {
+            const { horseNumber, x, y, rotation } = currentFrame.horses[i];
+            const { rankNumbers } = currentFrame;
             const { script, curPos, preDistance } = this.horseMap.get(horseNumber);
             const horse = script.node;
 
@@ -195,7 +219,7 @@ export class HorseGame extends EventComponent {
 
             if (preDistance && distance) {
                 const ratio = parseFloat(distance) / preDistance;
-                const randomSpeed = (ratio > 1) ? MathUtil.getRandomNumber(4, 5) : MathUtil.getRandomNumber(2, 3);
+                const randomSpeed = (ratio > 1) ? MathUtil.getRandomNumber(6, 8) : MathUtil.getRandomNumber(3, 5);
 
                 script.setAniSpeed(randomSpeed);
             }
