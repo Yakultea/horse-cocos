@@ -77,8 +77,6 @@ export class Horse extends EventComponent {
                 speed: speed
             })
             .start();
-
-        // state.speed = speed;
     }
 
     /** 顯示 */

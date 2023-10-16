@@ -6,9 +6,11 @@ export interface IGameConfigModel {
     /* 檔案路徑 */
     filePaths: {
         horseMaterials: string;
+        textures: string;
     };
     isLoadResourcesCompleted: boolean;
     isSocketInited: boolean;
+    framePerTime: number;
 }
 
 /**
@@ -24,9 +26,11 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
         this.data = {
             filePaths: {
                 horseMaterials: 'game/material',
+                textures: 'game/texture',
             },
             isLoadResourcesCompleted: false,
             isSocketInited: false,
+            framePerTime: 0.08,
         };
     }
 
@@ -46,6 +50,8 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
 
     public get isSocketInited() { return this.data.isSocketInited; }
     public set isSocketInited(value: boolean) { this.data.isSocketInited = value; }
+
+    public get framePerTime() { return this.data.framePerTime; }
 
     // public reset() {
     //     this.data = {

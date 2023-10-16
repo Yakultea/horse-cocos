@@ -2,7 +2,7 @@
  * @description 登入流程 , 不用匯出
  */
 // ---------- 引用 ----------------------------------------------------------------
-import { Material } from "cc";
+import { Material, SpriteFrame } from "cc";
 import { Config } from "../common/config/Config";
 import UrlModel from "../common/model/UrlModel";
 import { HeartbeatJson } from "../common/protocol/HeartbetJson";
@@ -49,12 +49,13 @@ class HorseGameEntry extends Entry {
 
     /** 載入模組資源 */
     protected loadResources(completeCb: () => void) {
-        const { horseMaterials } = GameConfigModel.getData().filePaths;
+        const { horseMaterials, textures } = GameConfigModel.getData().filePaths;
 
         // // 設定載入資源
         this.loader.getLoadResources = () => {
             let res: Resource.Data[] = [
                 { dir: horseMaterials, bundle: this.bundle, type: Material },
+                { dir: textures, bundle: this.bundle, type: SpriteFrame },
             ];
 
             return res;

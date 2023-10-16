@@ -6,7 +6,7 @@ import { GameDataBase } from "../../framework/data/GameDataBase";
 import { Macro } from "../../framework/defines/Macros";
 import { IHorseAnime, IFrameData } from "../types/res-type";
 import { HorseGameEvent } from "../event/HorseGameEvent";
-import { Asset, Material } from "cc";
+import { Asset, Material, SpriteFrame } from "cc";
 import GameConfigModel from "../model/GameConfigModel";
 
 // ---------- 常數 ----------------------------------------------------------------
@@ -84,5 +84,13 @@ export default class HorseGameData extends GameDataBase<IHorseGameData> {
         const materialData: Material = (data.data as Asset[]).find(sp => { return sp.name === fileName; }) as Material;
         if (!materialData) throw new Error(`NOT FIND 所需materialData ${fileName}`);
         return materialData;
+    }
+
+    public getGameTexture(fileName: string): SpriteFrame {
+        const { textures } = GameConfigModel.getData().filePaths;
+        const data = App.cache.get(HorseGameData.module, textures);
+        const spriteFrameData: SpriteFrame = (data.data as Asset[]).find(sp => { return sp.name === fileName; }) as SpriteFrame;
+        if (!spriteFrameData) throw new Error(`NOT FIND 所需spriteFrameData ${fileName}`);
+        return spriteFrameData;
     }
 }

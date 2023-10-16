@@ -1,5 +1,5 @@
 
-import { Component, Enum, EventMouse, IVec3Like, Input, Node, Quat, Vec3, _decorator, input } from 'cc';
+import { Component, Enum, EventMouse, IVec3Like, Input, Node, Quat, Vec3, _decorator, input, lerp, misc, quat, tween, v3 } from 'cc';
 import { Quaternion } from './Quaternion';
 import { VectorTool } from './VectorTool';
 const { ccclass, property } = _decorator;
@@ -102,14 +102,8 @@ export class ThirdFreeLookCamera extends Component {
 		}
 	}
 
-	public setCameraFocus() {
-		let temp: Vec3 = new Vec3();
-		Vec3.add(temp, this.lookAt.worldPosition, this.positionOffset);
-		this.node.position = this.node.position.lerp(temp, 0.1);
-	}
-
 	private _setRotationAround(): void {
-		Quaternion.RotationAroundNode(this.node, this.lookAt.position, Vec3.UP, 0.5);
+		Quaternion.RotationAroundNode(this.node, this.lookAt.position, Vec3.UP, 0.3);
 		this.node.lookAt(this.lookAt.position);
 	}
 
@@ -132,13 +126,17 @@ export class ThirdFreeLookCamera extends Component {
 		// Vec3.add(pos, pos, forward);
 		Vec3.subtract(pos, pos, forward); //正對目標
 		// 球形差值移動，cocos只有Lerp差值移動，而unity是有球形差值移動的，照搬過來一個球形差值
-		this.node.position = VectorTool.SmoothDampV3(this.node.position, pos, this._velocity, this.moveSmooth, 100000, 0.02);
-		// cocos的差值移動
-		// this.node.position = this.node.position.lerp(pos, this.moveSmooth);
-		// 計算前方向
-		// this._forwardView = Vec3.subtract(this._forwardView, this.node.position, this.target.getWorldPosition());
-		this.node.lookAt(this.target.worldPosition);
-		// this.node.rotation = Quaternion.LookRotation(this._forwardView);
+		// this.node.position = VectorTool.SmoothDampV3(this.node.position, pos, this._velocity, this.moveSmooth, 100000, 0.02);
+		// // cocos的差值移動
+		this.node.position = this.node.position.lerp(pos, this.moveSmooth);
+		// // 計算前方向
+		this._forwardView = Vec3.subtract(this._forwardView, this.node.position, this.target.getWorldPosition());
+		this.node.rotation = Quaternion.LookRotation(this._forwardView);
+
+		let qqq = new Quat();
+		// this.node.rotation = Quat.slerp(qqq, this.node.getWorldRotation(), Quaternion.LookRotation(this._forwardView), 0.5);
+
+		// this.node.lookAt(this.target.worldPosition);
 	}
 
 	/**
@@ -155,6 +153,7 @@ export class ThirdFreeLookCamera extends Component {
 		this._forward.multiplyScalar(this.positionOffset.z);
 		this._right.multiplyScalar(this.positionOffset.x);
 		this._up.multiplyScalar(this.positionOffset.y);
+
 		let desiredPos = new Vec3();
 		desiredPos = desiredPos.add(this.lookAt.worldPosition).subtract(this._forward).add(this._right).add(this._up);
 		this.node.position = this.node.position.lerp(desiredPos, this.moveSmooth);

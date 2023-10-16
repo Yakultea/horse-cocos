@@ -16,4 +16,7 @@ export class HorseGameEvent extends FlowEvent<HorseGameEvent | any> {
     // =================== GAME ===================
     public static LOADING_COMPLETED = "HorseGameEvent:LOADING_COMPLETED"; // socket initial & loadResources 都完成的事件
     public static PARSE_COMPLETED = "HorseGameEvent:PARSE_COMPLETED";
+    public static SET_RESULT_DATA = "HorseGameEvent:SET_RESULT_DATA";
+    public static SET_RESULT_ACTIVE = "HorseGameEvent:SET_RESULT_ACTIVE";
+    public static UPDATE_RANK_BAR = "HorseGameEvent:UPDATE_RANK_BAR";
 }
