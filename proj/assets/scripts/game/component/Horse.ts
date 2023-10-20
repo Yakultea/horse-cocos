@@ -1,5 +1,5 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { _decorator, Node, SkeletalAnimation, SkinnedMeshRenderer, tween } from "cc";
+import { _decorator, BoxCollider, Node, SkeletalAnimation, SkinnedMeshRenderer, tween } from "cc";
 import EventComponent from "../../framework/componects/EventComponent";
 import { inject } from "../../framework/defines/Decorators";
 import HorseGameData from "../data/HorseGameData";

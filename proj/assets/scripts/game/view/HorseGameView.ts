@@ -1,15 +1,15 @@
 // ---------- 引用 ----------------------------------------------------------------
 
-import { _decorator, Node, RichText, tween, UITransform, v3, Vec3 } from "cc";
+import { _decorator, Node, RichText, tween, UITransform, v3 } from "cc";
 import GameView from "../../framework/core/ui/GameView";
 import { inject } from "../../framework/defines/Decorators";
-import HorseGameData from "../data/HorseGameData";
-import { HorseGameLogic } from "../logic/HorseGameLogic";
 import { RankItem } from "../component/RankItem";
+import HorseGameData from "../data/HorseGameData";
 import { HorseGameEvent } from "../event/HorseGameEvent";
-import { IHorse } from "../types/type";
-import { IFrameData } from "../types/res-type";
+import { HorseGameLogic } from "../logic/HorseGameLogic";
 import GameConfigModel from "../model/GameConfigModel";
+import { IFrameData } from "../types/res-type";
+import { IHorse } from "../types/type";
 
 // ---------- 常數 ----------------------------------------------------------------
 
@@ -60,13 +60,6 @@ export default class HorseGameView extends GameView {
 
     /** 初始化 */
     private init() {
-        // const { horseGamePrefab } = GameConfigModel.getData().filePaths;
-        // const horseGamePf = App.cache.get(this.data.module, horseGamePrefab).data as Prefab;
-        // const horseGame = instantiate(horseGamePf);
-
-        // this.Game3D = find('Game3D');
-        // this.Game3D.addChild(horseGame);
-
         for (let i = 0; i < this.rankNumbers.children.length; i++) {
             const node = this.rankNumbers.children[i];
             const pos = this.rankNumbers.children[i].position;
@@ -88,7 +81,18 @@ export default class HorseGameView extends GameView {
         this.periodId.string = `<color=#906914>${periodId}</color>  <color=#ababab>期</color>`;
     }
 
-    private updateRank(currentFrame: IFrameData) {
+    private initRankBar() {
+        for (let i = 0; i < this.rankNumbers.children.length; i++) {
+            const uiTransform = this.rankNumberMap.get(i + 1);
+            const size = (i < 3) ? 88.8 : 74;
+            const posX = this.rankNumberPosMap.get(i);
+
+            uiTransform.node.setPosition(posX, 0, 0);
+            uiTransform.setContentSize(size, size);
+        }
+    }
+
+    private updateRankBar(currentFrame: IFrameData) {
         const { rankNumbers, goalNumbers } = currentFrame;
         const { framePerTime } = GameConfigModel;
         let showRank: string[] = rankNumbers;
@@ -131,8 +135,12 @@ export default class HorseGameView extends GameView {
             this.result.active = event.data;
         });
 
+        this.on(HorseGameEvent.INIT_RANK_BAR, (event: HorseGameEvent) => {
+            this.initRankBar();
+        });
+
         this.on(HorseGameEvent.UPDATE_RANK_BAR, (event: HorseGameEvent) => {
-            this.updateRank(event.data);
+            this.updateRankBar(event.data);
         });
     }
 }

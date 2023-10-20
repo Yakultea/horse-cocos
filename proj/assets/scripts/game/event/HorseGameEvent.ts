@@ -18,5 +18,6 @@ export class HorseGameEvent extends FlowEvent<HorseGameEvent | any> {
     public static PARSE_COMPLETED = "HorseGameEvent:PARSE_COMPLETED";
     public static SET_RESULT_DATA = "HorseGameEvent:SET_RESULT_DATA";
     public static SET_RESULT_ACTIVE = "HorseGameEvent:SET_RESULT_ACTIVE";
+    public static INIT_RANK_BAR = "HorseGameEvent:INIT_RANK_BAR";
     public static UPDATE_RANK_BAR = "HorseGameEvent:UPDATE_RANK_BAR";
 }

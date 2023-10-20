@@ -697,9 +697,9 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
+      "x": 0.8,
+      "y": 0.8,
+      "z": 0.8
     },
     "_mobility": 0,
     "_layer": 33554432,
@@ -2877,7 +2877,7 @@
       "__id__": 127
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 129

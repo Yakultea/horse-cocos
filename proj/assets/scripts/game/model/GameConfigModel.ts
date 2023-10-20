@@ -30,16 +30,11 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
             },
             isLoadResourcesCompleted: false,
             isSocketInited: false,
-            framePerTime: 0.08,
+            framePerTime: 0.06,
         };
     }
 
     // ---------- 框架呼叫 --------------------------------------------------------
-    // public setData(GameModelVO: IGameConfigModel) {
-    //     this.data = {
-    //         value1: null,
-    //     };
-    // }
 
     // ---------- 內部呼叫 --------------------------------------------------------
 
@@ -52,12 +47,6 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
     public set isSocketInited(value: boolean) { this.data.isSocketInited = value; }
 
     public get framePerTime() { return this.data.framePerTime; }
-
-    // public reset() {
-    //     this.data = {
-    //         value1: null,
-    //     };
-    // }
 }
 
 export default GameConfigModel.Instance();

@@ -1,7 +1,6 @@
 
-import { Component, Enum, EventMouse, IVec3Like, Input, Node, Quat, Vec3, _decorator, input, lerp, misc, quat, tween, v3 } from 'cc';
+import { Component, Enum, EventMouse, IVec3Like, Input, Node, Quat, Vec3, _decorator, input } from 'cc';
 import { Quaternion } from './Quaternion';
-import { VectorTool } from './VectorTool';
 const { ccclass, property } = _decorator;
 
 export enum ThirdPersonCameraType {
@@ -103,7 +102,7 @@ export class ThirdFreeLookCamera extends Component {
 	}
 
 	private _setRotationAround(): void {
-		Quaternion.RotationAroundNode(this.node, this.lookAt.position, Vec3.UP, 0.3);
+		Quaternion.RotationAroundNode(this.node, this.lookAt.position, Vec3.UP, -0.35);
 		this.node.lookAt(this.lookAt.position);
 	}
 
@@ -132,9 +131,6 @@ export class ThirdFreeLookCamera extends Component {
 		// // 計算前方向
 		this._forwardView = Vec3.subtract(this._forwardView, this.node.position, this.target.getWorldPosition());
 		this.node.rotation = Quaternion.LookRotation(this._forwardView);
-
-		let qqq = new Quat();
-		// this.node.rotation = Quat.slerp(qqq, this.node.getWorldRotation(), Quaternion.LookRotation(this._forwardView), 0.5);
 
 		// this.node.lookAt(this.target.worldPosition);
 	}
