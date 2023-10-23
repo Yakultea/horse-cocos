@@ -1,5 +1,5 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { Animation, BoxCollider, JsonAsset, Node, Quat, Vec3, _decorator, director, lerp, macro, tween, v3 } from "cc";
+import { Animation, BoxCollider, JsonAsset, Node, Vec3, _decorator, director, macro, tween, v3 } from "cc";
 import MathUtil from "../../common/utils/MathUtil";
 import EventComponent from "../../framework/componects/EventComponent";
 import { inject } from "../../framework/defines/Decorators";
@@ -7,8 +7,8 @@ import { ThirdFreeLookCamera, ThirdPersonCameraType } from "../camera/ThirdFreeL
 import { Horse } from "../component/Horse";
 import HorseGameData from "../data/HorseGameData";
 import { HorseGameEvent } from "../event/HorseGameEvent";
-import { IHorse } from "../types/type";
 import GameConfigModel from "../model/GameConfigModel";
+import { IHorse } from "../types/type";
 
 export interface IHorseConfig {
     script: Horse;
@@ -59,16 +59,25 @@ export class HorseGame extends EventComponent {
     start(): void {
         this.init();
         director.tick = (dt: number) => { //複寫遊戲整體速率
-            // this.oldTick.call(director, dt * (this.needSlow ? 0.1 : 1));
-            this.oldTick.call(director, dt * (this.needSlow ? lerp(0, 1, 0.2) : 1));
+            this.oldTick.call(director, dt * (this.needSlow ? 0.05 : 1));
         }
 
         this.goalCollider.on("onTriggerEnter", (event) => {
             if (!this.isSlowColdDown) {
                 this.setNeedSlow()
             }
-            this.camera.enabled = false;
-            this.camera.node.setPosition(652, this.camera.node.getPosition().y, this.camera.node.getPosition().z);
+
+            if (this.camera.enabled) {
+                // this.camera.node.setPosition(652, 70, 1500);
+                // this.camera.node.eulerAngles = v3(-20, 0, 0);
+                // tween(this.camera.node)
+                //     .to(0.05, {
+                //         position: v3(652, 70, 1500),
+                //         eulerAngles: v3(-30, 0, 0)
+                //     })
+                //     .start();
+                this.camera.enabled = false;
+            }
         }, this);
 
         // this.data.setData(this.dataJson.json.data);
@@ -113,6 +122,7 @@ export class HorseGame extends EventComponent {
             console.warn('沒有資料', this.data.getData());
             return;
         }
+        this.unscheduleAllCallbacks();
 
         this.camera.enabled = true;
         this.unschedule(this.playHorseRun);
@@ -161,11 +171,11 @@ export class HorseGame extends EventComponent {
                     z: -30
                 })
                 .start();
-        }, this.startRunDelay + 9);
+        }, this.startRunDelay + 10);
 
         this.scheduleOnce(() => {
             this.FocusFirstHorse();
-            this.camera.positionOffset = v3(-20, 50, 250);
+            this.camera.positionOffset = v3(-20, 50, 200);
 
             this.schedule(this.FocusFirstHorse, 0.5, 3);
         }, this.startRunDelay + 19);
@@ -220,7 +230,7 @@ export class HorseGame extends EventComponent {
         this.frameDataIndex = 0;
         this.schedule(this.playHorseRun, framePerTime, macro.REPEAT_FOREVER, this.startRunDelay);
 
-        let topThreeHorseData: IHorse[] = [ ];
+        let topThreeHorseData: IHorse[] = [];
 
         for (let i = 0; i < 3; i++) {
             const data = this.horseMap.get(Number(lastFrame.goalNumbers[i])).horseData;
