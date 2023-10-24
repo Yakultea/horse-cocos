@@ -16,24 +16,20 @@
     },
     {
       "HAS_SECOND_UV": true,
-      "USE_ALBEDO_MAP": true,
-      "USE_NORMAL_MAP": true
+      "USE_ALBEDO_MAP": true
     },
     {
       "HAS_SECOND_UV": true,
-      "USE_ALBEDO_MAP": true,
-      "USE_NORMAL_MAP": true
+      "USE_ALBEDO_MAP": true
     },
     {},
     {
       "HAS_SECOND_UV": true,
-      "USE_ALBEDO_MAP": true,
-      "USE_NORMAL_MAP": true
+      "USE_ALBEDO_MAP": true
     },
     {
       "HAS_SECOND_UV": true,
-      "USE_ALBEDO_MAP": true,
-      "USE_NORMAL_MAP": true
+      "USE_ALBEDO_MAP": true
     },
     {},
     {}
@@ -126,7 +122,7 @@
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@6b754",
+        "__uuid__": "2ce4cd9c-0f24-4f2d-9f22-955ba716ed12@6b754",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,
@@ -152,7 +148,7 @@
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@6b754",
+        "__uuid__": "2ce4cd9c-0f24-4f2d-9f22-955ba716ed12@6b754",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,
@@ -178,7 +174,7 @@
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@6b754",
+        "__uuid__": "2ce4cd9c-0f24-4f2d-9f22-955ba716ed12@6b754",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,
@@ -205,7 +201,7 @@
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@6b754",
+        "__uuid__": "2ce4cd9c-0f24-4f2d-9f22-955ba716ed12@6b754",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,
@@ -231,7 +227,7 @@
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "d1e995b5-5ec3-4493-992e-0cfdd3e2b404@6b754",
+        "__uuid__": "2ce4cd9c-0f24-4f2d-9f22-955ba716ed12@6b754",
         "__expectedType__": "cc.Texture2D"
       },
       "roughnessTRT": 0,
