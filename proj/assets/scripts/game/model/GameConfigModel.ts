@@ -30,7 +30,7 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
             },
             isLoadResourcesCompleted: false,
             isSocketInited: false,
-            framePerTime: 0.06,
+            framePerTime: 0.055,
         };
     }
 

@@ -1,0 +1,111 @@
+{
+  "ver": "2.3.4",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "598f8ef7-6a6f-4a7a-bbdf-2d13b85aa66b",
+  "files": [],
+  "subMetas": {
+    "34097": {
+      "importer": "gltf-scene",
+      "uuid": "598f8ef7-6a6f-4a7a-bbdf-2d13b85aa66b@34097",
+      "displayName": "",
+      "id": "34097",
+      "name": "finishpoint.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "578b2": {
+      "importer": "gltf-mesh",
+      "uuid": "598f8ef7-6a6f-4a7a-bbdf-2d13b85aa66b@578b2",
+      "displayName": "",
+      "id": "578b2",
+      "name": "finishpoint.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "8656b": {
+      "importer": "gltf-embeded-image",
+      "uuid": "598f8ef7-6a6f-4a7a-bbdf-2d13b85aa66b@8656b",
+      "displayName": "",
+      "id": "8656b",
+      "name": "Map #1861905615.image",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.3",
+      "imported": true,
+      "files": [
+        ".jpg",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "09ef7": {
+      "importer": "texture",
+      "uuid": "598f8ef7-6a6f-4a7a-bbdf-2d13b85aa66b@09ef7",
+      "displayName": "",
+      "id": "09ef7",
+      "name": "Map #1861905615.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "598f8ef7-6a6f-4a7a-bbdf-2d13b85aa66b@8656b"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "Map #1861905615",
+        "uri": "598f8ef7-6a6f-4a7a-bbdf-2d13b85aa66b@8656b"
+      }
+    ],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "redirect": "598f8ef7-6a6f-4a7a-bbdf-2d13b85aa66b@34097",
+    "assetFinder": {
+      "meshes": [
+        "598f8ef7-6a6f-4a7a-bbdf-2d13b85aa66b@578b2"
+      ],
+      "skeletons": [],
+      "textures": [
+        "598f8ef7-6a6f-4a7a-bbdf-2d13b85aa66b@09ef7"
+      ],
+      "materials": [
+        "096e1f41-0c21-41e2-82fb-8a8a78052ef3"
+      ],
+      "scenes": [
+        "598f8ef7-6a6f-4a7a-bbdf-2d13b85aa66b@34097"
+      ]
+    },
+    "dumpMaterials": true,
+    "materialDumpDir": "db://assets/resources/game/models/Materials_finishpoint"
+  }
+}
