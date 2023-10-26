@@ -80,6 +80,13 @@ class HorseGameEntry extends Entry {
     /** 初始化遊戲資料 */
     protected initData(): void {
         this.initUrlConfig();
+
+        if (SocketModel.currentToken == 'null' || !SocketModel.currentToken) {
+            GameConfigModel.isSocketInited = true;
+            console.warn('沒有token 不連接socket', SocketModel.currentToken);
+            return;
+        }
+
         // 初始化 wrapper socket
         App.serviceManager.get(WrapperService, true);
         this.serviceInit();

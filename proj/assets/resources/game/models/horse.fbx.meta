@@ -229,7 +229,7 @@
       "name": "idle01.animation",
       "userData": {
         "gltfIndex": 0,
-        "wrapMode": 2,
+        "wrapMode": 22,
         "speed": 1,
         "sample": 30,
         "span": {
@@ -253,7 +253,7 @@
       "name": "idle02.animation",
       "userData": {
         "gltfIndex": 0,
-        "wrapMode": 2,
+        "wrapMode": 22,
         "speed": 1,
         "sample": 30,
         "span": {
@@ -820,14 +820,14 @@
             "name": "idle01",
             "from": 12.133333333333333,
             "to": 13.633333333333333,
-            "wrapMode": 2,
+            "wrapMode": 22,
             "speed": 1
           },
           {
             "name": "idle02",
             "from": 13.666666666666666,
             "to": 15.666666984558105,
-            "wrapMode": 2,
+            "wrapMode": 22,
             "speed": 1
           }
         ]

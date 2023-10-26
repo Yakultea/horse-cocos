@@ -317,3 +317,5 @@ declare type LanguageZH = typeof import("../assets/scripts/common/language/Langu
 declare type LanguageEN = typeof import("../assets/scripts/common/language/LanguageEN").LanguageEN;
 
 declare type LanguageData = LanguageZH & LanguageEN;
+
+declare function restart(): void;

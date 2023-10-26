@@ -1,12 +1,13 @@
 import {
     addExtraLoadResource, setSpriteSpriteFrame, setButtonSpriteFrame,
     setParticleSystemFile, setLabelFont, setSkeletonSkeletonData,
-    createNodeWithPrefab,getBundle,_loadDirRes,_loadRes, loadDragonDisplay
+    createNodeWithPrefab, getBundle, _loadDirRes, _loadRes, loadDragonDisplay
 } from "./CocosUtils";
 import { Resource } from "../core/asset/Resource";
 import { Macro } from "../defines/Macros";
-import { Sprite , Node, isValid , SpriteFrame, sp, Button, Label, Font, ParticleSystem2D , ParticleAsset, EditBox, AssetManager, dragonBones } from "cc";
+import { Sprite, Node, isValid, SpriteFrame, sp, Button, Label, Font, ParticleSystem2D, ParticleAsset, EditBox, AssetManager, dragonBones } from "cc";
 import { EDITOR } from "cc/env";
+import { CommonEvent } from "../../common/event/CommonEvent";
 
 /**@description 對cc.Node 擴充套件一個臨時儲存的使用者自定義資料 */
 if (typeof Reflect == "object") {
@@ -44,7 +45,7 @@ if (typeof Reflect == "object") {
  */
 
 //config : {url: string, view : any , complete?: (data: cc.SpriteFrame) => void, defaultSpriteFrame?: string , isNeedCache ?: boolean }
-let prototype:any = Sprite.prototype;
+let prototype: any = Sprite.prototype;
 prototype.loadRemoteImage = function (config: any) {
     let me = this;
     if (config.isNeedCache == undefined || config.isNeedCache == null) {
@@ -175,8 +176,8 @@ prototype.loadButton = function (config: any) {
 /**
  * @description 載入龍骨動畫
  */
-dragonBones.ArmatureDisplay.prototype.loadDisplay = function(config) {
-    loadDragonDisplay(this,config);
+dragonBones.ArmatureDisplay.prototype.loadDisplay = function (config) {
+    loadDragonDisplay(this, config);
 }
 
 /**
@@ -187,15 +188,15 @@ dragonBones.ArmatureDisplay.prototype.loadDisplay = function(config) {
  * par.loadFile({url:GAME_RES( "res/action/DDZ_win_lizi" ),view:null});
  * this.node.addChild(node);
  */
- prototype = ParticleSystem2D.prototype;
- prototype.loadFile = function (config: any) {
-     let me = this;
-     let url = config.url;
-     let bundle = getBundle(config);
-     App.cache.getCacheByAsync(url, ParticleAsset, bundle).then((data) => {
-         setParticleSystemFile(me, config, data);
-     });
- }
+prototype = ParticleSystem2D.prototype;
+prototype.loadFile = function (config: any) {
+    let me = this;
+    let url = config.url;
+    let bundle = getBundle(config);
+    App.cache.getCacheByAsync(url, ParticleAsset, bundle).then((data) => {
+        setParticleSystemFile(me, config, data);
+    });
+}
 
 prototype = Label.prototype;
 /**@description 強制label在當前幀進行繪製 */
@@ -207,7 +208,7 @@ prototype.forceDoLayout = function () {
     //2.2.0以下版本
     else if (this._updateRenderData) {
         this._updateRenderData(true);
-    }else if(this.updateRenderData){
+    } else if (this.updateRenderData) {
         this.updateRenderData(true);
     }
 }
@@ -218,14 +219,14 @@ prototype.forceDoLayout = function () {
  * let content = cc.find("content",this.node); 
  * content.getComponent(cc.Label).loadFont({font:roomPath + dfFont,view:this});
  */
- prototype.loadFont = function (config: any) {
-     let font = config.font;
-     let me = this;
-     let bundle = getBundle(config);
-     App.cache.getCacheByAsync(font, Font, bundle).then((data) => {
-         setLabelFont(me, config, data);
-     });
- }
+prototype.loadFont = function (config: any) {
+    let font = config.font;
+    let me = this;
+    let bundle = getBundle(config);
+    App.cache.getCacheByAsync(font, Font, bundle).then((data) => {
+        setLabelFont(me, config, data);
+    });
+}
 
 /**@description 透過預置體路徑建立節點 
  * @param config 配置資訊
@@ -239,7 +240,7 @@ prototype.forceDoLayout = function () {
  *     }
  * }});
  */
-window.createPrefab = function (config:any) {
+window.createPrefab = function (config: any) {
     createNodeWithPrefab(config);
 }
 
@@ -253,7 +254,7 @@ window.createPrefab = function (config:any) {
  * @param config.bundle 可不填，預設為view指向的bundle
  * @param config.type 載入的資源型別
  * */
-window.loadDirRes = function (config:any) {
+window.loadDirRes = function (config: any) {
     _loadDirRes(config)
 }
 
@@ -267,32 +268,32 @@ window.loadDirRes = function (config:any) {
  * @param config.onComplete 載入完成回撥 data為ResourceCacheData
  * @param config.view 資源持有者,繼承自UIView
  */
-window.loadRes = function (config:any) {
+window.loadRes = function (config: any) {
     _loadRes(config);
 }
 
 let _cc = (<any>window)["cc"]
- /**@description 臨時的替換方案，效率太底 */
-_cc.updateZIndex = function (node : Node) {
-    if( node.children.length > 1 ){
-        node.children.sort((a,b)=>{
+/**@description 臨時的替換方案，效率太底 */
+_cc.updateZIndex = function (node: Node) {
+    if (node.children.length > 1) {
+        node.children.sort((a, b) => {
             return a.zIndex - b.zIndex;
         });
         node._updateSiblingIndex();
     }
 }
- /**@description 臨時的替換方案，效率太底 */
-export function updateZIndex( node : Node ){
+/**@description 臨時的替換方案，效率太底 */
+export function updateZIndex(node: Node) {
     _cc.updateZIndex(node);
 }
 
 Reflect.defineProperty(Node.prototype, "zIndex", {
     get: function () {
-        let self : any = this;
-        if( typeof self._zIndex =="number"){
+        let self: any = this;
+        if (typeof self._zIndex == "number") {
             return self._zIndex;
         }
-        else{
+        else {
             self._zIndex = 0;
             return self._zIndex;
         }
@@ -307,4 +308,8 @@ export function CocosExtentionInit() {
     if (!EDITOR) {
         Log.d("Cocos擴充套件初始化");
     }
+}
+
+window.restart = function () {
+    dispatch(CommonEvent.RESTART_HORSE_GAME);
 }

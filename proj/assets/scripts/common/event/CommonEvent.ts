@@ -18,4 +18,6 @@ export enum CommonEvent{
     CHAT_SERVICE_CONNECTED = "CHAT_SERVICE_CONNECTED",
     /**@description 聊天連線斷開 */
     CHAT_SERVICE_CLOSE = "CHAT_SERVICE_CLOSE",
+
+    RESTART_HORSE_GAME = "RESTART_HORSE_GAME",
 }

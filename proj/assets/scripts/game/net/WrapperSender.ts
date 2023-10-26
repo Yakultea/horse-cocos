@@ -73,7 +73,6 @@ export class WrapperSender extends Sender {
 
         return new Promise((resolve, reject) => {
             this.send('initial', requestVO, (response: IInitialRes) => {
-                console.warn('IIIIIIIII', response)
                 if (response.status == Http.ServerStatus.SUCCESS) {
                     Log.d('*** 後端來的資料 ***', response);
                     this.setToken(response);

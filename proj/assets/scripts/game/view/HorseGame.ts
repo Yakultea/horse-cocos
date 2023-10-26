@@ -9,6 +9,7 @@ import HorseGameData from "../data/HorseGameData";
 import { HorseGameEvent } from "../event/HorseGameEvent";
 import GameConfigModel from "../model/GameConfigModel";
 import { IHorse } from "../types/type";
+import { CommonEvent } from "../../common/event/CommonEvent";
 
 export interface IHorseConfig {
     script: Horse;
@@ -48,7 +49,7 @@ export class HorseGame extends EventComponent {
     private frameDataIndex: number = 0;
     private startRunDelay: number = 8;
     private needSlow: boolean = false;
-    private isSlowColdDown: boolean = false;
+    // private isSlowColdDown: boolean = false;
     private oldTick = director.tick;
 
     // ---------- 生命週期 --------------------------------------------------------
@@ -63,21 +64,10 @@ export class HorseGame extends EventComponent {
         }
 
         this.goalCollider.on("onTriggerEnter", (event) => {
-            if (!this.isSlowColdDown) {
-                this.setNeedSlow()
-            }
-
-            if (this.camera.enabled) {
-                // this.camera.node.setPosition(652, 70, 1500);
-                // this.camera.node.eulerAngles = v3(-20, 0, 0);
-                // tween(this.camera.node)
-                //     .to(0.05, {
-                //         position: v3(652, 70, 1500),
-                //         eulerAngles: v3(-30, 0, 0)
-                //     })
-                //     .start();
-                this.camera.enabled = false;
-            }
+            // if (!this.isSlowColdDown) {
+            // }
+            this.setNeedSlow()
+            this.camera.enabled = false;
         }, this);
 
         // this.data.setData(this.dataJson.json.data);
@@ -122,10 +112,14 @@ export class HorseGame extends EventComponent {
             console.warn('沒有資料', this.data.getData());
             return;
         }
-        this.unscheduleAllCallbacks();
+
+        if (typeof (<any>window)?.startRecording == 'function') {
+            (<any>window)?.startRecording();
+        }
 
         this.camera.enabled = true;
         this.unschedule(this.playHorseRun);
+        this.unscheduleAllCallbacks();
         this.switchCamera(true);
         this.camera.cameraType = ThirdPersonCameraType.RotationAround;
         this.camera.node.setPosition(800, 60, 200);
@@ -161,7 +155,8 @@ export class HorseGame extends EventComponent {
 
             tween(this.camera.positionOffset)
                 .to(8, {
-                    x: -170,
+                    // x: -170,
+                    x: -100,
                 })
                 .start();
 
@@ -204,8 +199,10 @@ export class HorseGame extends EventComponent {
             horse.setPosition(horsePosx, 0, y);
 
             horseScript.setData(horseData);
-            horseScript.playAnimation(`idle0${MathUtil.getRandomNumber(1, 2)}`);
-            horseScript.setAniSpeed(Math.random() + 0.7);
+            horseScript.playAnimation(`idle02`);
+            this.scheduleOnce(() => {
+                horseScript.playAnimation(`idle0${MathUtil.getRandomNumber(1, 2)}`);
+            }, Math.random() + 1);
 
             this.scheduleOnce(() => {
                 horseScript.playAnimation(`run02`);
@@ -251,6 +248,10 @@ export class HorseGame extends EventComponent {
         if (totalFrame == this.frameDataIndex + 1) {
             this.unschedule(this.playHorseRun);
             dispatch(HorseGameEvent.SET_RESULT_ACTIVE, { data: true });
+
+            if (typeof (<any>window)?.stopRecording == 'function') {
+                (<any>window)?.stopRecording();
+            }
             return;
         }
 
@@ -322,10 +323,22 @@ export class HorseGame extends EventComponent {
             this.needSlow = false;
         }, 800);
 
-        this.isSlowColdDown = true;
-        setTimeout(() => {
-            this.isSlowColdDown = false
-        }, 1000);
+        // this.isSlowColdDown = true;
+        // setTimeout(() => {
+        //     this.isSlowColdDown = false
+        // }, 1000);
+    }
+
+    private restartGame() {
+        const data = (<any>window)?.animeData;
+
+        if (!data) {
+            console.warn('restartGame data有問題', data);
+            return;
+        }
+
+        console.warn('restartGame data', data);
+        this.data.setData(data);
     }
 
     // ---------- 外部部呼叫 ------------------------------------------------------
@@ -350,6 +363,10 @@ export class HorseGame extends EventComponent {
     public addEvents() {
         this.on(HorseGameEvent.PARSE_COMPLETED, () => {
             this.startGame();
+        });
+
+        this.on(CommonEvent.RESTART_HORSE_GAME, () => {
+            this.restartGame();
         });
     }
 }
