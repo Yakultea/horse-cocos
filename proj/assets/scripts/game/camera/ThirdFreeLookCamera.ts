@@ -102,7 +102,7 @@ export class ThirdFreeLookCamera extends Component {
 	}
 
 	private _setRotationAround(): void {
-		Quaternion.RotationAroundNode(this.node, this.lookAt.position, Vec3.UP, -0.35);
+		Quaternion.RotationAroundNode(this.node, this.lookAt.position, Vec3.UP, -0.3);
 		this.node.lookAt(this.lookAt.position);
 	}
 

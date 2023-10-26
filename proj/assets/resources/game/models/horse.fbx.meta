@@ -157,7 +157,7 @@
       "name": "start.animation",
       "userData": {
         "gltfIndex": 0,
-        "wrapMode": 2,
+        "wrapMode": 1,
         "speed": 1,
         "sample": 30,
         "span": {
@@ -230,7 +230,7 @@
       "userData": {
         "gltfIndex": 0,
         "wrapMode": 22,
-        "speed": 1,
+        "speed": 0.7,
         "sample": 30,
         "span": {
           "from": 12.133333333333333,
@@ -799,7 +799,7 @@
             "name": "start",
             "from": 5.333333333333333,
             "to": 8,
-            "wrapMode": 2,
+            "wrapMode": 1,
             "speed": 1
           },
           {
@@ -821,7 +821,7 @@
             "from": 12.133333333333333,
             "to": 13.633333333333333,
             "wrapMode": 22,
-            "speed": 1
+            "speed": 0.7
           },
           {
             "name": "idle02",

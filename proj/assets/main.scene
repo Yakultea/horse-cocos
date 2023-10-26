@@ -294,7 +294,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 388.1188118811881,
+    "_orthoHeight": 361.2903225806452,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -12195,8 +12195,8 @@
     "_target": null,
     "_left": 0,
     "_right": 0,
-    "_top": 56.23762376237622,
-    "_bottom": 2.842170943040401e-14,
+    "_top": 2.580645161290363,
+    "_bottom": 0,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
     "_isAbsLeft": true,
@@ -12232,15 +12232,6 @@
     "_children": [
       {
         "__id__": 465
-      },
-      {
-        "__id__": 964
-      },
-      {
-        "__id__": 967
-      },
-      {
-        "__id__": 970
       }
     ],
     "_active": true,
@@ -12315,12 +12306,21 @@
       },
       {
         "__id__": 954
+      },
+      {
+        "__id__": 963
+      },
+      {
+        "__id__": 966
+      },
+      {
+        "__id__": 969
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 963
+        "__id__": 972
       }
     ],
     "_prefab": null,
@@ -12373,8 +12373,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 800,
-      "y": 60,
+      "x": 720,
+      "y": 45,
       "z": 200
     },
     "_lrot": {
@@ -19036,32 +19036,17 @@
     "value": true
   },
   {
-    "__type__": "d6494su0XtOcbr+pAgr0xpF",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 465
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "dataJson": {
-      "__uuid__": "be2dfe8a-a278-4a3e-94f5-89b7817a2541",
-      "__expectedType__": "cc.JsonAsset"
-    },
-    "_id": "56VgLxW+tNBKzX66zQmk81"
-  },
-  {
     "__type__": "cc.Node",
     "_name": "flagpole1",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 464
+      "__id__": 465
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 965
+        "__id__": 964
       }
     ],
     "_prefab": null,
@@ -19099,7 +19084,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 964
+      "__id__": 963
     },
     "_enabled": true,
     "__prefab": null,
@@ -19115,7 +19100,7 @@
     ],
     "_visFlags": 0,
     "bakeSettings": {
-      "__id__": 966
+      "__id__": 965
     },
     "_mesh": {
       "__uuid__": "f542b769-cfb4-47e3-8d3b-f12850e67aeb@76e41",
@@ -19155,13 +19140,13 @@
     "_name": "flagpole2",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 464
+      "__id__": 465
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 968
+        "__id__": 967
       }
     ],
     "_prefab": null,
@@ -19199,7 +19184,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 967
+      "__id__": 966
     },
     "_enabled": true,
     "__prefab": null,
@@ -19215,7 +19200,7 @@
     ],
     "_visFlags": 0,
     "bakeSettings": {
-      "__id__": 969
+      "__id__": 968
     },
     "_mesh": {
       "__uuid__": "f542b769-cfb4-47e3-8d3b-f12850e67aeb@76e41",
@@ -19255,13 +19240,13 @@
     "_name": "flagpole3",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 464
+      "__id__": 465
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 971
+        "__id__": 970
       }
     ],
     "_prefab": null,
@@ -19299,7 +19284,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 970
+      "__id__": 969
     },
     "_enabled": true,
     "__prefab": null,
@@ -19315,7 +19300,7 @@
     ],
     "_visFlags": 0,
     "bakeSettings": {
-      "__id__": 972
+      "__id__": 971
     },
     "_mesh": {
       "__uuid__": "f542b769-cfb4-47e3-8d3b-f12850e67aeb@76e41",
@@ -19349,6 +19334,21 @@
     "_reflectionProbeType": 0,
     "_bakeToReflectionProbe": true,
     "_probeCubemap": null
+  },
+  {
+    "__type__": "d6494su0XtOcbr+pAgr0xpF",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 465
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "dataJson": {
+      "__uuid__": "be2dfe8a-a278-4a3e-94f5-89b7817a2541",
+      "__expectedType__": "cc.JsonAsset"
+    },
+    "_id": "56VgLxW+tNBKzX66zQmk81"
   },
   {
     "__type__": "cc.PrefabInfo",

@@ -122,7 +122,8 @@ export class HorseGame extends EventComponent {
         this.unscheduleAllCallbacks();
         this.switchCamera(true);
         this.camera.cameraType = ThirdPersonCameraType.RotationAround;
-        this.camera.node.setPosition(800, 60, 200);
+        // this.camera.node.setPosition(800, 60, 200);
+        this.camera.node.setPosition(730, 50, 280);
         this.camera.node.eulerAngles = v3(-11, 120, 0);
         this.camera.positionOffset = v3(180, 20, 0);
         this.needSlow = false;
@@ -155,14 +156,14 @@ export class HorseGame extends EventComponent {
 
             tween(this.camera.positionOffset)
                 .to(8, {
-                    // x: -170,
-                    x: -100,
+                    x: -70,
                 })
                 .start();
 
             tween(this.camera.positionOffset)
-                .delay(7)
-                .to(2, {
+                .delay(5)
+                .to(4, {
+                    x: -90,
                     z: -30
                 })
                 .start();
@@ -209,7 +210,7 @@ export class HorseGame extends EventComponent {
                 horseScript.setAniSpeed(Math.random() + 4);
             }, this.startRunDelay);
 
-            if (horseNumber == 5) {
+            if (horseNumber == 6) {
                 this.setCameraTarget(horseNumber);
             }
 
