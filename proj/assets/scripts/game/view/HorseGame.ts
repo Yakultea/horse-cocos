@@ -122,7 +122,6 @@ export class HorseGame extends EventComponent {
         this.unscheduleAllCallbacks();
         this.switchCamera(true);
         this.camera.cameraType = ThirdPersonCameraType.RotationAround;
-        // this.camera.node.setPosition(800, 60, 200);
         this.camera.node.setPosition(730, 50, 280);
         this.camera.node.eulerAngles = v3(-11, 120, 0);
         this.camera.positionOffset = v3(180, 20, 0);
@@ -155,13 +154,10 @@ export class HorseGame extends EventComponent {
             this.camera.positionOffset = v3(50, 30, 120);
 
             tween(this.camera.positionOffset)
-                .to(8, {
+                .to(5, {
                     x: -70,
+                    z: 80
                 })
-                .start();
-
-            tween(this.camera.positionOffset)
-                .delay(5)
                 .to(4, {
                     x: -90,
                     z: -30
@@ -251,7 +247,9 @@ export class HorseGame extends EventComponent {
             dispatch(HorseGameEvent.SET_RESULT_ACTIVE, { data: true });
 
             if (typeof (<any>window)?.stopRecording == 'function') {
-                (<any>window)?.stopRecording();
+                this.scheduleOnce(() => {
+                    (<any>window)?.stopRecording();
+                }, 5);
             }
             return;
         }

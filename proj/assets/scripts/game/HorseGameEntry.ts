@@ -115,6 +115,10 @@ class HorseGameEntry extends Entry {
 
         App.uiManager.closeExcept([HorseGameView]);
         App.gameLoading.complete();
+        if (typeof (<any>window)?.ready == 'function') {
+            (<any>window)?.ready();
+            console.warn('遊戲已準備就緒');
+        }
     }
 
     /**@description 解除安裝bundle,即在自己bundle刪除之前最後的一條訊息 */

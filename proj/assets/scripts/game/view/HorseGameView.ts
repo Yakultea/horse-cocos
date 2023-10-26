@@ -1,6 +1,6 @@
 // ---------- 引用 ----------------------------------------------------------------
 
-import { _decorator, Node, RichText, tween, UITransform, v3 } from "cc";
+import { _decorator, Label, Node, RichText, tween, UITransform, v3 } from "cc";
 import GameView from "../../framework/core/ui/GameView";
 import { inject } from "../../framework/defines/Decorators";
 import { RankItem } from "../component/RankItem";
@@ -24,8 +24,8 @@ export default class HorseGameView extends GameView {
     @inject("content/result", Node)
     private result: Node = null;
 
-    @inject("content/result/topInfo/periodId", RichText)
-    private periodId: RichText = null;
+    @inject("content/result/topInfo/periodId", Label)
+    private periodId: Label = null;
 
     @inject("content/result/rankContent", Node)
     private rankContent: Node = null;
@@ -67,8 +67,6 @@ export default class HorseGameView extends GameView {
             this.rankNumberMap.set(i + 1, node.getComponent(UITransform));
             this.rankNumberPosMap.set(i, pos.x);
         }
-
-        // this.node.active = false;
     }
 
     private setResult(data: IHorse[]) {
@@ -78,7 +76,7 @@ export default class HorseGameView extends GameView {
             this.rankContent.children[i].getComponent(RankItem).setData(data[i]);
         }
 
-        this.periodId.string = `<color=#906914>${periodId}</color>  <color=#ababab>期</color>`;
+        this.periodId.string = `${periodId}  期`;
     }
 
     private initRankBar() {

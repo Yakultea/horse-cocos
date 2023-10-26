@@ -334,7 +334,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 280,
+      "y": 260,
       "z": 0
     },
     "_lrot": {
@@ -422,8 +422,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1280,
-      "height": 109
+      "width": 638,
+      "height": 118
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -516,7 +516,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": 4,
       "z": 0
     },
     "_lrot": {
@@ -567,10 +567,10 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "31u2J4EF9Kvank59+uBjU/"
+    "fileId": "31dg0qUrZEfr3Gdqr3vUUl"
   },
   {
-    "__type__": "cc.RichText",
+    "__type__": "cc.Label",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -580,24 +580,38 @@
     "__prefab": {
       "__id__": 21
     },
-    "_lineHeight": 64,
-    "_string": "<color=#906914>--</color>  <color=#ababab>期</color>",
+    "_customMaterial": null,
+    "_srcBlendFactor": 2,
+    "_dstBlendFactor": 4,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 215,
+      "g": 215,
+      "b": 215,
+      "a": 255
+    },
+    "_string": "--  期",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
+    "_actualFontSize": 64,
     "_fontSize": 64,
-    "_maxWidth": 0,
     "_fontFamily": "Arial",
+    "_lineHeight": 64,
+    "_overflow": 0,
+    "_enableWrapText": false,
     "_font": null,
     "_isSystemFontUsed": true,
-    "_userDefinedFont": null,
+    "_spacingX": 0,
+    "_isItalic": false,
+    "_isBold": false,
+    "_isUnderline": false,
+    "_underlineHeight": 2,
     "_cacheMode": 0,
-    "_imageAtlas": null,
-    "_handleTouchEvent": true,
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "e7vDjf4lhIKqTm40TvQNW9"
+    "fileId": "71B5oAaUBE+YGjVAHurvZ3"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -607,9 +621,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "dfCA+I9M9MsaNUSJW0ZQoN",
-    "instance": null,
-    "targetOverrides": null,
+    "fileId": "52FUh0be5Jd5okA6BJclDg",
     "nestedPrefabInstanceRoots": null
   },
   {
