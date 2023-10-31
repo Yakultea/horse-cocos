@@ -10,21 +10,28 @@
   "_techIdx": 0,
   "_defines": [
     {
-      "HAS_SECOND_UV": true,
       "USE_ALBEDO_MAP": true,
       "USE_NORMAL_MAP": true
     },
     {
+      "USE_ALBEDO_MAP": true,
+      "USE_NORMAL_MAP": true,
       "INVERSE_ALPHA_TEST": true
     },
     {
+      "USE_ALBEDO_MAP": true,
+      "USE_NORMAL_MAP": true,
       "INVERSE_ALPHA_TEST": true
     },
     {},
     {
+      "USE_ALBEDO_MAP": true,
+      "USE_NORMAL_MAP": true,
       "INVERSE_ALPHA_TEST": true
     },
     {
+      "USE_ALBEDO_MAP": true,
+      "USE_NORMAL_MAP": true,
       "INVERSE_ALPHA_TEST": true
     },
     {},
@@ -106,86 +113,176 @@
   ],
   "_props": [
     {
-      "occlusion": 0.23,
-      "roughness": 0.345,
-      "metallic": 0.04,
-      "specularIntensity": 0.08,
-      "normalStrength": 0.716,
-      "anisotropyIntensity": 0.5877,
-      "anisotropyRotation": 0.05,
+      "mainColor": {
+        "__type__": "cc.Color",
+        "r": 188,
+        "g": 188,
+        "b": 188,
+        "a": 255
+      },
+      "alphaThreshold": 0.53,
+      "occlusion": 0.297,
+      "roughness": 0.44,
+      "specularIntensity": 0.383,
+      "normalStrength": 0.888,
+      "anisotropyIntensity": 0.9188,
+      "anisotropyRotation": 0.1009,
       "mainTexture": {
         "__uuid__": "67ebe6ca-4db3-4d2f-973b-d114aacc9213@6c48a",
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "2ce4cd9c-0f24-4f2d-9f22-955ba716ed12@6b754",
+        "__uuid__": "1515b085-3dce-4a3d-86da-583743f831c3@6c48a",
         "__expectedType__": "cc.Texture2D"
       },
-      "roughnessTRT": 0,
-      "IntensityTRT": 0.6,
+      "roughnessTRT": 0.287,
+      "IntensityTRT": 2.47,
       "baseColorTRT": {
         "__type__": "cc.Color",
-        "r": 127,
-        "g": 68,
-        "b": 45,
+        "r": 223,
+        "g": 36,
+        "b": 36,
         "a": 255
-      }
+      },
+      "ScatterCoefTT": 0.24
     },
     {
-      "occlusion": 0.23,
-      "roughness": 0.345,
-      "metallic": 0.04,
-      "specularIntensity": 0.08,
-      "normalStrength": 0.716,
-      "anisotropyIntensity": 0.5877,
-      "anisotropyRotation": 0.05,
+      "mainColor": {
+        "__type__": "cc.Color",
+        "r": 188,
+        "g": 188,
+        "b": 188,
+        "a": 255
+      },
+      "alphaThreshold": 0.53,
+      "occlusion": 0.297,
+      "roughness": 0.44,
+      "specularIntensity": 0.383,
+      "normalStrength": 0.888,
+      "anisotropyIntensity": 0.9188,
+      "anisotropyRotation": 0.1009,
       "mainTexture": {
-        "__uuid__": "f8142bba-a1d5-406a-9b27-38eeb7e639af@6c48a",
+        "__uuid__": "79463066-036e-47da-b22f-c3289eff7a10@6c48a",
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "2ce4cd9c-0f24-4f2d-9f22-955ba716ed12@6b754",
+        "__uuid__": "1515b085-3dce-4a3d-86da-583743f831c3@6c48a",
         "__expectedType__": "cc.Texture2D"
       },
-      "roughnessTRT": 0,
-      "IntensityTRT": 0.6,
+      "roughnessTRT": 0.287,
+      "IntensityTRT": 2.47,
       "baseColorTRT": {
         "__type__": "cc.Color",
-        "r": 127,
-        "g": 68,
-        "b": 45,
+        "r": 223,
+        "g": 36,
+        "b": 36,
         "a": 255
-      }
+      },
+      "ScatterCoefTT": 0.24
     },
     {
-      "occlusion": 0.23,
-      "roughness": 0.345,
-      "metallic": 0.04,
-      "specularIntensity": 0.08,
-      "normalStrength": 0.716,
-      "anisotropyIntensity": 0.5877,
-      "anisotropyRotation": 0.05,
+      "mainColor": {
+        "__type__": "cc.Color",
+        "r": 188,
+        "g": 188,
+        "b": 188,
+        "a": 255
+      },
+      "alphaThreshold": 0.53,
+      "occlusion": 0.297,
+      "roughness": 0.44,
+      "specularIntensity": 0.383,
+      "normalStrength": 0.888,
+      "anisotropyIntensity": 0.9188,
+      "anisotropyRotation": 0.1009,
       "mainTexture": {
-        "__uuid__": "f8142bba-a1d5-406a-9b27-38eeb7e639af@6c48a",
+        "__uuid__": "79463066-036e-47da-b22f-c3289eff7a10@6c48a",
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
-        "__uuid__": "2ce4cd9c-0f24-4f2d-9f22-955ba716ed12@6b754",
+        "__uuid__": "1515b085-3dce-4a3d-86da-583743f831c3@6c48a",
         "__expectedType__": "cc.Texture2D"
       },
-      "roughnessTRT": 0,
-      "IntensityTRT": 0.6,
+      "roughnessTRT": 0.287,
+      "IntensityTRT": 2.47,
       "baseColorTRT": {
         "__type__": "cc.Color",
-        "r": 127,
-        "g": 68,
-        "b": 45,
+        "r": 223,
+        "g": 36,
+        "b": 36,
         "a": 255
-      }
+      },
+      "ScatterCoefTT": 0.24
     },
     {},
-    {},
-    {},
+    {
+      "mainColor": {
+        "__type__": "cc.Color",
+        "r": 188,
+        "g": 188,
+        "b": 188,
+        "a": 255
+      },
+      "alphaThreshold": 0.53,
+      "occlusion": 0.297,
+      "roughness": 0.44,
+      "specularIntensity": 0.383,
+      "normalStrength": 0.888,
+      "anisotropyIntensity": 0.9188,
+      "anisotropyRotation": 0.1009,
+      "mainTexture": {
+        "__uuid__": "79463066-036e-47da-b22f-c3289eff7a10@6c48a",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "normalMap": {
+        "__uuid__": "1515b085-3dce-4a3d-86da-583743f831c3@6c48a",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "roughnessTRT": 0.287,
+      "IntensityTRT": 2.47,
+      "baseColorTRT": {
+        "__type__": "cc.Color",
+        "r": 223,
+        "g": 36,
+        "b": 36,
+        "a": 255
+      },
+      "ScatterCoefTT": 0.24
+    },
+    {
+      "mainColor": {
+        "__type__": "cc.Color",
+        "r": 188,
+        "g": 188,
+        "b": 188,
+        "a": 255
+      },
+      "alphaThreshold": 0.53,
+      "occlusion": 0.297,
+      "roughness": 0.44,
+      "specularIntensity": 0.383,
+      "normalStrength": 0.888,
+      "anisotropyIntensity": 0.9188,
+      "anisotropyRotation": 0.1009,
+      "mainTexture": {
+        "__uuid__": "79463066-036e-47da-b22f-c3289eff7a10@6c48a",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "normalMap": {
+        "__uuid__": "1515b085-3dce-4a3d-86da-583743f831c3@6c48a",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "roughnessTRT": 0.287,
+      "IntensityTRT": 2.47,
+      "baseColorTRT": {
+        "__type__": "cc.Color",
+        "r": 223,
+        "g": 36,
+        "b": 36,
+        "a": 255
+      },
+      "ScatterCoefTT": 0.24
+    },
     {},
     {}
   ]

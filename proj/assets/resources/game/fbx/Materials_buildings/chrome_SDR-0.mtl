@@ -1,0 +1,77 @@
+{
+  "__type__": "cc.Material",
+  "_name": "",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "f648964e-8d32-41fc-9ac9-7a1e714dd17b",
+    "__expectedType__": "cc.EffectAsset"
+  },
+  "_techIdx": 0,
+  "_defines": [
+    {
+      "USE_TWOSIDE": true,
+      "USE_SPECULAR_GLOSSINESS_MAP": true,
+      "USE_SPECULAR_MAP": true,
+      "USE_METALLIC_MAP": true
+    },
+    {},
+    {}
+  ],
+  "_states": [
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    },
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    },
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    }
+  ],
+  "_props": [
+    {
+      "mainColor": {
+        "__type__": "cc.Color",
+        "r": 72,
+        "g": 74,
+        "b": 80,
+        "a": 255
+      },
+      "shininessExponentMap": {
+        "__uuid__": "bf3cfbb4-ea5f-4ad7-8c8d-d3fd23034c53@6c48a",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "shininessExponent": 174.7,
+      "specularGlossinessMap": {
+        "__uuid__": "bf3cfbb4-ea5f-4ad7-8c8d-d3fd23034c53@6c48a",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "specularMap": {
+        "__uuid__": "bf3cfbb4-ea5f-4ad7-8c8d-d3fd23034c53@6c48a",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "specularFactor": 3.6
+    },
+    {},
+    {}
+  ]
+}

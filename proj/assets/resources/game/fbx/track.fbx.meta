@@ -1,0 +1,102 @@
+{
+  "ver": "2.3.4",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "ab5afa94-63a2-4b03-aa24-00f86b75ead4",
+  "files": [],
+  "subMetas": {
+    "ef5e1": {
+      "importer": "gltf-mesh",
+      "uuid": "ab5afa94-63a2-4b03-aa24-00f86b75ead4@ef5e1",
+      "displayName": "",
+      "id": "ef5e1",
+      "name": "grass.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "8aecc": {
+      "importer": "gltf-mesh",
+      "uuid": "ab5afa94-63a2-4b03-aa24-00f86b75ead4@8aecc",
+      "displayName": "",
+      "id": "8aecc",
+      "name": "track1.mesh",
+      "userData": {
+        "gltfIndex": 1
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "5cc7a": {
+      "importer": "gltf-mesh",
+      "uuid": "ab5afa94-63a2-4b03-aa24-00f86b75ead4@5cc7a",
+      "displayName": "",
+      "id": "5cc7a",
+      "name": "fense.mesh",
+      "userData": {
+        "gltfIndex": 2
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "d6ddf": {
+      "importer": "gltf-scene",
+      "uuid": "ab5afa94-63a2-4b03-aa24-00f86b75ead4@d6ddf",
+      "displayName": "",
+      "id": "d6ddf",
+      "name": "track.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "redirect": "ab5afa94-63a2-4b03-aa24-00f86b75ead4@d6ddf",
+    "assetFinder": {
+      "meshes": [
+        "ab5afa94-63a2-4b03-aa24-00f86b75ead4@ef5e1",
+        "ab5afa94-63a2-4b03-aa24-00f86b75ead4@8aecc",
+        "ab5afa94-63a2-4b03-aa24-00f86b75ead4@5cc7a"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [
+        "72d71648-ca7d-4073-ac94-6f19e74cd49d",
+        "ca5b57e3-d95b-40a2-8afd-48cd24db7495",
+        "646309a9-ca00-437a-a75b-4cbd7b14191d"
+      ],
+      "scenes": [
+        "ab5afa94-63a2-4b03-aa24-00f86b75ead4@d6ddf"
+      ]
+    },
+    "dumpMaterials": true,
+    "materialDumpDir": "db://assets/resources/game/fbx/Materials_track"
+  }
+}

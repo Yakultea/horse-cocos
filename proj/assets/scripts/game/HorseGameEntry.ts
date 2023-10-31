@@ -117,7 +117,10 @@ class HorseGameEntry extends Entry {
         App.gameLoading.complete();
         if (typeof (<any>window)?.ready == 'function') {
             (<any>window)?.ready();
-            console.warn('遊戲已準備就緒');
+            console.warn('遊戲已準備就緒 (window.ready())');
+        } else if (typeof (<any>window.parent)?.ready == 'function') {
+            (<any>window.parent)?.ready();
+            console.warn('遊戲已準備就緒 (window.parent.ready())');
         }
     }
 

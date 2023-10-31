@@ -1,0 +1,64 @@
+{
+  "ver": "2.3.4",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "e5ebb6bd-6c55-494a-9254-5a0c8e877f6c",
+  "files": [],
+  "subMetas": {
+    "bb3a5": {
+      "importer": "gltf-mesh",
+      "uuid": "e5ebb6bd-6c55-494a-9254-5a0c8e877f6c@bb3a5",
+      "displayName": "",
+      "id": "bb3a5",
+      "name": "finish01.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "d68b5": {
+      "importer": "gltf-scene",
+      "uuid": "e5ebb6bd-6c55-494a-9254-5a0c8e877f6c@d68b5",
+      "displayName": "",
+      "id": "d68b5",
+      "name": "finishline.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "redirect": "e5ebb6bd-6c55-494a-9254-5a0c8e877f6c@d68b5",
+    "assetFinder": {
+      "meshes": [
+        "e5ebb6bd-6c55-494a-9254-5a0c8e877f6c@bb3a5"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [
+        "adddea23-2029-4d8b-bb0d-ab360a62e889"
+      ],
+      "scenes": [
+        "e5ebb6bd-6c55-494a-9254-5a0c8e877f6c@d68b5"
+      ]
+    },
+    "dumpMaterials": true,
+    "materialDumpDir": "db://assets/resources/game/fbx/Materials_finishline"
+  }
+}

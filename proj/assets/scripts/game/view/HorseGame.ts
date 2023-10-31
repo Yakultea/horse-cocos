@@ -368,7 +368,7 @@ export class HorseGame extends EventComponent {
     }
 
     private restartGame() { //給window.restart()使用的
-        const data = (<any>window)?.animeData;
+        const data = (<any>window)?.animeData || (<any>window.parent)?.animeData ;
 
         if (!data) {
             console.warn('restartGame data有問題', data);

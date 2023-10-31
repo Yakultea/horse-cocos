@@ -1,0 +1,64 @@
+{
+  "ver": "2.3.4",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "d24af593-bcd6-4435-a592-8fa17bbe8b60",
+  "files": [],
+  "subMetas": {
+    "9530d": {
+      "importer": "gltf-mesh",
+      "uuid": "d24af593-bcd6-4435-a592-8fa17bbe8b60@9530d",
+      "displayName": "",
+      "id": "9530d",
+      "name": "pDisc1.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "4e64a": {
+      "importer": "gltf-scene",
+      "uuid": "d24af593-bcd6-4435-a592-8fa17bbe8b60@4e64a",
+      "displayName": "",
+      "id": "4e64a",
+      "name": "depth.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "redirect": "d24af593-bcd6-4435-a592-8fa17bbe8b60@4e64a",
+    "assetFinder": {
+      "meshes": [
+        "d24af593-bcd6-4435-a592-8fa17bbe8b60@9530d"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [
+        "90032909-73f2-4e0b-93dd-7e0da3a664b2"
+      ],
+      "scenes": [
+        "d24af593-bcd6-4435-a592-8fa17bbe8b60@4e64a"
+      ]
+    },
+    "dumpMaterials": true,
+    "materialDumpDir": "db://assets/resources/game/fbx/Materials_depth"
+  }
+}
