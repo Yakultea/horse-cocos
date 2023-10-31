@@ -85,4 +85,43 @@ export class WrapperSender extends Sender {
             });
         });
     }
+
+    /** horseAnime */
+    public horseAnime(): Promise<void> {
+        const requestVO = {
+            token: SocketModel.currentToken,
+            clientType: 'web', // sys.browserType //DeviceDetection.getDeviceType(),
+            deviceInfo: {
+                browser: {
+                    name: sys.BrowserType,//"Chrome",
+                    version: sys.browserVersion,//"112.0.0.0"
+                },
+                os: {
+                    name: sys.OS,//"Windows",
+                    version: sys.osVersion,//"NT 10.0",
+                    versionName: sys.osMainVersion,//"10"
+                },
+                platform: {
+                    type: sys.platform,//"desktop"
+                },
+                engine: {
+                    name: "cocos creator 3.7.2"
+                }
+            },
+        };
+
+        return new Promise((resolve, reject) => {
+            this.send('horseAnime', requestVO, (response: any) => {
+                if (response.status == Http.ServerStatus.SUCCESS) {
+                    Log.d('*** 後端來的資料 horseAnime ***', response);
+                    this.setToken(response);
+                    // dispatch(HorseGameEvent.INIT_RESPONSE, response);
+                    resolve();
+                } else {
+                    Log.e('NETWORK_ERROR: ', response);
+                    reject();
+                }
+            });
+        });
+    }
 }

@@ -7,7 +7,7 @@ import { RankItem } from "../component/RankItem";
 import HorseGameData from "../data/HorseGameData";
 import { HorseGameEvent } from "../event/HorseGameEvent";
 import { HorseGameLogic } from "../logic/HorseGameLogic";
-import GameConfigModel from "../model/GameConfigModel";
+import GameConfigModel, { EMusic } from "../model/GameConfigModel";
 import { IFrameData } from "../types/res-type";
 import { IHorse } from "../types/type";
 
@@ -119,6 +119,18 @@ export default class HorseGameView extends GameView {
         }
     }
 
+    private playBGM(url: EMusic) {
+        this.audioHelper.playMusic(url, this.bundle);
+    }
+
+    private playBTM(url: EMusic, loop: boolean = false) {
+        this.audioHelper.playEffect(url, this.bundle, loop);
+    }
+
+    private stopBTM(url: EMusic) {
+        this.audioHelper.stopEffect(url, this.bundle);
+    }
+
     // ---------- 外部部呼叫 ------------------------------------------------------
 
     // ---------- 監聽事件 --------------------------------------------------------
@@ -139,6 +151,20 @@ export default class HorseGameView extends GameView {
 
         this.on(HorseGameEvent.UPDATE_RANK_BAR, (event: HorseGameEvent) => {
             this.updateRankBar(event.data);
+        });
+
+        this.on(HorseGameEvent.PLAY_BGM, (event: HorseGameEvent) => {
+            this.playBGM(event.data);
+        });
+
+        this.on(HorseGameEvent.PLAY_BTM, (event: HorseGameEvent) => {
+            const { url, loop } = event.data;
+
+            this.playBTM(url, loop);
+        });
+
+        this.on(HorseGameEvent.STOP_BTM, (event: HorseGameEvent) => {
+            this.stopBTM(event.data);
         });
     }
 }

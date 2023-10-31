@@ -27,9 +27,7 @@ export default class HorseGameData extends GameDataBase<IHorseGameData> {
     /** 當前直橫式狀態 */
     public orientation: EOrientationType = null;
 
-    public firstRankIndex: number = 0;
-    public secondRankIndex: number = 0;
-    public thirdRankIndex: number = 0;
+    public rankCompletedIndex: number = 0; //每隻馬排名都出現的frame index
 
     // ---------- 框架呼叫 ------------------------------------------------------
     /** 初始化 Enryt自動執行 */
@@ -62,15 +60,14 @@ export default class HorseGameData extends GameDataBase<IHorseGameData> {
             return;
         }
 
-        this.data = res;
-
         for (let i = 0; i < res.frameData.length; i++) {
-            if (res.frameData[i].goalNumbers.length) {
-                this.firstRankIndex = i;
+            if (res.frameData[i].goalNumbers.length == 10) {
+                this.rankCompletedIndex = i;
                 break;
             }
         }
 
+        this.data = res;
         dispatch(HorseGameEvent.PARSE_COMPLETED);
 
         if (DEBUG) {

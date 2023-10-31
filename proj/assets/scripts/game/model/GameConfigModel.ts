@@ -13,6 +13,15 @@ export interface IGameConfigModel {
     framePerTime: number;
 }
 
+export enum EMusic { //音樂路徑
+    CHEER = 'game/music/btm_cheer',
+    RUNNING = 'game/music/btm_running',
+    BRASS = 'game/music/btm_brass',
+    GATE = 'game/music/btm_gate',
+    GOAL = 'game/music/btm_goal',
+    ACHIEVE = 'game/music/btm_achieve',
+}
+
 /**
  * Model 是用來儲存全部共用的資料 
  */

@@ -20,4 +20,7 @@ export class HorseGameEvent extends FlowEvent<HorseGameEvent | any> {
     public static SET_RESULT_ACTIVE = "HorseGameEvent:SET_RESULT_ACTIVE";
     public static INIT_RANK_BAR = "HorseGameEvent:INIT_RANK_BAR";
     public static UPDATE_RANK_BAR = "HorseGameEvent:UPDATE_RANK_BAR";
+    public static PLAY_BGM = "HorseGameEvent:PLAY_BGM";
+    public static PLAY_BTM = "HorseGameEvent:PLAY_BTM";
+    public static STOP_BTM = "HorseGameEvent:STOP_BTM";
 }

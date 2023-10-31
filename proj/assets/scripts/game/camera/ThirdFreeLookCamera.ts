@@ -50,6 +50,7 @@ export class ThirdFreeLookCamera extends Component {
 
 	public mouseX: number = 0;
 	public mouseY: number = 0;
+	public rotateAngle: number = 0;
 
 	private _forward: Vec3 = new Vec3();
 	private _right: Vec3 = new Vec3();
@@ -102,7 +103,7 @@ export class ThirdFreeLookCamera extends Component {
 	}
 
 	private _setRotationAround(): void {
-		Quaternion.RotationAroundNode(this.node, this.lookAt.position, Vec3.UP, -0.3);
+		Quaternion.RotationAroundNode(this.node, this.lookAt.position, Vec3.UP, this.rotateAngle);
 		this.node.lookAt(this.lookAt.position);
 	}
 

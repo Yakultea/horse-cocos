@@ -32,7 +32,8 @@ export default class WrapperHandler extends Handler {
 
     private addListeners(): void {
         this.on(HorseGameEvent.SERVICE_CONNECTED, () => {
-            this.sendInitial();
+            // this.sendInitial();
+            this.sendHorseAnime();
         });
     }
 
@@ -40,6 +41,11 @@ export default class WrapperHandler extends Handler {
         await this.sender.initial().then(()=>{
             GameConfigModel.isSocketInited = true;
         });
+    }
+
+    private async sendHorseAnime() {
+        GameConfigModel.isSocketInited = true;
+        await this.sender.horseAnime();
     }
 
     // ---------- 外部部呼叫 -----------------------------------------------------------
