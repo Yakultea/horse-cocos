@@ -1,5 +1,5 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { Animation, BoxCollider, Node, Vec3, _decorator, director, macro, tween, v3 } from "cc";
+import { Animation, BoxCollider, Node, Tween, Vec3, _decorator, director, macro, tween, v3 } from "cc";
 import { CommonEvent } from "../../common/event/CommonEvent";
 import MathUtil from "../../common/utils/MathUtil";
 import EventComponent from "../../framework/componects/EventComponent";
@@ -43,10 +43,14 @@ export class HorseGame extends EventComponent {
 
     private horseMap: Map<number, IHorseConfig> = new Map();
     private frameDataIndex: number = 0;
+    private stopRotateDelay: number = 5.5;
     private startRunDelay: number = 8;
+    private enterCornerDelay: number = 18;
+    private startSprintingDelay: number = 27;
+    private rotateDirType: number = 0; //0是左到右 1是右到左
+    private tweenTag: number = 1234;
     private needSlow: boolean = false;
     private oldTick = director.tick;
-    private rotateDirType: number = 0; //0是左到右 1是右到左
 
     // ---------- 生命週期 --------------------------------------------------------
     onLoad(): void {
@@ -63,6 +67,7 @@ export class HorseGame extends EventComponent {
             this.setNeedSlow()
             this.camera.enabled = false;
             dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.RUNNING });
+            dispatch(HorseGameEvent.STOP_BGM);
             dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.GOAL } });
         }, this);
     }
@@ -111,6 +116,7 @@ export class HorseGame extends EventComponent {
         this.needSlow = false;
         this.gate.play('close');
         this.unscheduleAllCallbacks();
+        Tween.stopAllByTag(this.tweenTag);
         this.setCameraMoving();
         this.setHorses();
         this.setResult();
@@ -180,12 +186,11 @@ export class HorseGame extends EventComponent {
             this.camera.node.eulerAngles = v3(-11, 30, 0);
         }
 
-        // this.needSlow = false;
-        // this.gate.play('close');
-
         this.resultCamera.position.set(1000, 80, 0);
         this.resultCamera.active = false;
 
+        dispatch(HorseGameEvent.STOP_BGM);
+        dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.RUNNING });
         dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.CHEER } });
         dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.BRASS } });
 
@@ -197,8 +202,9 @@ export class HorseGame extends EventComponent {
                     y: 50,
                     z: 0
                 })
+                .tag(this.tweenTag)
                 .start();
-        }, this.startRunDelay - 2.5);
+        }, this.stopRotateDelay);
 
         this.scheduleOnce(() => {
             const random = MathUtil.getRandomNumber(0, 1);
@@ -209,6 +215,7 @@ export class HorseGame extends EventComponent {
                         x: 80,
                         z: -100
                     })
+                    .tag(this.tweenTag)
                     .start();
             } else {
                 tween(this.camera.positionOffset)
@@ -217,12 +224,14 @@ export class HorseGame extends EventComponent {
                         y: 30,
                         z: 150
                     })
+                    .tag(this.tweenTag)
                     .start();
             }
 
             this.gate.play('open');
             dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.GATE } });
             dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.RUNNING } });
+            dispatch(HorseGameEvent.PLAY_BGM, { data: EMusic.BGM });
         }, this.startRunDelay);
 
         this.scheduleOnce(() => {
@@ -241,6 +250,7 @@ export class HorseGame extends EventComponent {
                         x: -90,
                         z: -30
                     })
+                    .tag(this.tweenTag)
                     .start();
             } else {
                 this.camera.positionOffset = v3(50, 30, -120);
@@ -255,17 +265,18 @@ export class HorseGame extends EventComponent {
                     .to(3, {
                         z: -30,
                     })
+                    .tag(this.tweenTag)
                     .start();
             }
 
-        }, this.startRunDelay + 10);
+        }, this.enterCornerDelay);
 
         this.scheduleOnce(() => {
-            this.FocusFirstHorse();
-            this.camera.positionOffset = v3(-20, 50, 150);
+            this.camera.positionOffset = v3(0, 50, 150);
 
+            this.FocusFirstHorse();
             this.schedule(this.FocusFirstHorse, 0.5, 5);
-        }, this.startRunDelay + 19);
+        }, this.startSprintingDelay);
     }
 
     private setResult() {
@@ -324,12 +335,14 @@ export class HorseGame extends EventComponent {
                 .to(framePerTime, {
                     position: v3(x, 0, y),
                 })
+                .tag(this.tweenTag)
                 .start();
 
             tween(horse)
                 .to(framePerTime * 2, {
                     eulerAngles: v3(0, -rotation, 0)
                 })
+                .tag(this.tweenTag)
                 .start();
 
             this.horseMap.set(horseNumber, newConfig);
@@ -364,11 +377,12 @@ export class HorseGame extends EventComponent {
             .to(5, {
                 position: v3(1500, 80, 0)
             })
+            .tag(this.tweenTag)
             .start();
     }
 
     private restartGame() { //給window.restart()使用的
-        const data = (<any>window)?.animeData || (<any>window.parent)?.animeData ;
+        const data = (<any>window)?.animeData || (<any>window.parent)?.animeData;
 
         if (!data) {
             console.warn('restartGame data有問題', data);

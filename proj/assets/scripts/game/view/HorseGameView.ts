@@ -1,6 +1,7 @@
 // ---------- 引用 ----------------------------------------------------------------
 
-import { _decorator, Label, Node, RichText, tween, UITransform, v3 } from "cc";
+import { _decorator, Label, Node, Toggle, tween, UITransform, v3 } from "cc";
+import { CmmUtils } from "../../common/utils/CmmUtils";
 import GameView from "../../framework/core/ui/GameView";
 import { inject } from "../../framework/defines/Decorators";
 import { RankItem } from "../component/RankItem";
@@ -32,6 +33,9 @@ export default class HorseGameView extends GameView {
 
     @inject("content/rankBar/rankNumbers", Node)
     private rankNumbers: Node = null;
+
+    @inject("content/musicToggle", Toggle)
+    private musicToggle: Toggle = null;
 
     private rankNumberPosMap: Map<number, number> = new Map(); //key是由左到右的順序 value是位置
     private rankNumberMap: Map<number, UITransform> = new Map(); //key是horseNumber value是節點的UITransform
@@ -67,6 +71,12 @@ export default class HorseGameView extends GameView {
             this.rankNumberMap.set(i + 1, node.getComponent(UITransform));
             this.rankNumberPosMap.set(i, pos.x);
         }
+
+        const musicCheckEvent = CmmUtils.getEventHandler(this.node, 'onMusicCheck');
+
+        this.musicToggle.checkEvents.push(musicCheckEvent);
+        this.audioHelper.musicVolume = 1;
+        this.audioHelper.effectVolume = 1;
     }
 
     private setResult(data: IHorse[]) {
@@ -131,6 +141,17 @@ export default class HorseGameView extends GameView {
         this.audioHelper.stopEffect(url, this.bundle);
     }
 
+    private stopBGM() {
+        this.audioHelper.stopMusic();
+    }
+
+    public onMusicCheck(event: Event): void{
+        const isOn = this.musicToggle.isChecked;
+
+        this.audioHelper.musicVolume = isOn ? 1 : 0;
+        this.audioHelper.effectVolume = isOn ? 1 : 0;
+    }
+
     // ---------- 外部部呼叫 ------------------------------------------------------
 
     // ---------- 監聽事件 --------------------------------------------------------
@@ -165,6 +186,10 @@ export default class HorseGameView extends GameView {
 
         this.on(HorseGameEvent.STOP_BTM, (event: HorseGameEvent) => {
             this.stopBTM(event.data);
+        });
+
+        this.on(HorseGameEvent.STOP_BGM, (event: HorseGameEvent) => {
+            this.stopBGM();
         });
     }
 }

@@ -18,6 +18,7 @@ import SocketModel from "./model/SocketModel";
 import WrapperHandler from "./net/WrapperHandler";
 import { WrapperService } from "./net/WrapperService";
 import HorseGameView from "./view/HorseGameView";
+import { BUILD, DEBUG } from "cc/env";
 
 // ---------- 常數 ----------------------------------------------------------------
 
@@ -80,17 +81,15 @@ class HorseGameEntry extends Entry {
     /** 初始化遊戲資料 */
     protected initData(): void {
         this.initUrlConfig();
-        GameConfigModel.isSocketInited = true;
-        console.warn('直接不連socket');
-        // if (SocketModel.currentToken == 'null' || !SocketModel.currentToken) {
-        //     GameConfigModel.isSocketInited = true;
-        //     console.warn('沒有token 不連接socket', SocketModel.currentToken);
-        //     return;
-        // }
 
-        // // 初始化 wrapper socket
-        // App.serviceManager.get(WrapperService, true);
-        // this.serviceInit();
+        if (BUILD) { //打包後的不連socket
+            GameConfigModel.isSocketInited = true;
+            console.warn('直接不連socket');
+        } else {
+            // 初始化 wrapper socket
+            App.serviceManager.get(WrapperService, true);
+            this.serviceInit();
+        }
     }
 
     protected pauseMessageQueue(): void {

@@ -8,9 +8,14 @@ export interface IGameConfigModel {
         horseMaterials: string;
         textures: string;
     };
+    /* 是否loadResource完成 */
     isLoadResourcesCompleted: boolean;
+    /* 是否socket initial成功回應 */
     isSocketInited: boolean;
+    /* 每一幀的間隔時間 */
     framePerTime: number;
+    /* 每一幀的時間倍數 (加快or變慢) */
+    frameTimeRatio: number;
 }
 
 export enum EMusic { //音樂路徑
@@ -20,6 +25,7 @@ export enum EMusic { //音樂路徑
     GATE = 'game/music/btm_gate',
     GOAL = 'game/music/btm_goal',
     ACHIEVE = 'game/music/btm_achieve',
+    BGM = 'game/music/bgm_mg',
 }
 
 /**
@@ -40,6 +46,7 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
             isLoadResourcesCompleted: false,
             isSocketInited: false,
             framePerTime: 0.055,
+            frameTimeRatio: 1,
         };
     }
 
@@ -56,6 +63,8 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
     public set isSocketInited(value: boolean) { this.data.isSocketInited = value; }
 
     public get framePerTime() { return this.data.framePerTime; }
+
+    public get frameTimeRatio() { return this.data.frameTimeRatio; }
 }
 
 export default GameConfigModel.Instance();
