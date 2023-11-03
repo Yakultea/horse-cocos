@@ -1,5 +1,5 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { _decorator, Node, Sprite } from "cc";
+import { _decorator, Sprite } from "cc";
 import EventComponent from "../../framework/componects/EventComponent";
 import { inject } from "../../framework/defines/Decorators";
 import HorseGameData from "../data/HorseGameData";

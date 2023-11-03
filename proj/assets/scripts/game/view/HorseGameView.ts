@@ -1,6 +1,6 @@
 // ---------- 引用 ----------------------------------------------------------------
 
-import { _decorator, Label, Node, Toggle, tween, UITransform, v3 } from "cc";
+import { _decorator, Label, Node, Toggle, Tween, tween, UITransform, v3 } from "cc";
 import { CmmUtils } from "../../common/utils/CmmUtils";
 import GameView from "../../framework/core/ui/GameView";
 import { inject } from "../../framework/defines/Decorators";
@@ -39,6 +39,7 @@ export default class HorseGameView extends GameView {
 
     private rankNumberPosMap: Map<number, number> = new Map(); //key是由左到右的順序 value是位置
     private rankNumberMap: Map<number, UITransform> = new Map(); //key是horseNumber value是節點的UITransform
+    private tweenTag: number = 1235;
 
     // ---------- 生命週期 --------------------------------------------------------
     onLoad() {
@@ -98,6 +99,8 @@ export default class HorseGameView extends GameView {
             uiTransform.node.setPosition(posX, 0, 0);
             uiTransform.setContentSize(size, size);
         }
+
+        Tween.stopAllByTag(this.tweenTag);
     }
 
     private updateRankBar(currentFrame: IFrameData) {
@@ -118,6 +121,7 @@ export default class HorseGameView extends GameView {
                 .to(framePerTime, {
                     position: v3(posX, 0, 0),
                 })
+                .tag(this.tweenTag)
                 .start();
 
             tween(uiTransform)
@@ -125,6 +129,7 @@ export default class HorseGameView extends GameView {
                     width: size,
                     height: size,
                 })
+                .tag(this.tweenTag)
                 .start();
         }
     }
@@ -190,6 +195,10 @@ export default class HorseGameView extends GameView {
 
         this.on(HorseGameEvent.STOP_BGM, (event: HorseGameEvent) => {
             this.stopBGM();
+        });
+
+        this.on(HorseGameEvent.RECORD_MODE, (event: HorseGameEvent) => {
+            this.musicToggle.node.active = false;
         });
     }
 }

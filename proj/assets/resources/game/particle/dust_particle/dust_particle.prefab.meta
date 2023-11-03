@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "d9dfa633-5387-4cd6-9660-c93597441f4c",
+  "uuid": "4134835f-0df6-4bae-88c4-3fb5a7c88539",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "dust_par"
+    "syncNodeName": "dust_particle"
   }
 }

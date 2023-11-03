@@ -2,7 +2,8 @@
  * @description 登入流程 , 不用匯出
  */
 // ---------- 引用 ----------------------------------------------------------------
-import { Material, SpriteFrame } from "cc";
+import { Material, Prefab, SpriteFrame } from "cc";
+import { BUILD } from "cc/env";
 import { Config } from "../common/config/Config";
 import UrlModel from "../common/model/UrlModel";
 import { HeartbeatJson } from "../common/protocol/HeartbetJson";
@@ -13,12 +14,12 @@ import { registerEntry } from "../framework/defines/Decorators";
 import { Macro } from "../framework/defines/Macros";
 import HorseGameData from "./data/HorseGameData";
 import { HorseGameLanguage } from "./data/HorseGameLanguage";
+import { HorseGameEvent } from "./event/HorseGameEvent";
 import GameConfigModel from "./model/GameConfigModel";
 import SocketModel from "./model/SocketModel";
 import WrapperHandler from "./net/WrapperHandler";
 import { WrapperService } from "./net/WrapperService";
 import HorseGameView from "./view/HorseGameView";
-import { BUILD, DEBUG } from "cc/env";
 
 // ---------- 常數 ----------------------------------------------------------------
 
@@ -50,13 +51,15 @@ class HorseGameEntry extends Entry {
 
     /** 載入模組資源 */
     protected loadResources(completeCb: () => void) {
-        const { horseMaterials, textures } = GameConfigModel.getData().filePaths;
+        const { horseMaterials, textures, clodParticle, dustParticle } = GameConfigModel.getData().filePaths;
 
         // // 設定載入資源
         this.loader.getLoadResources = () => {
             let res: Resource.Data[] = [
                 { dir: horseMaterials, bundle: this.bundle, type: Material },
                 { dir: textures, bundle: this.bundle, type: SpriteFrame },
+                { url: clodParticle, bundle: this.bundle, type: Prefab },
+                { url: dustParticle, bundle: this.bundle, type: Prefab },
             ];
 
             return res;
@@ -117,6 +120,7 @@ class HorseGameEntry extends Entry {
         App.gameLoading.complete();
         if (typeof (<any>window)?.ready == 'function') {
             (<any>window)?.ready();
+            dispatch(HorseGameEvent.RECORD_MODE);
             console.warn('遊戲已準備就緒 (window.ready())');
         } else if (typeof (<any>window.parent)?.ready == 'function') {
             (<any>window.parent)?.ready();

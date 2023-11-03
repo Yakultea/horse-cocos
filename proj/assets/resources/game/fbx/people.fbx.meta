@@ -1,0 +1,352 @@
+{
+  "ver": "2.3.4",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a",
+  "files": [],
+  "subMetas": {
+    "65272": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@65272",
+      "displayName": "",
+      "id": "65272",
+      "name": "people2.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "67485": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@67485",
+      "displayName": "",
+      "id": "67485",
+      "name": "people24.mesh",
+      "userData": {
+        "gltfIndex": 14
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "c7d47": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@c7d47",
+      "displayName": "",
+      "id": "c7d47",
+      "name": "people4.mesh",
+      "userData": {
+        "gltfIndex": 1
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "e6f94": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@e6f94",
+      "displayName": "",
+      "id": "e6f94",
+      "name": "people8.mesh",
+      "userData": {
+        "gltfIndex": 2
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "0da6d": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@0da6d",
+      "displayName": "",
+      "id": "0da6d",
+      "name": "people11.mesh",
+      "userData": {
+        "gltfIndex": 3
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "0d5bc": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@0d5bc",
+      "displayName": "",
+      "id": "0d5bc",
+      "name": "people12.mesh",
+      "userData": {
+        "gltfIndex": 4
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "0ab3f": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@0ab3f",
+      "displayName": "",
+      "id": "0ab3f",
+      "name": "people13.mesh",
+      "userData": {
+        "gltfIndex": 5
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "ec029": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@ec029",
+      "displayName": "",
+      "id": "ec029",
+      "name": "people14.mesh",
+      "userData": {
+        "gltfIndex": 6
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "fe22b": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@fe22b",
+      "displayName": "",
+      "id": "fe22b",
+      "name": "people15.mesh",
+      "userData": {
+        "gltfIndex": 7
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "b0c19": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@b0c19",
+      "displayName": "",
+      "id": "b0c19",
+      "name": "people16.mesh",
+      "userData": {
+        "gltfIndex": 8
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "43e59": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@43e59",
+      "displayName": "",
+      "id": "43e59",
+      "name": "people17.mesh",
+      "userData": {
+        "gltfIndex": 9
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "c5ace": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@c5ace",
+      "displayName": "",
+      "id": "c5ace",
+      "name": "people18.mesh",
+      "userData": {
+        "gltfIndex": 10
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "9fe38": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@9fe38",
+      "displayName": "",
+      "id": "9fe38",
+      "name": "people20.mesh",
+      "userData": {
+        "gltfIndex": 11
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "fee36": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@fee36",
+      "displayName": "",
+      "id": "fee36",
+      "name": "people22.mesh",
+      "userData": {
+        "gltfIndex": 12
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "9f3a9": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@9f3a9",
+      "displayName": "",
+      "id": "9f3a9",
+      "name": "people23.mesh",
+      "userData": {
+        "gltfIndex": 13
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "99b59": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@99b59",
+      "displayName": "",
+      "id": "99b59",
+      "name": "people25.mesh",
+      "userData": {
+        "gltfIndex": 15
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "03c7b": {
+      "importer": "gltf-mesh",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@03c7b",
+      "displayName": "",
+      "id": "03c7b",
+      "name": "people26.mesh",
+      "userData": {
+        "gltfIndex": 16
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "229a1": {
+      "importer": "gltf-scene",
+      "uuid": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@229a1",
+      "displayName": "",
+      "id": "229a1",
+      "name": "people.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "redirect": "09c436c3-cc59-4c2b-9220-a3ee01dac98a@229a1",
+    "assetFinder": {
+      "meshes": [
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@65272",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@c7d47",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@e6f94",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@0da6d",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@0d5bc",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@0ab3f",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@ec029",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@fe22b",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@b0c19",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@43e59",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@c5ace",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@9fe38",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@fee36",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@9f3a9",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@67485",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@99b59",
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@03c7b"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [
+        "109581cc-9301-4089-aca5-ea27acac8fb1"
+      ],
+      "scenes": [
+        "09c436c3-cc59-4c2b-9220-a3ee01dac98a@229a1"
+      ]
+    },
+    "dumpMaterials": true,
+    "materialDumpDir": "db://assets/resources/game/fbx/Materials_people"
+  }
+}

@@ -1,5 +1,5 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { Animation, BoxCollider, Node, Tween, Vec3, _decorator, director, macro, tween, v3 } from "cc";
+import { Animation, BoxCollider, Node, Prefab, Tween, _decorator, director, instantiate, macro, tween, v3 } from "cc";
 import { CommonEvent } from "../../common/event/CommonEvent";
 import MathUtil from "../../common/utils/MathUtil";
 import EventComponent from "../../framework/componects/EventComponent";
@@ -13,8 +13,6 @@ import { IHorse } from "../types/type";
 
 export interface IHorseConfig {
     script: Horse;
-    prePos: Vec3;
-    curPos: Vec3;
     horseData: IHorse;
 }
 
@@ -40,6 +38,9 @@ export class HorseGame extends EventComponent {
 
     @inject("goal", BoxCollider)
     private goalCollider: BoxCollider = null;
+
+    @inject("particles", Node)
+    private particles: Node = null;
 
     private horseMap: Map<number, IHorseConfig> = new Map();
     private frameDataIndex: number = 0;
@@ -88,8 +89,6 @@ export class HorseGame extends EventComponent {
         for (let i = 1; i <= this.horses.children.length; i++) {
             const config: IHorseConfig = {
                 script: this.horses.children[i - 1].getComponent(Horse),
-                prePos: v3(0, 0, 0),
-                curPos: v3(0, 0, 0),
                 horseData: null,
             }
 
@@ -117,10 +116,12 @@ export class HorseGame extends EventComponent {
         this.gate.play('close');
         this.unscheduleAllCallbacks();
         Tween.stopAllByTag(this.tweenTag);
+        this.particles.removeAllChildren();
         this.setCameraMoving();
         this.setHorses();
         this.setResult();
         this.schedule(this.playHorseRun, framePerTime, macro.REPEAT_FOREVER, this.startRunDelay);
+        this.schedule(this.createParticle, 1, macro.REPEAT_FOREVER, this.startRunDelay);
         dispatch(HorseGameEvent.SET_RESULT_ACTIVE, { data: false });
         dispatch(HorseGameEvent.INIT_RANK_BAR);
     }
@@ -161,8 +162,6 @@ export class HorseGame extends EventComponent {
 
             const newConfig: IHorseConfig = {
                 script: horseScript,
-                prePos: v3(x, 0, y),
-                curPos: v3(x, 0, y),
                 horseData: horseData,
             }
 
@@ -322,12 +321,10 @@ export class HorseGame extends EventComponent {
 
         for (let i = 0; i < currentFrame.horses.length; i++) {
             const { horseNumber, x, y, rotation } = currentFrame.horses[i];
-            const { script, curPos, horseData } = this.horseMap.get(horseNumber);
+            const { script, horseData } = this.horseMap.get(horseNumber);
             const horse = script.node;
             const newConfig: IHorseConfig = {
                 script: script,
-                prePos: curPos,
-                curPos: v3(x, 0, y),
                 horseData: horseData,
             }
 
@@ -381,6 +378,30 @@ export class HorseGame extends EventComponent {
             .start();
     }
 
+    private createParticle() {
+        const { clodParticle, dustParticle } = GameConfigModel.getData().filePaths;
+        const clodPf = App.cache.get(this.data.module, clodParticle).data as Prefab;
+        const dustPf = App.cache.get(this.data.module, dustParticle).data as Prefab;
+
+        for (let i = 1; i <= this.horseMap.size; i++) {
+            const horsePos = this.horseMap.get(i).script.node.position;
+            const clod = instantiate(clodPf);
+            const dust = instantiate(dustPf);
+
+            this.particles.addChild(clod);
+            this.particles.addChild(dust);
+
+            clod.setPosition(horsePos);
+            dust.setPosition(horsePos);
+            this.scheduleOnce(() => {
+                if (clod.isValid && dust.isValid) {
+                    clod.destroy();
+                    dust.destroy();
+                }
+            }, Math.random() + 1.5);
+        }
+    }
+
     private restartGame() { //給window.restart()使用的
         const data = (<any>window)?.animeData || (<any>window.parent)?.animeData;
 
@@ -391,6 +412,14 @@ export class HorseGame extends EventComponent {
 
         console.warn('restartGame data', data);
         this.data.setData(data);
+    }
+
+    private ttt(ooo: any) {
+        ooo.a = 2;
+        ooo.b = 1;
+
+
+        console.warn('TTTTTTT', ooo, ooo.a, ooo.b);
     }
 
     // ---------- 外部部呼叫 ------------------------------------------------------

@@ -48,7 +48,6 @@ export class CmmEntry extends EntryDelegate {
         return [
             Macro.BUNDLE_RESOURCES,
             EBundles[EBundles.horseGame],
-            // EBundles[EBundles.slotFramework]
         ];
     }
 }

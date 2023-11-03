@@ -7,6 +7,8 @@ export interface IGameConfigModel {
     filePaths: {
         horseMaterials: string;
         textures: string;
+        clodParticle: string;
+        dustParticle: string;
     };
     /* 是否loadResource完成 */
     isLoadResourcesCompleted: boolean;
@@ -42,6 +44,8 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
             filePaths: {
                 horseMaterials: 'game/material',
                 textures: 'game/texture',
+                clodParticle: 'game/particle/clod_particle/colorBar',
+                dustParticle: 'game/particle/dust_particle/dust_particle',
             },
             isLoadResourcesCompleted: false,
             isSocketInited: false,
