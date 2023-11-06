@@ -271,10 +271,14 @@ export class HorseGame extends EventComponent {
         }, this.enterCornerDelay);
 
         this.scheduleOnce(() => {
-            this.camera.positionOffset = v3(0, 50, 150);
+            const totalFrames = this.data.getData().frameData.length;
+            const { rankNumbers } = this.data.getData().frameData[totalFrames - 1];
 
-            this.FocusFirstHorse();
-            this.schedule(this.FocusFirstHorse, 0.5, 5);
+            if (rankNumbers?.length) {
+                this.setCameraTarget(Number(rankNumbers[0]));
+            }
+
+            this.camera.positionOffset = v3(0, 50, 150);
         }, this.startSprintingDelay);
     }
 
@@ -315,7 +319,7 @@ export class HorseGame extends EventComponent {
 
         this.frameDataIndex++;
 
-        if (currentFrame.rankNumbers.length == 10) {
+        if (currentFrame.rankNumbers.length == this.horseMap.size) {
             dispatch(HorseGameEvent.UPDATE_RANK_BAR, { data: currentFrame });
         }
 
@@ -382,9 +386,19 @@ export class HorseGame extends EventComponent {
         const { clodParticle, dustParticle } = GameConfigModel.getData().filePaths;
         const clodPf = App.cache.get(this.data.module, clodParticle).data as Prefab;
         const dustPf = App.cache.get(this.data.module, dustParticle).data as Prefab;
+        const numberCounts = 3;
+        let randomHorseNumbers: number[] = [];
 
-        for (let i = 1; i <= this.horseMap.size; i++) {
-            const horsePos = this.horseMap.get(i).script.node.position;
+        while (randomHorseNumbers.length < numberCounts) {
+            const randomNum = Math.floor(Math.random() * this.horseMap.size) + 1;
+
+            if (randomHorseNumbers.indexOf(randomNum) === -1) {
+                randomHorseNumbers.push(randomNum);
+            }
+        }
+
+        for (let i = 0; i < randomHorseNumbers.length; i++) {
+            const horsePos = this.horseMap.get(randomHorseNumbers[i]).script.node.position;
             const clod = instantiate(clodPf);
             const dust = instantiate(dustPf);
 
@@ -412,14 +426,6 @@ export class HorseGame extends EventComponent {
 
         console.warn('restartGame data', data);
         this.data.setData(data);
-    }
-
-    private ttt(ooo: any) {
-        ooo.a = 2;
-        ooo.b = 1;
-
-
-        console.warn('TTTTTTT', ooo, ooo.a, ooo.b);
     }
 
     // ---------- 外部部呼叫 ------------------------------------------------------
