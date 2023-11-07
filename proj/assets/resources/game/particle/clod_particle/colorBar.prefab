@@ -167,7 +167,7 @@
       "__id__": 54
     },
     "_prewarm": false,
-    "_capacity": 150,
+    "_capacity": 10,
     "_simulationSpace": 0,
     "_id": ""
   },
@@ -189,8 +189,8 @@
   {
     "__type__": "cc.CurveRange",
     "mode": 3,
-    "constantMin": 0.8,
-    "constantMax": 2,
+    "constantMin": 1,
+    "constantMax": 2.2,
     "multiplier": 1
   },
   {

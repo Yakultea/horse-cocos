@@ -2,7 +2,6 @@
  * @description 網路Service服務管理
  */
 
-import { WrapperService } from "../../../../wrapper/script/net/WrapperService";
 import { Macro } from "../../../defines/Macros";
 
 export class ServiceManager implements GameEventInterface, ISingleton {

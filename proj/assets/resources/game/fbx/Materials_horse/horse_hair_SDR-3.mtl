@@ -10,7 +10,6 @@
   "_techIdx": 1,
   "_defines": [
     {
-      "USE_NORMAL_MAP": true,
       "USE_ALBEDO_MAP": true
     },
     {},
@@ -57,14 +56,10 @@
       "alphaThreshold": 0.576,
       "occlusion": 0.272,
       "roughness": 0.558,
-      "specularIntensity": 0.369,
+      "specularIntensity": 0,
       "normalStrength": 1.759,
       "mainTexture": {
         "__uuid__": "a920c85d-9f63-4bf4-a914-c5e16875d56e@6c48a",
-        "__expectedType__": "cc.Texture2D"
-      },
-      "normalMap": {
-        "__uuid__": "9c364afc-18e2-4a9c-9084-bea020072378@6c48a",
         "__expectedType__": "cc.Texture2D"
       }
     },

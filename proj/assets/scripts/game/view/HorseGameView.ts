@@ -26,7 +26,7 @@ export default class HorseGameView extends GameView {
     private result: Node = null;
 
     @inject("content/result/topInfo/periodId", Label)
-    private periodId: Label = null;
+    private resultPeriodId: Label = null;
 
     @inject("content/result/rankContent", Node)
     private rankContent: Node = null;
@@ -36,6 +36,12 @@ export default class HorseGameView extends GameView {
 
     @inject("content/musicToggle", Toggle)
     private musicToggle: Toggle = null;
+
+    @inject("content/periodId", Label)
+    private periodId: Label = null;
+
+    @inject("content/version", Label)
+    private version: Label = null;
 
     private rankNumberPosMap: Map<number, number> = new Map(); //key是由左到右的順序 value是位置
     private rankNumberMap: Map<number, UITransform> = new Map(); //key是horseNumber value是節點的UITransform
@@ -78,6 +84,7 @@ export default class HorseGameView extends GameView {
         this.musicToggle.checkEvents.push(musicCheckEvent);
         this.audioHelper.musicVolume = 1;
         this.audioHelper.effectVolume = 1;
+        this.version.string = 'v.1.0.0';
     }
 
     private setResult(data: IHorse[]) {
@@ -87,7 +94,8 @@ export default class HorseGameView extends GameView {
             this.rankContent.children[i].getComponent(RankItem).setData(data[i]);
         }
 
-        this.periodId.string = `${periodId}  期`;
+        this.resultPeriodId.string = `${periodId}  期`;
+        this.periodId.string = periodId;
     }
 
     private initRankBar() {
@@ -106,10 +114,10 @@ export default class HorseGameView extends GameView {
     private updateRankBar(currentFrame: IFrameData) {
         const { rankNumbers, goalNumbers } = currentFrame;
         const { framePerTime } = GameConfigModel;
-        let showRank: string[] = rankNumbers;
+        let showRank: string[] = rankNumbers; //顯示在畫面上的排名
 
         for (let i = 0; i < goalNumbers.length; i++) {
-            showRank[i] = goalNumbers[i];
+            showRank[i] = goalNumbers[i]; //強制把到過終點的馬 蓋過去
         }
 
         for (let i = 0; i < showRank.length; i++) {
@@ -169,6 +177,7 @@ export default class HorseGameView extends GameView {
 
         this.on(HorseGameEvent.SET_RESULT_ACTIVE, (event: HorseGameEvent) => {
             this.result.active = event.data;
+            this.periodId.node.active = !event.data;
         });
 
         this.on(HorseGameEvent.INIT_RANK_BAR, (event: HorseGameEvent) => {
