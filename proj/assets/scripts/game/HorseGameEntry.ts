@@ -118,6 +118,9 @@ class HorseGameEntry extends Entry {
 
         App.uiManager.closeExcept([HorseGameView]);
         App.gameLoading.complete();
+        dispatch(HorseGameEvent.ON_ENTER_GAME);
+        console.warn('version', GameConfigModel.getData().version);
+
         if (typeof (<any>window)?.ready == 'function') {
             (<any>window)?.ready();
             dispatch(HorseGameEvent.RECORD_MODE);

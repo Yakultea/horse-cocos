@@ -294,7 +294,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 401.5686274509804,
+    "_orthoHeight": 384.3137254901961,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -12195,7 +12195,7 @@
     "_target": null,
     "_left": 0,
     "_right": 0,
-    "_top": 83.13725490196077,
+    "_top": 48.627450980392155,
     "_bottom": 0,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
@@ -12824,7 +12824,7 @@
     "_isTrigger": true,
     "_center": {
       "__type__": "cc.Vec3",
-      "x": 10,
+      "x": 8,
       "y": 15,
       "z": 0
     },
@@ -13342,7 +13342,7 @@
     "_isTrigger": true,
     "_center": {
       "__type__": "cc.Vec3",
-      "x": 10,
+      "x": 8,
       "y": 15,
       "z": 0
     },
@@ -13804,7 +13804,7 @@
     "_isTrigger": true,
     "_center": {
       "__type__": "cc.Vec3",
-      "x": 10,
+      "x": 8,
       "y": 15,
       "z": 0
     },
@@ -14266,7 +14266,7 @@
     "_isTrigger": true,
     "_center": {
       "__type__": "cc.Vec3",
-      "x": 10,
+      "x": 8,
       "y": 15,
       "z": 0
     },
@@ -14728,7 +14728,7 @@
     "_isTrigger": true,
     "_center": {
       "__type__": "cc.Vec3",
-      "x": 10,
+      "x": 8,
       "y": 15,
       "z": 0
     },
@@ -15190,7 +15190,7 @@
     "_isTrigger": true,
     "_center": {
       "__type__": "cc.Vec3",
-      "x": 10,
+      "x": 8,
       "y": 15,
       "z": 0
     },
@@ -15652,7 +15652,7 @@
     "_isTrigger": true,
     "_center": {
       "__type__": "cc.Vec3",
-      "x": 10,
+      "x": 8,
       "y": 15,
       "z": 0
     },
@@ -16114,7 +16114,7 @@
     "_isTrigger": true,
     "_center": {
       "__type__": "cc.Vec3",
-      "x": 10,
+      "x": 8,
       "y": 15,
       "z": 0
     },
@@ -16576,7 +16576,7 @@
     "_isTrigger": true,
     "_center": {
       "__type__": "cc.Vec3",
-      "x": 10,
+      "x": 8,
       "y": 15,
       "z": 0
     },
@@ -17038,7 +17038,7 @@
     "_isTrigger": true,
     "_center": {
       "__type__": "cc.Vec3",
-      "x": 10,
+      "x": 8,
       "y": 15,
       "z": 0
     },
@@ -17522,7 +17522,7 @@
     },
     "_size": {
       "__type__": "cc.Vec3",
-      "x": 1,
+      "x": 4,
       "y": 1,
       "z": 1
     },

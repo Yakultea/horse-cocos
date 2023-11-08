@@ -71,6 +71,8 @@ export default class HorseGameView extends GameView {
 
     /** 初始化 */
     private init() {
+        const { version } = GameConfigModel.getData();
+
         for (let i = 0; i < this.rankNumbers.children.length; i++) {
             const node = this.rankNumbers.children[i];
             const pos = this.rankNumbers.children[i].position;
@@ -84,7 +86,7 @@ export default class HorseGameView extends GameView {
         this.musicToggle.checkEvents.push(musicCheckEvent);
         this.audioHelper.musicVolume = 1;
         this.audioHelper.effectVolume = 1;
-        this.version.string = 'v.1.0.0';
+        this.version.string = version;
     }
 
     private setResult(data: IHorse[]) {
@@ -158,7 +160,7 @@ export default class HorseGameView extends GameView {
         this.audioHelper.stopMusic();
     }
 
-    public onMusicCheck(event: Event): void{
+    public onMusicCheck(event: Event): void {
         const isOn = this.musicToggle.isChecked;
 
         this.audioHelper.musicVolume = isOn ? 1 : 0;

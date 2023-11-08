@@ -16,8 +16,10 @@ export interface IGameConfigModel {
     isSocketInited: boolean;
     /* 每一幀的間隔時間 */
     framePerTime: number;
-    /* 每一幀的時間倍數 (加快or變慢) */
+    /* 每一幀的時間倍數 (加快or變慢) 尚未實作 */
     frameTimeRatio: number;
+    /* 版號 */
+    version: string,
 }
 
 export enum EMusic { //音樂路徑
@@ -51,6 +53,7 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
             isSocketInited: false,
             framePerTime: 0.055,
             frameTimeRatio: 1,
+            version: 'v.1.0.2',
         };
     }
 

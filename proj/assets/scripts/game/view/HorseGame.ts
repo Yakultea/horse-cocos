@@ -1,5 +1,5 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { Animation, BoxCollider, Node, Prefab, Tween, _decorator, director, instantiate, macro, tween, v3 } from "cc";
+import { Animation, BoxCollider, Node, ParticleSystem, Prefab, Tween, _decorator, director, instantiate, macro, tween, v3 } from "cc";
 import { CommonEvent } from "../../common/event/CommonEvent";
 import MathUtil from "../../common/utils/MathUtil";
 import EventComponent from "../../framework/componects/EventComponent";
@@ -43,6 +43,7 @@ export class HorseGame extends EventComponent {
     private particles: Node = null;
 
     private horseMap: Map<number, IHorseConfig> = new Map();
+    private particleMap: Map<number, ParticleSystem[]> = new Map();
     private frameDataIndex: number = 0;
     // private stopRotateDelay: number = 5.5;
     // private startRunDelay: number = 8;
@@ -50,11 +51,12 @@ export class HorseGame extends EventComponent {
     // private startSprintingDelay: number = 27;
     private stopRotateDelay: number = 3;
     private startRunDelay: number = 5;
-    private enterCornerDelay: number = 15;
-    private startSprintingDelay: number = 24;
+    private enterCornerDelay: number = 11;
+    private startSprintingDelay: number = 20;
     private rotateDirType: number = 0; //0是左到右 1是右到左
     private tweenTag: number = 1234;
     private needSlow: boolean = false;
+    private particleCounts: number = 7;
     private oldTick = director.tick;
 
     // ---------- 生命週期 --------------------------------------------------------
@@ -121,12 +123,11 @@ export class HorseGame extends EventComponent {
         this.gate.play('close');
         this.unscheduleAllCallbacks();
         Tween.stopAllByTag(this.tweenTag);
-        this.particles.removeAllChildren();
         this.setCameraMoving();
         this.setHorses();
         this.setResult();
         this.schedule(this.playHorseRun, framePerTime, macro.REPEAT_FOREVER, this.startRunDelay);
-        this.schedule(this.createParticle, 1.5, macro.REPEAT_FOREVER, this.startRunDelay);
+        this.schedule(this.setParticle, 0.5, macro.REPEAT_FOREVER, this.startRunDelay);
         dispatch(HorseGameEvent.SET_RESULT_ACTIVE, { data: false });
         dispatch(HorseGameEvent.INIT_RANK_BAR);
     }
@@ -246,7 +247,7 @@ export class HorseGame extends EventComponent {
             if (random) {
                 this.camera.positionOffset = v3(50, 30, 120);
                 tween(this.camera.positionOffset)
-                    .to(5, {
+                    .to(4, {
                         x: -70,
                         z: 80
                     })
@@ -266,7 +267,7 @@ export class HorseGame extends EventComponent {
                     .to(3, {
                         x: -90,
                     })
-                    .to(3, {
+                    .to(2, {
                         z: -30,
                     })
                     .tag(this.tweenTag)
@@ -291,7 +292,7 @@ export class HorseGame extends EventComponent {
             const distance = 150 - 6.5 * index;
             const height = 45 - index;
 
-            this.camera.positionOffset = v3(0, height, distance);
+            this.camera.positionOffset = v3(-19, height, distance);
         }, this.startSprintingDelay);
     }
 
@@ -317,8 +318,7 @@ export class HorseGame extends EventComponent {
 
         if (this.frameDataIndex == rankCompletedIndex + 8) {
             this.unschedule(this.playHorseRun);
-            this.unschedule(this.createParticle);
-            this.particles.removeAllChildren();
+            this.unschedule(this.setParticle);
             dispatch(HorseGameEvent.SET_RESULT_ACTIVE, { data: true });
             dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.ACHIEVE } });
             this.showResultCamera();
@@ -384,7 +384,7 @@ export class HorseGame extends EventComponent {
         this.needSlow = true;
         setTimeout(() => {
             this.needSlow = false;
-        }, 1000);
+        }, 1200);
     }
 
     private showResultCamera() {
@@ -397,41 +397,47 @@ export class HorseGame extends EventComponent {
             .start();
     }
 
+    private setParticle() {
+        this.scheduleOnce(() => {
+            let randomHorseNumbers: number[] = [];
+
+            while (randomHorseNumbers.length < this.particleCounts) {
+                const randomNum = Math.floor(Math.random() * this.horseMap.size) + 1;
+
+                if (randomHorseNumbers.indexOf(randomNum) === -1) {
+                    randomHorseNumbers.push(randomNum);
+                }
+            }
+
+            for (let i = 0; i < this.particleCounts; i++) {
+                const horsePos = this.horseMap.get(randomHorseNumbers[i]).script.node.position;
+                const particles = this.particleMap.get(i);
+
+                particles.forEach((particle) => {
+                    particle.simulationSpeed = Math.random() * (2 - 1) + 1;
+                    particle.node.setPosition(horsePos);
+                    particle.play();
+                });
+            }
+        }, Math.random() * 2);
+    }
+
     private createParticle() {
         const { clodParticle, dustParticle } = GameConfigModel.getData().filePaths;
         const clodPf = App.cache.get(this.data.module, clodParticle).data as Prefab;
         const dustPf = App.cache.get(this.data.module, dustParticle).data as Prefab;
-        const numberCounts = 3;
-        let randomHorseNumbers: number[] = [];
 
-        while (randomHorseNumbers.length < numberCounts) {
-            const randomNum = Math.floor(Math.random() * this.horseMap.size) + 1;
-
-            if (randomHorseNumbers.indexOf(randomNum) === -1) {
-                randomHorseNumbers.push(randomNum);
-            }
-        }
-
-        for (let i = 0; i < randomHorseNumbers.length; i++) {
-            const horsePos = this.horseMap.get(randomHorseNumbers[i]).script.node.position;
+        for (let i = 0; i < this.particleCounts; i++) {
             const clod = instantiate(clodPf);
             const dust = instantiate(dustPf);
-            const randomTime = Math.random();
 
-            clod.setPosition(horsePos);
-            dust.setPosition(horsePos);
+            this.particles.addChild(clod);
+            this.particles.addChild(dust);
 
-            this.scheduleOnce(() => {
-                this.particles.addChild(clod);
-                this.particles.addChild(dust);
-            }, randomTime);
+            clod.setPosition(0, 0, 0);
+            dust.setPosition(0, 0, 0);
 
-            this.scheduleOnce(() => {
-                if (clod.isValid && dust.isValid) {
-                    clod.destroy();
-                    dust.destroy();
-                }
-            }, randomTime + 1);
+            this.particleMap.set(i, [clod.getComponent(ParticleSystem), dust.getComponent(ParticleSystem)]);
         }
     }
 
@@ -467,6 +473,10 @@ export class HorseGame extends EventComponent {
     // ---------- 監聽事件 --------------------------------------------------------
     /** 框架onLoad呼叫 */
     public addEvents() {
+        this.on(HorseGameEvent.ON_ENTER_GAME, () => {
+            this.createParticle();
+        });
+
         this.on(HorseGameEvent.PARSE_COMPLETED, () => {
             this.startGame();
         });

@@ -25,4 +25,5 @@ export class HorseGameEvent extends FlowEvent<HorseGameEvent | any> {
     public static STOP_BTM = "HorseGameEvent:STOP_BTM";
     public static STOP_BGM = "HorseGameEvent:STOP_BGM";
     public static RECORD_MODE = "HorseGameEvent:RECORD_MODE";
+    public static ON_ENTER_GAME = "HorseGameEvent:ON_ENTER_GAME";
 }
