@@ -119,15 +119,17 @@ class HorseGameEntry extends Entry {
         App.uiManager.closeExcept([HorseGameView]);
         App.gameLoading.complete();
         dispatch(HorseGameEvent.ON_ENTER_GAME);
+        GameConfigModel.isRecordMode = false;
         console.warn('version', GameConfigModel.getData().version);
 
         if (typeof (<any>window)?.ready == 'function') {
             (<any>window)?.ready();
             dispatch(HorseGameEvent.RECORD_MODE);
-            console.warn('遊戲已準備就緒 (window.ready())');
+            GameConfigModel.isRecordMode = true;
+            console.warn('遊戲已準備就緒 錄影模式 (window.ready())');
         } else if (typeof (<any>window.parent)?.ready == 'function') {
             (<any>window.parent)?.ready();
-            console.warn('遊戲已準備就緒 (window.parent.ready())');
+            console.warn('遊戲已準備就緒 遊戲模式 (window.parent.ready())');
         }
     }
 

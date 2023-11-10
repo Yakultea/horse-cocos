@@ -20,6 +20,8 @@ export interface IGameConfigModel {
     frameTimeRatio: number;
     /* 版號 */
     version: string,
+    /* 是否錄影模式 */
+    isRecordMode: boolean;
 }
 
 export enum EMusic { //音樂路徑
@@ -53,7 +55,8 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
             isSocketInited: false,
             framePerTime: 0.055,
             frameTimeRatio: 1,
-            version: 'v.1.0.5',
+            version: 'v.1.0.6',
+            isRecordMode: false,
         };
     }
 
@@ -72,6 +75,9 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
     public get framePerTime() { return this.data.framePerTime; }
 
     public get frameTimeRatio() { return this.data.frameTimeRatio; }
+
+    public get isRecordMode() { return this.data.isRecordMode; }
+    public set isRecordMode(value: boolean) { this.data.isRecordMode = value; }
 }
 
 export default GameConfigModel.Instance();

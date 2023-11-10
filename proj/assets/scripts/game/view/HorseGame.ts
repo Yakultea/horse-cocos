@@ -42,6 +42,9 @@ export class HorseGame extends EventComponent {
     @inject("particles", Node)
     private particles: Node = null;
 
+    @inject("people", Node)
+    private people: Node = null;
+
     private horseMap: Map<number, IHorseConfig> = new Map();
     private particleMap: Map<number, ParticleSystem[]> = new Map();
     private frameDataIndex: number = 0;
@@ -114,7 +117,7 @@ export class HorseGame extends EventComponent {
             console.warn('開始錄製');
         }
 
-        const { framePerTime } = GameConfigModel;
+        const { framePerTime, isRecordMode } = GameConfigModel;
 
         this.frameDataIndex = 0;
         this.needSlow = false;
@@ -125,7 +128,7 @@ export class HorseGame extends EventComponent {
         this.setHorses();
         this.setResult();
         this.schedule(this.playHorseRun, framePerTime, macro.REPEAT_FOREVER, this.startRunDelay);
-        this.schedule(this.setParticle, 0.5, macro.REPEAT_FOREVER, this.startRunDelay);
+        if (!isRecordMode) this.schedule(this.setParticle, 0.5, macro.REPEAT_FOREVER, this.startRunDelay);
         dispatch(HorseGameEvent.SET_RESULT_ACTIVE, { data: false });
         dispatch(HorseGameEvent.INIT_RANK_BAR);
     }
@@ -174,6 +177,10 @@ export class HorseGame extends EventComponent {
     }
 
     private setCameraMoving() {
+        const { periodId } = this.data.getData();
+        const movePathType = Number(periodId) % 4; //4種
+        console.warn('movePathType', movePathType);
+
         this.camera.enabled = true;
         this.camera.cameraType = ThirdPersonCameraType.RotationAround;
         this.camera.positionOffset = v3(150, 20, 0);
@@ -210,9 +217,7 @@ export class HorseGame extends EventComponent {
         }, this.stopRotateDelay);
 
         this.scheduleOnce(() => {
-            const random = MathUtil.getRandomNumber(0, 1);
-
-            if (random) {
+            if (movePathType == 0 || movePathType == 1) {
                 tween(this.camera.positionOffset)
                     .to(8, {
                         x: 80,
@@ -238,11 +243,9 @@ export class HorseGame extends EventComponent {
         }, this.startRunDelay);
 
         this.scheduleOnce(() => {
-            const random = MathUtil.getRandomNumber(0, 1);
-
             this.FocusFirstHorse();
 
-            if (random) {
+            if (movePathType == 0 || movePathType == 3) {
                 this.camera.positionOffset = v3(50, 30, 120);
                 tween(this.camera.positionOffset)
                     .to(4, {
@@ -283,7 +286,6 @@ export class HorseGame extends EventComponent {
             rankCompletedFrame.horses.sort((a, b) => { return a.y - b.y });
 
             if (goalNumbers?.length) {
-                // this.setCameraTarget(finalFirstHorseNumber);
                 const horseCube = this.horseMap.get(finalFirstHorseNumber).script.getHorseCube();
 
                 this.camera.target = horseCube;
@@ -484,6 +486,11 @@ export class HorseGame extends EventComponent {
 
         this.on(CommonEvent.RESTART_HORSE_GAME, () => {
             this.restartGame();
+        });
+
+        this.on(HorseGameEvent.RECORD_MODE, () => {
+            this.people.active = false;
+            this.particles.removeAllChildren();
         });
     }
 }
