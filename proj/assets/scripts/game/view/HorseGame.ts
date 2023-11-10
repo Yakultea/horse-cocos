@@ -179,7 +179,6 @@ export class HorseGame extends EventComponent {
     private setCameraMoving() {
         const { periodId } = this.data.getData();
         const movePathType = Number(periodId) % 4; //4種
-        console.warn('movePathType', movePathType);
 
         this.camera.enabled = true;
         this.camera.cameraType = ThirdPersonCameraType.RotationAround;
@@ -293,9 +292,9 @@ export class HorseGame extends EventComponent {
             }
 
             const index = rankCompletedFrame.horses.findIndex(data => data.horseNumber === finalFirstHorseNumber);
-            const distance = 155 - 6 * index;
+            const distance = 165 - 6 * index;
 
-            this.camera.positionOffset = v3(0, 75, distance);
+            this.camera.positionOffset = v3(0, 80, distance);
         }, this.startSprintingDelay);
     }
 

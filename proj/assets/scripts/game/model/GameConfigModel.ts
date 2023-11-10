@@ -55,7 +55,7 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
             isSocketInited: false,
             framePerTime: 0.055,
             frameTimeRatio: 1,
-            version: 'v.1.0.6',
+            version: 'v.1.0.7',
             isRecordMode: false,
         };
     }
