@@ -45,14 +45,10 @@ export class HorseGame extends EventComponent {
     private horseMap: Map<number, IHorseConfig> = new Map();
     private particleMap: Map<number, ParticleSystem[]> = new Map();
     private frameDataIndex: number = 0;
-    // private stopRotateDelay: number = 5.5;
-    // private startRunDelay: number = 8;
-    // private enterCornerDelay: number = 18;
-    // private startSprintingDelay: number = 27;
     private stopRotateDelay: number = 3;
     private startRunDelay: number = 5;
-    private enterCornerDelay: number = 11;
-    private startSprintingDelay: number = 20;
+    private enterCornerDelay: number = 13;
+    private startSprintingDelay: number = 22;
     private rotateDirType: number = 0; //0是左到右 1是右到左
     private tweenTag: number = 1234;
     private needSlow: boolean = false;
@@ -67,12 +63,14 @@ export class HorseGame extends EventComponent {
     start(): void {
         this.init();
         director.tick = (dt: number) => { //複寫遊戲整體速率
-            // this.oldTick.call(director, dt * (this.needSlow ? 0.05 : 1));
             this.oldTick.call(director, dt * (this.needSlow ? 0 : 1));
         }
 
         this.goalCollider.on("onTriggerEnter", () => {
-            this.camera.enabled = false;
+            if (this.camera.enabled) {
+                this.camera.enabled = false;
+            }
+
             this.setNeedSlow();
             dispatch(HorseGameEvent.STOP_BGM);
             dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.RUNNING });
@@ -285,14 +283,17 @@ export class HorseGame extends EventComponent {
             rankCompletedFrame.horses.sort((a, b) => { return a.y - b.y });
 
             if (goalNumbers?.length) {
-                this.setCameraTarget(finalFirstHorseNumber);
+                // this.setCameraTarget(finalFirstHorseNumber);
+                const horseCube = this.horseMap.get(finalFirstHorseNumber).script.getHorseCube();
+
+                this.camera.target = horseCube;
+                this.camera.lookAt = horseCube;
             }
 
             const index = rankCompletedFrame.horses.findIndex(data => data.horseNumber === finalFirstHorseNumber);
-            const distance = 150 - 6.5 * index;
-            const height = 45 - index;
+            const distance = 155 - 6 * index;
 
-            this.camera.positionOffset = v3(-19, height, distance);
+            this.camera.positionOffset = v3(0, 75, distance);
         }, this.startSprintingDelay);
     }
 
@@ -398,18 +399,18 @@ export class HorseGame extends EventComponent {
     }
 
     private setParticle() {
-        this.scheduleOnce(() => {
-            let randomHorseNumbers: number[] = [];
+        let randomHorseNumbers: number[] = [];
 
-            while (randomHorseNumbers.length < this.particleCounts) {
-                const randomNum = Math.floor(Math.random() * this.horseMap.size) + 1;
+        while (randomHorseNumbers.length < this.particleCounts) {
+            const randomNum = Math.floor(Math.random() * this.horseMap.size) + 1;
 
-                if (randomHorseNumbers.indexOf(randomNum) === -1) {
-                    randomHorseNumbers.push(randomNum);
-                }
+            if (randomHorseNumbers.indexOf(randomNum) === -1) {
+                randomHorseNumbers.push(randomNum);
             }
+        }
 
-            for (let i = 0; i < this.particleCounts; i++) {
+        for (let i = 0; i < this.particleCounts; i++) {
+            this.scheduleOnce(() => {
                 const horsePos = this.horseMap.get(randomHorseNumbers[i]).script.node.position;
                 const particles = this.particleMap.get(i);
 
@@ -418,8 +419,8 @@ export class HorseGame extends EventComponent {
                     particle.node.setPosition(horsePos);
                     particle.play();
                 });
-            }
-        }, Math.random() * 2);
+            }, Math.random() * 5);
+        }
     }
 
     private createParticle() {

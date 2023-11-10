@@ -4,6 +4,7 @@ import EventComponent from "../../framework/componects/EventComponent";
 import { inject } from "../../framework/defines/Decorators";
 import HorseGameData from "../data/HorseGameData";
 import { IHorse } from "../types/type";
+import { HorseGameEvent } from "../event/HorseGameEvent";
 
 // ---------- 常數 ----------------------------------------------------------------
 const { ccclass, property } = _decorator;
@@ -21,6 +22,9 @@ export class Horse extends EventComponent {
 
     @inject("player_gp/jockey_gp/jockey", SkinnedMeshRenderer)
     private jockey: SkinnedMeshRenderer = null;
+
+    @inject("horseCube", Node)
+    private horseCube: Node = null;
 
     private horseNumber: number = null;
     private horseAnimations: SkeletalAnimation = null;
@@ -79,6 +83,18 @@ export class Horse extends EventComponent {
             .start();
     }
 
+    public pauseAnimation() {
+        this.horseAnimations.pause();
+    }
+
+    public resumeAnimation() {
+        this.horseAnimations.resume();
+    }
+
+    public getHorseCube(): Node {
+        return this.horseCube;
+    }
+
     /** 顯示 */
     public show() {
         this.node.active = true;
@@ -92,6 +108,12 @@ export class Horse extends EventComponent {
     // ---------- 監聽事件 --------------------------------------------------------
     /** 框架onLoad呼叫 */
     public addEvents() {
+        this.on(HorseGameEvent.PAUSE_HORSE_ANI, () => {
+            this.pauseAnimation();
+        });
 
+        this.on(HorseGameEvent.RESUME_HORSE_ANI, () => {
+            this.resumeAnimation();
+        });
     }
 }
