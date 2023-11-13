@@ -14,9 +14,6 @@ export class RankItem extends EventComponent {
     // ---------- 成員變數 --------------------------------------------------------
     private get data() { return App.dataCenter.get(HorseGameData); }
 
-    @inject("frame", Sprite)
-    private frame: Sprite = null;
-
     @inject("horse", Sprite)
     private horse: Sprite = null;
 

@@ -19,5 +19,6 @@ export class HorseGameLanguage extends LanguageDelegate {
     init(): void {
         this.importLanguages(languages);
     }
+
     bundle = EBundles[EBundles.horseGame];
 }

@@ -1,13 +1,19 @@
-import {
-    addExtraLoadResource, setSpriteSpriteFrame, setButtonSpriteFrame,
-    setParticleSystemFile, setLabelFont, setSkeletonSkeletonData,
-    createNodeWithPrefab, getBundle, _loadDirRes, _loadRes, loadDragonDisplay
-} from "./CocosUtils";
-import { Resource } from "../core/asset/Resource";
-import { Macro } from "../defines/Macros";
-import { Sprite, Node, isValid, SpriteFrame, sp, Button, Label, Font, ParticleSystem2D, ParticleAsset, EditBox, AssetManager, dragonBones } from "cc";
+import { Button, Font, Label, Node, ParticleAsset, ParticleSystem2D, Sprite, SpriteFrame, dragonBones, isValid, sp } from "cc";
 import { EDITOR } from "cc/env";
 import { CommonEvent } from "../../common/event/CommonEvent";
+import { Resource } from "../core/asset/Resource";
+import { Macro } from "../defines/Macros";
+import {
+    _loadDirRes, _loadRes,
+    addExtraLoadResource,
+    createNodeWithPrefab, getBundle,
+    loadDragonDisplay,
+    setButtonSpriteFrame,
+    setLabelFont,
+    setParticleSystemFile,
+    setSkeletonSkeletonData,
+    setSpriteSpriteFrame
+} from "./CocosUtils";
 
 /**@description 對cc.Node 擴充套件一個臨時儲存的使用者自定義資料 */
 if (typeof Reflect == "object") {

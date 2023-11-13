@@ -8,7 +8,7 @@ export interface IReadyBundleModel {
     status: EReadyStatus;
 }
 
-export enum EReadyStatus{
+export enum EReadyStatus {
     'init',
     'loading',
     'complete',
@@ -54,7 +54,7 @@ class ReadyBundleModel extends BaseModel<IReadyBundleModel> {
     public setComplete(bundle: EBundles) {
         this.data.status = EReadyStatus.loading;
         this.data.loadCompleteMap.set(bundle, true);
-        if(this.checkComplete()){
+        if (this.checkComplete()) {
             this.data.status = EReadyStatus.complete;
         }
     }

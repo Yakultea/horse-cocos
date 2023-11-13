@@ -1,11 +1,8 @@
 import { Size, size } from 'cc';
 
 export default class Config {
-
-    
-
     // iphone 尺寸列表
-    public static IPHONE_SIZE_MAP:Map<string, Size> = new Map([
+    public static IPHONE_SIZE_MAP: Map<string, Size> = new Map([
         ['iPhone X', size(1125, 2436)],
         ['iPhone XR', size(828, 1792)],
         ['iPhone XS Max', size(1242, 2688)],

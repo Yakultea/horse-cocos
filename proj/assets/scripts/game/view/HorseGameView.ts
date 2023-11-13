@@ -182,7 +182,7 @@ export default class HorseGameView extends GameView {
             this.periodId.node.active = !event.data;
         });
 
-        this.on(HorseGameEvent.INIT_RANK_BAR, (event: HorseGameEvent) => {
+        this.on(HorseGameEvent.INIT_RANK_BAR, () => {
             this.initRankBar();
         });
 
@@ -204,11 +204,11 @@ export default class HorseGameView extends GameView {
             this.stopBTM(event.data);
         });
 
-        this.on(HorseGameEvent.STOP_BGM, (event: HorseGameEvent) => {
+        this.on(HorseGameEvent.STOP_BGM, () => {
             this.stopBGM();
         });
 
-        this.on(HorseGameEvent.RECORD_MODE, (event: HorseGameEvent) => {
+        this.on(HorseGameEvent.RECORD_MODE, () => {
             this.musicToggle.node.active = false;
         });
     }

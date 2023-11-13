@@ -56,6 +56,7 @@ export class HorseGame extends EventComponent {
     private tweenTag: number = 1234;
     private needSlow: boolean = false;
     private particleCounts: number = 7;
+    private stopUpdateTime: number = 1200;
     private oldTick = director.tick;
 
     // ---------- 生命週期 --------------------------------------------------------
@@ -386,7 +387,7 @@ export class HorseGame extends EventComponent {
         this.needSlow = true;
         setTimeout(() => {
             this.needSlow = false;
-        }, 1200);
+        }, this.stopUpdateTime);
     }
 
     private showResultCamera() {

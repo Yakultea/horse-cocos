@@ -1,8 +1,8 @@
 
-import { MainCmd, SUB_CMD_SYS } from "../protocol/CmdDefines";
 import { Net } from "../../framework/core/net/Net";
-import { Config } from "../config/Config";
 import { Service } from "../../framework/core/net/service/Service";
+import { Config } from "../config/Config";
+import { MainCmd, SUB_CMD_SYS } from "../protocol/CmdDefines";
 import { ReconnectHandler } from "./ReconnectHandler";
 
 /**
@@ -16,7 +16,7 @@ export class CommonService extends Service {
 
     // websocket
     protected ip = "localhost";
-    protected port: number | string | null= 3000;
+    protected port: number | string | null = 3000;
     protected protocol: Net.Type = "ws"
 
     // socketIO
@@ -36,8 +36,8 @@ export class CommonService extends Service {
         Log.d(this.module, `maxEnterBackgroundTime ${value}`);
         this._maxEnterBackgroundTime = value;
     }
-    
-    constructor(){
+
+    constructor() {
         super();
         // Log.d('[CommonService] this.clientType', this.clientType)
         // this.reconnectHandler = new ReconnectHandler(this);
@@ -49,11 +49,11 @@ export class CommonService extends Service {
         Log.d(`[${this.module}] this.clientType`, this.clientType);
         this.reconnectHandler = new ReconnectHandler(this);
     }
-    
+
     /**
     * @description 連線網路
     */
-     public connect() {
+    public connect() {
         Log.d('this.clientType', this.clientType, this.url)
         if (this.clientType === "websocket") super.connect_server(this.ip, this.port, this.protocol);
         else super.connect_server_io(this.url, this.opts);

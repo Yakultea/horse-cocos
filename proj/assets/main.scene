@@ -27,7 +27,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 1475
+      "__id__": 1469
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -58,7 +58,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 1476
+      "__id__": 1470
     },
     "_id": "98fa17d8-70db-4b60-aae0-288a6e364e15"
   },
@@ -12315,18 +12315,12 @@
       },
       {
         "__id__": 1467
-      },
-      {
-        "__id__": 1470
-      },
-      {
-        "__id__": 1473
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 1474
+        "__id__": 1468
       }
     ],
     "_prefab": null,
@@ -24627,206 +24621,6 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "flagpole1",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 465
-    },
-    "_children": [],
-    "_active": false,
-    "_components": [
-      {
-        "__id__": 1468
-      }
-    ],
-    "_prefab": null,
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": 1125,
-      "y": 0,
-      "z": 1450
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 0.00792,
-      "y": 0.00792,
-      "z": 0.00792
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": "ed20MTwMNNN6h62oPBmQ6E"
-  },
-  {
-    "__type__": "cc.MeshRenderer",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1467
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "_materials": [
-      {
-        "__uuid__": "7a8e5d54-fba3-435d-895f-90c353d9a4b9",
-        "__expectedType__": "cc.Material"
-      },
-      {
-        "__uuid__": "962c794b-1ded-4abf-adfa-1034c1dd7b61",
-        "__expectedType__": "cc.Material"
-      }
-    ],
-    "_visFlags": 0,
-    "bakeSettings": {
-      "__id__": 1469
-    },
-    "_mesh": {
-      "__uuid__": "11f8dc52-2cb3-4136-8cdf-1ec4c2f3a6d2@9b4fe",
-      "__expectedType__": "cc.Mesh"
-    },
-    "_shadowCastingMode": 0,
-    "_shadowReceivingMode": 1,
-    "_shadowBias": 0,
-    "_shadowNormalBias": 0,
-    "_reflectionProbeId": -1,
-    "_enableMorph": true,
-    "_id": "b6P9QUqLRJwYKKHOBOlYJL"
-  },
-  {
-    "__type__": "cc.ModelBakeSettings",
-    "texture": null,
-    "uvParam": {
-      "__type__": "cc.Vec4",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 0
-    },
-    "_bakeable": false,
-    "_castShadow": false,
-    "_receiveShadow": false,
-    "_recieveShadow": false,
-    "_lightmapSize": 64,
-    "_useLightProbe": false,
-    "_bakeToLightProbe": true,
-    "_reflectionProbeType": 0,
-    "_bakeToReflectionProbe": true,
-    "_probeCubemap": null
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "flagpole2",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 465
-    },
-    "_children": [],
-    "_active": false,
-    "_components": [
-      {
-        "__id__": 1471
-      }
-    ],
-    "_prefab": null,
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": 1396.288,
-      "y": 0,
-      "z": 1450
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 0.00792,
-      "y": 0.00792,
-      "z": 0.00792
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": "97NroYLmpK9qz4Rc3SwQkU"
-  },
-  {
-    "__type__": "cc.MeshRenderer",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1470
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "_materials": [
-      {
-        "__uuid__": "7a8e5d54-fba3-435d-895f-90c353d9a4b9",
-        "__expectedType__": "cc.Material"
-      },
-      {
-        "__uuid__": "962c794b-1ded-4abf-adfa-1034c1dd7b61",
-        "__expectedType__": "cc.Material"
-      }
-    ],
-    "_visFlags": 0,
-    "bakeSettings": {
-      "__id__": 1472
-    },
-    "_mesh": {
-      "__uuid__": "11f8dc52-2cb3-4136-8cdf-1ec4c2f3a6d2@9b4fe",
-      "__expectedType__": "cc.Mesh"
-    },
-    "_shadowCastingMode": 0,
-    "_shadowReceivingMode": 1,
-    "_shadowBias": 0,
-    "_shadowNormalBias": 0,
-    "_reflectionProbeId": -1,
-    "_enableMorph": true,
-    "_id": "97BU9NqVVFbp0xa956eC2c"
-  },
-  {
-    "__type__": "cc.ModelBakeSettings",
-    "texture": null,
-    "uvParam": {
-      "__type__": "cc.Vec4",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 0
-    },
-    "_bakeable": false,
-    "_castShadow": false,
-    "_receiveShadow": false,
-    "_recieveShadow": false,
-    "_lightmapSize": 64,
-    "_useLightProbe": false,
-    "_bakeToLightProbe": true,
-    "_reflectionProbeType": 0,
-    "_bakeToReflectionProbe": true,
-    "_probeCubemap": null
-  },
-  {
-    "__type__": "cc.Node",
     "_name": "particles",
     "_objFlags": 0,
     "_parent": {
@@ -24955,22 +24749,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 1477
+      "__id__": 1471
     },
     "shadows": {
-      "__id__": 1478
+      "__id__": 1472
     },
     "_skybox": {
-      "__id__": 1479
+      "__id__": 1473
     },
     "fog": {
-      "__id__": 1480
+      "__id__": 1474
     },
     "octree": {
-      "__id__": 1481
+      "__id__": 1475
     },
     "lightProbeInfo": {
-      "__id__": 1482
+      "__id__": 1476
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

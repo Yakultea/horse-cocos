@@ -1,13 +1,13 @@
-import ResourceLoader from "../asset/ResourceLoader";
 import { js, Node } from "cc";
 import { DEBUG } from "cc/env";
+import ResourceLoader from "../asset/ResourceLoader";
 import { LanguageDelegate } from "../language/LanguageDelegate";
 import GameView from "../ui/GameView";
 
 export abstract class Entry {
 
     static bundle = "";
-    gameViewType : typeof GameView = null!;
+    gameViewType: typeof GameView = null!;
     /**@description 是否是主包入口，只能有一个主包入口 */
     isMain = false;
     /**@description 當前bundle名,由管理器指定 */
@@ -113,11 +113,11 @@ export abstract class Entry {
     }
 
     /**@description 打开游戏主场景视图 */
-    protected openGameView(userData?: any): void{
-        App.uiManager.open({type : this.gameViewType , bundle : this.bundle,args:userData});
+    protected openGameView(userData?: any): void {
+        App.uiManager.open({ type: this.gameViewType, bundle: this.bundle, args: userData });
     }
 
-    protected closeGameView(): void{
+    protected closeGameView(): void {
         App.uiManager.close(this.gameViewType)
     }
 

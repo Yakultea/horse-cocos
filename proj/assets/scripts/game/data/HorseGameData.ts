@@ -1,13 +1,13 @@
 // ---------- 引用 ----------------------------------------------------------------
 
+import { Asset, Material, SpriteFrame } from "cc";
 import { DEBUG } from "cc/env";
 import { EOrientationType } from "../../framework/core/adapter/AdapterEvent";
 import { GameDataBase } from "../../framework/data/GameDataBase";
 import { Macro } from "../../framework/defines/Macros";
-import { IHorseAnime, IFrameData } from "../types/res-type";
 import { HorseGameEvent } from "../event/HorseGameEvent";
-import { Asset, Material, SpriteFrame } from "cc";
 import GameConfigModel from "../model/GameConfigModel";
+import { IFrameData, IHorseAnime } from "../types/res-type";
 
 // ---------- 常數 ----------------------------------------------------------------
 interface IHorseGameData {

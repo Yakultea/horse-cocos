@@ -38,7 +38,7 @@ export default class WrapperHandler extends Handler {
     }
 
     private async sendInitial() {
-        await this.sender.initial().then(()=>{
+        await this.sender.initial().then(() => {
             GameConfigModel.isSocketInited = true;
         });
     }

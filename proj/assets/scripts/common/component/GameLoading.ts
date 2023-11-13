@@ -287,7 +287,7 @@ export default class GameLoading implements ISingleton {
         this.updateProgress();
 
         const { type, url, bundle } = data.info;
-        if(DEBUG){
+        if (DEBUG) {
             this.setMessage(`${bundle}/${url}/${typeof type}`);
         }
     }
