@@ -37,7 +37,7 @@ export class HorseGame extends EventComponent {
     private resultCamera: Node = null;
 
     @inject("goal", BoxCollider)
-    private goalCollider: BoxCollider = null;
+    private goalCollider: BoxCollider = null; //終點在x = 652
 
     @inject("particles", Node)
     private particles: Node = null;
@@ -51,23 +51,25 @@ export class HorseGame extends EventComponent {
     private stopRotateDelay: number = 3;
     private startRunDelay: number = 5;
     private enterCornerDelay: number = 13;
-    private startSprintingDelay: number = 22;
+    private startSprintingDelay: number = 20;
     private rotateDirType: number = 0; //0是左到右 1是右到左
     private tweenTag: number = 1234;
     private needSlow: boolean = false;
     private particleCounts: number = 7;
     private stopUpdateTime: number = 1200;
+    private resetNeedSlowTimeOut: any;
     private oldTick = director.tick;
 
     // ---------- 生命週期 --------------------------------------------------------
     onLoad(): void {
         super.onLoad();
+        navigator.userAgent
     }
 
     start(): void {
         this.init();
         director.tick = (dt: number) => { //複寫遊戲整體速率
-            this.oldTick.call(director, dt * (this.needSlow ? 0 : 1));
+            this.oldTick.call(director, dt * (this.needSlow ? 0.1 : 1));
         }
 
         this.goalCollider.on("onTriggerEnter", () => {
@@ -113,10 +115,10 @@ export class HorseGame extends EventComponent {
             return;
         }
 
-        if (typeof (<any>window)?.startRecording == 'function') {
-            (<any>window)?.startRecording();
-            console.warn('開始錄製');
-        }
+        // if (typeof (<any>window)?.startRecording == 'function') {
+        //     (<any>window)?.startRecording();
+        //     console.warn('開始錄製');
+        // }
 
         const { framePerTime, isRecordMode } = GameConfigModel;
 
@@ -161,7 +163,7 @@ export class HorseGame extends EventComponent {
 
             this.scheduleOnce(() => {
                 horseScript.playAnimation(`run02`);
-                horseScript.setAniSpeed(Math.random() + 4);
+                horseScript.setAniSpeed(Math.random() + 4.5);
             }, this.startRunDelay);
 
             if ((this.rotateDirType && horseNumber == 6) || horseNumber == 5) {
@@ -293,9 +295,23 @@ export class HorseGame extends EventComponent {
             }
 
             const index = rankCompletedFrame.horses.findIndex(data => data.horseNumber === finalFirstHorseNumber);
-            const distance = 165 - 6 * index;
+            const distance = 175 - 5 * index;
+            const height = 90 - 1.5 * index;
 
-            this.camera.positionOffset = v3(0, 80, distance);
+            this.camera.positionOffset = v3(-20, height, distance + 70);
+            tween(this.camera.positionOffset)
+                .to(3.5, {
+                    x: 0,
+                    z: distance
+                })
+                .start();
+
+            // this.camera.positionOffset = v3(0, height, distance);
+
+            if (typeof (<any>window)?.startRecording == 'function') {
+                (<any>window)?.startRecording();
+                console.warn('開始錄製');
+            }
         }, this.startSprintingDelay);
     }
 
@@ -384,8 +400,10 @@ export class HorseGame extends EventComponent {
     }
 
     private setNeedSlow() {
+        clearTimeout(this.resetNeedSlowTimeOut);
+
         this.needSlow = true;
-        setTimeout(() => {
+        this.resetNeedSlowTimeOut = setTimeout(() => {
             this.needSlow = false;
         }, this.stopUpdateTime);
     }

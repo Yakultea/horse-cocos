@@ -48,6 +48,7 @@ export class Horse extends EventComponent {
     /** 初始化 */
     private init() {
         this.horseAnimations = this.node.getComponent(SkeletalAnimation);
+        this.horseCube.setPosition(33, 0, 0);
     }
 
     // ---------- 外部部呼叫 ------------------------------------------------------
