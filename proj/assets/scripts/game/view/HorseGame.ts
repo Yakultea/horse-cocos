@@ -57,13 +57,13 @@ export class HorseGame extends EventComponent {
     private needSlow: boolean = false;
     private particleCounts: number = 7;
     private stopUpdateTime: number = 1200;
+    private sprintingZoomInTime: number = 5;
     private resetNeedSlowTimeOut: any;
     private oldTick = director.tick;
 
     // ---------- 生命週期 --------------------------------------------------------
     onLoad(): void {
         super.onLoad();
-        navigator.userAgent
     }
 
     start(): void {
@@ -127,13 +127,20 @@ export class HorseGame extends EventComponent {
         this.gate.play('close');
         this.unscheduleAllCallbacks();
         Tween.stopAllByTag(this.tweenTag);
+
         this.setCameraMoving();
         this.setHorses();
         this.setResult();
+
         this.schedule(this.playHorseRun, framePerTime, macro.REPEAT_FOREVER, this.startRunDelay);
         if (!isRecordMode) this.schedule(this.setParticle, 0.5, macro.REPEAT_FOREVER, this.startRunDelay);
+
         dispatch(HorseGameEvent.SET_RESULT_ACTIVE, { data: false });
         dispatch(HorseGameEvent.INIT_RANK_BAR);
+        dispatch(HorseGameEvent.STOP_BGM);
+        dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.RUNNING });
+        dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.CHEER } });
+        dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.BRASS } });
     }
 
     private setHorses() {
@@ -200,11 +207,6 @@ export class HorseGame extends EventComponent {
 
         this.resultCamera.position.set(1000, 80, 0);
         this.resultCamera.active = false;
-
-        dispatch(HorseGameEvent.STOP_BGM);
-        dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.RUNNING });
-        dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.CHEER } });
-        dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.BRASS } });
 
         this.scheduleOnce(() => {
             this.camera.cameraType = ThirdPersonCameraType.Follow;
@@ -298,15 +300,13 @@ export class HorseGame extends EventComponent {
             const distance = 175 - 5 * index;
             const height = 90 - 1.5 * index;
 
-            this.camera.positionOffset = v3(-20, height, distance + 70);
+            this.camera.positionOffset = v3(-20, height, distance + 80);
             tween(this.camera.positionOffset)
-                .to(3.5, {
+                .to(this.sprintingZoomInTime, {
                     x: 0,
                     z: distance
                 })
                 .start();
-
-            // this.camera.positionOffset = v3(0, height, distance);
 
             if (typeof (<any>window)?.startRecording == 'function') {
                 (<any>window)?.startRecording();
