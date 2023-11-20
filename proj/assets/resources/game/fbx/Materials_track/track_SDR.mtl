@@ -48,11 +48,11 @@
   ],
   "_props": [
     {
-      "roughness": 0.719,
-      "specularIntensity": 0.13,
-      "normalStrength": 0.481,
+      "roughness": 0.425,
+      "specularIntensity": 0.046,
+      "normalStrength": 1.5,
       "mainTexture": {
-        "__uuid__": "6a782492-2a40-450c-9091-aca1015ba0df@6c48a",
+        "__uuid__": "e2a14f0d-04a9-4d24-8073-e2a1c473da10@6c48a",
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {
