@@ -39,8 +39,6 @@ export class CommonService extends Service {
 
     constructor() {
         super();
-        // Log.d('[CommonService] this.clientType', this.clientType)
-        // this.reconnectHandler = new ReconnectHandler(this);
     }
 
     protected init(): void {

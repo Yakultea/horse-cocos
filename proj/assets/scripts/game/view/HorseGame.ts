@@ -57,7 +57,7 @@ export class HorseGame extends EventComponent {
     private needSlow: boolean = false;
     private particleCounts: number = 7;
     private stopUpdateTime: number = 1200;
-    private sprintingZoomInTime: number = 5;
+    private sprintingZoomInTime: number = 6;
     private resetNeedSlowTimeOut: any;
     private oldTick = director.tick;
 
@@ -170,7 +170,7 @@ export class HorseGame extends EventComponent {
 
             this.scheduleOnce(() => {
                 horseScript.playAnimation(`run02`);
-                horseScript.setAniSpeed(Math.random() + 4.5);
+                horseScript.setAniSpeed(Math.random() + 4.2);
             }, this.startRunDelay);
 
             if ((this.rotateDirType && horseNumber == 6) || horseNumber == 5) {
@@ -297,10 +297,12 @@ export class HorseGame extends EventComponent {
             }
 
             const index = rankCompletedFrame.horses.findIndex(data => data.horseNumber === finalFirstHorseNumber);
-            const distance = 175 - 5 * index;
-            const height = 90 - 1.5 * index;
+            // const distance = 180 - 9 * index;
+            // const height = 90 - 1.5 * index;
+            const distance = 170 - 5 * index;
+            const height = 75 - 0.1 * index;
 
-            this.camera.positionOffset = v3(-20, height, distance + 80);
+            this.camera.positionOffset = v3(-40, height, distance + 90);
             tween(this.camera.positionOffset)
                 .to(this.sprintingZoomInTime, {
                     x: 0,
@@ -332,8 +334,8 @@ export class HorseGame extends EventComponent {
     private playHorseRun() {
         const { rankCompletedIndex } = this.data;
         const { frameData } = this.data.getData();
-        const currentFrame = frameData[this.frameDataIndex];
         const { framePerTime } = GameConfigModel;
+        const currentFrame = frameData[this.frameDataIndex];
 
         if (this.frameDataIndex == rankCompletedIndex + 8) {
             this.unschedule(this.playHorseRun);

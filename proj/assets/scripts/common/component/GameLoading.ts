@@ -89,6 +89,7 @@ export default class GameLoading implements ISingleton {
         if (!this.node) {
             this.node = instantiate(this.prefab) as any;
         }
+
         this.node.addComponent(UIOpacity);
         this.node.removeFromParent();
         App.uiManager.addView(this.node, ViewZOrder.UILoading);
@@ -109,8 +110,6 @@ export default class GameLoading implements ISingleton {
         this.bar = find("ProgressBar", this.content)?.getComponent(ProgressBar);
         this.message = find("message", this.content)?.getComponent(Label);
         this.bar.progress = 0;
-        // this.startTimeOutTimer(Config.LOAD_VIEW_TIME_OUT);
-        // this.fadeIn();
         this.node.active = true;
     }
 
@@ -124,6 +123,7 @@ export default class GameLoading implements ISingleton {
             }, timeout * 20000);
         }
     }
+
     /**@description 停止計時 */
     private stopTimeOutTimer() {
         clearTimeout(this._timerId);
@@ -138,24 +138,21 @@ export default class GameLoading implements ISingleton {
         if (this.percentText) {
             let isLoad = this.loadedNum + (this.isHandlerReady ? 1 : 0);
             let progress = Math.ceil((isLoad / this.loadTotal) * 100);
+
             if (progress == undefined || progress == null || Number.isNaN(progress)) {
                 // this.hide();
                 return;
             }
+
             if (progress >= 0 && progress <= 100) {
                 this.percentText.string = `${progress}%`;
                 this.bar.progress = 1 - progress / 100;
-                // tween(this.bar).to(0.3, {
-                //     progress: 1- progress / 100
-                // }).start();
+
                 const width = this.bar.totalLength * (progress / 100);
                 this.barLight.setPosition(v3(this.barLightPos.x + width, this.barLightPos.y));
 
                 if (progress >= 100) {
                     this.hide(false);
-                    // setTimeout(() => {
-                    //     this.hide(false);
-                    // }, 500);
                 }
             }
         }
@@ -171,8 +168,8 @@ export default class GameLoading implements ISingleton {
         } else {
             this.delay = delay;
         }
-        this._uiName = name ? name : "";
 
+        this._uiName = name ? name : "";
         this._show();
     }
 
@@ -214,7 +211,6 @@ export default class GameLoading implements ISingleton {
         this.spine.getComponent(sp.Skeleton).skeletonData = spine;
         this.spine.getComponent(sp.Skeleton).setAnimation(0, SpineName.LANDSCAPE, true);
         this.bar.getComponent(Sprite).spriteFrame = barbg;
-        // this.bar.barSprite.spriteFrame = bar;
         this.mask.getComponent(Sprite).spriteFrame = barbg;
         this.barSprite.getComponent(Sprite).spriteFrame = bar;
         this.barLight.getComponent(Sprite).spriteFrame = barLight;
@@ -227,16 +223,13 @@ export default class GameLoading implements ISingleton {
     /** 創建進入遊戲按鈕 */
     private createEnterGameBtn() {
         const opacity = this.startGame.getComponent(UIOpacity);
+
         opacity.opacity = 0;
         tween(opacity)
             .repeatForever(
                 tween().to(1, { opacity: 255 }).to(1, { opacity: 170 })
             )
             .start();
-
-        // this.background.on(NodeEventType.TOUCH_START, () => {
-        //     (App as unknown as SlotApplication).gameLoading.complete();
-        // });
     }
 
     /** 隱藏進度條 */
@@ -278,15 +271,14 @@ export default class GameLoading implements ISingleton {
     public setLoading(loaded: number, total: number, data: Resource.CacheData) {
         if (loaded === 1) {
             this.show();
-            // this.setGameSpriteFrame();
         }
 
         this.loadedNum = loaded;
         this.loadTotal = total + 1;
-
         this.updateProgress();
 
         const { type, url, bundle } = data.info;
+
         if (DEBUG) {
             this.setMessage(`${bundle}/${url}/${typeof type}`);
         }

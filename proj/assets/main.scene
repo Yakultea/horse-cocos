@@ -24863,11 +24863,11 @@
     "_useHDR": true,
     "_editableMaterial": null,
     "_reflectionHDR": {
-      "__uuid__": "ab85acd4-6285-4b39-9f1f-9c5a7710f584@b47c0",
+      "__uuid__": "13f20bbf-a53b-41f9-82ac-3c5453856215@b47c0",
       "__expectedType__": "cc.TextureCube"
     },
     "_reflectionLDR": {
-      "__uuid__": "ab85acd4-6285-4b39-9f1f-9c5a7710f584@b47c0",
+      "__uuid__": "13f20bbf-a53b-41f9-82ac-3c5453856215@b47c0",
       "__expectedType__": "cc.TextureCube"
     },
     "_rotationAngle": 0
