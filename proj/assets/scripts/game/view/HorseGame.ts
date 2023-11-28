@@ -336,6 +336,7 @@ export class HorseGame extends EventComponent {
         const { frameData } = this.data.getData();
         const { framePerTime } = GameConfigModel;
         const currentFrame = frameData[this.frameDataIndex];
+        const stopRecordingDelay = 1;
 
         if (this.frameDataIndex == rankCompletedIndex + 8) {
             this.unschedule(this.playHorseRun);
@@ -348,7 +349,7 @@ export class HorseGame extends EventComponent {
                 this.scheduleOnce(() => {
                     (<any>window)?.stopRecording();
                     console.warn('結束錄製');
-                }, 5);
+                }, stopRecordingDelay);
             }
             return;
         }

@@ -12195,7 +12195,7 @@
     "_target": null,
     "_left": 0,
     "_right": 0,
-    "_top": 48.6274509803921,
+    "_top": 83.13725490196072,
     "_bottom": 5.684341886080802e-14,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
@@ -19022,7 +19022,7 @@
     "value": {
       "__type__": "cc.Vec3",
       "x": 1160,
-      "y": 0,
+      "y": 1,
       "z": 830
     }
   },
