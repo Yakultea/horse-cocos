@@ -1,5 +1,5 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { Animation, BoxCollider, Node, ParticleSystem, Prefab, Tween, _decorator, director, instantiate, macro, tween, v3 } from "cc";
+import { Animation, BoxCollider, Node, ParticleSystem, Prefab, Tween, _decorator, director, instantiate, macro, sys, tween, v3 } from "cc";
 import { CommonEvent } from "../../common/event/CommonEvent";
 import MathUtil from "../../common/utils/MathUtil";
 import EventComponent from "../../framework/componects/EventComponent";
@@ -44,6 +44,12 @@ export class HorseGame extends EventComponent {
 
     @inject("people", Node)
     private people: Node = null;
+
+    @inject("plants", Node)
+    private plants: Node = null;
+
+    @inject("depth", Node)
+    private depth: Node = null;
 
     private horseMap: Map<number, IHorseConfig> = new Map();
     private particleMap: Map<number, ParticleSystem[]> = new Map();
@@ -299,8 +305,9 @@ export class HorseGame extends EventComponent {
             const index = rankCompletedFrame.horses.findIndex(data => data.horseNumber === finalFirstHorseNumber);
             // const distance = 180 - 9 * index;
             // const height = 90 - 1.5 * index;
-            const distance = 170 - 5 * index;
-            const height = 75 - 0.1 * index;
+            const distance = 180 - 7 * index;
+            const height = 80 + 0.1 * index;
+            // const height = 80;
 
             this.camera.positionOffset = v3(-40, height, distance + 90);
             tween(this.camera.positionOffset)
@@ -511,6 +518,8 @@ export class HorseGame extends EventComponent {
 
         this.on(HorseGameEvent.RECORD_MODE, () => {
             this.people.active = false;
+            this.plants.active = false;
+            this.depth.active = false;
             this.particles.removeAllChildren();
         });
     }
