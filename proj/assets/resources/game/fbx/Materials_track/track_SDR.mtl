@@ -52,7 +52,7 @@
       "specularIntensity": 0.046,
       "normalStrength": 1.5,
       "mainTexture": {
-        "__uuid__": "e2a14f0d-04a9-4d24-8073-e2a1c473da10@6c48a",
+        "__uuid__": "e27a8619-a6a3-4f8c-addf-aba581e3d1ff@6c48a",
         "__expectedType__": "cc.Texture2D"
       },
       "normalMap": {

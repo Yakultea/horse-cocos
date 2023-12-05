@@ -1,5 +1,5 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { Animation, BoxCollider, Node, ParticleSystem, Prefab, Tween, _decorator, director, instantiate, macro, sys, tween, v3 } from "cc";
+import { Animation, BoxCollider, Node, ParticleSystem, Prefab, ResolutionPolicy, Tween, _decorator, director, instantiate, macro, tween, v3, view } from "cc";
 import { CommonEvent } from "../../common/event/CommonEvent";
 import MathUtil from "../../common/utils/MathUtil";
 import EventComponent from "../../framework/componects/EventComponent";
@@ -70,6 +70,8 @@ export class HorseGame extends EventComponent {
     // ---------- 生命週期 --------------------------------------------------------
     onLoad(): void {
         super.onLoad();
+
+        // view.setDesignResolutionSize(640, 360, ResolutionPolicy.EXACT_FIT);
     }
 
     start(): void {
@@ -305,8 +307,8 @@ export class HorseGame extends EventComponent {
             const index = rankCompletedFrame.horses.findIndex(data => data.horseNumber === finalFirstHorseNumber);
             // const distance = 180 - 9 * index;
             // const height = 90 - 1.5 * index;
-            const distance = 180 - 7 * index;
-            const height = 80 + 0.1 * index;
+            const distance = 180 - 7.5 * index;
+            const height = 85 + 0.2 * index;
             // const height = 80;
 
             this.camera.positionOffset = v3(-40, height, distance + 90);
@@ -317,10 +319,12 @@ export class HorseGame extends EventComponent {
                 })
                 .start();
 
-            if (typeof (<any>window)?.startRecording == 'function') {
-                (<any>window)?.startRecording();
-                console.warn('開始錄製');
-            }
+            this.scheduleOnce(() => {
+                if (typeof (<any>window)?.startRecording == 'function') {
+                    (<any>window)?.startRecording();
+                    console.warn('開始錄製');
+                }
+            }, 2);
         }, this.startSprintingDelay);
     }
 
