@@ -1,6 +1,6 @@
 // ---------- 引用 ----------------------------------------------------------------
 
-import { _decorator, Label, Node, Toggle, Tween, tween, UITransform, v3 } from "cc";
+import { _decorator, Label, Node, sys, Toggle, Tween, tween, UITransform, v3 } from "cc";
 import { CmmUtils } from "../../common/utils/CmmUtils";
 import GameView from "../../framework/core/ui/GameView";
 import { inject } from "../../framework/defines/Decorators";
@@ -209,6 +209,8 @@ export default class HorseGameView extends GameView {
         });
 
         this.on(HorseGameEvent.RECORD_MODE, () => {
+            if (sys.isMobile) return;
+
             this.musicToggle.node.active = false;
         });
     }

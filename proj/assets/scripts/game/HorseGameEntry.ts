@@ -2,7 +2,7 @@
  * @description 登入流程 , 不用匯出
  */
 // ---------- 引用 ----------------------------------------------------------------
-import { Material, Prefab, SpriteFrame } from "cc";
+import { Material, Prefab, SpriteFrame, sys } from "cc";
 import { BUILD } from "cc/env";
 import { Config } from "../common/config/Config";
 import UrlModel from "../common/model/UrlModel";
@@ -130,6 +130,12 @@ class HorseGameEntry extends Entry {
         } else if (typeof (<any>window.parent)?.ready == 'function') {
             (<any>window.parent)?.ready();
             console.warn('遊戲已準備就緒 遊戲模式 (window.parent.ready())');
+        }
+
+        if (sys.isMobile) {
+            dispatch(HorseGameEvent.RECORD_MODE);
+            GameConfigModel.isRecordMode = true;
+            console.warn('sys.isMobile');
         }
     }
 

@@ -1,5 +1,5 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { Animation, BoxCollider, Node, ParticleSystem, Prefab, ResolutionPolicy, Tween, _decorator, director, instantiate, macro, tween, v3, view } from "cc";
+import { Animation, BoxCollider, Node, ParticleSystem, Prefab, Tween, _decorator, director, instantiate, macro, tween, v3 } from "cc";
 import { CommonEvent } from "../../common/event/CommonEvent";
 import MathUtil from "../../common/utils/MathUtil";
 import EventComponent from "../../framework/componects/EventComponent";
@@ -70,8 +70,6 @@ export class HorseGame extends EventComponent {
     // ---------- 生命週期 --------------------------------------------------------
     onLoad(): void {
         super.onLoad();
-
-        // view.setDesignResolutionSize(640, 360, ResolutionPolicy.EXACT_FIT);
     }
 
     start(): void {
@@ -488,6 +486,13 @@ export class HorseGame extends EventComponent {
         this.data.setData(data);
     }
 
+    private disableNodes() {
+        this.people.active = false;
+        this.plants.active = false;
+        this.depth.active = false;
+        this.particles.removeAllChildren();
+    }
+
     // ---------- 外部部呼叫 ------------------------------------------------------
     /** 重置 */
     public reset() { }
@@ -521,10 +526,7 @@ export class HorseGame extends EventComponent {
         });
 
         this.on(HorseGameEvent.RECORD_MODE, () => {
-            this.people.active = false;
-            this.plants.active = false;
-            this.depth.active = false;
-            this.particles.removeAllChildren();
+            this.disableNodes();
         });
     }
 }
