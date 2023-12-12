@@ -126,6 +126,8 @@ class HorseGameEntry extends Entry {
             (<any>window)?.ready();
             dispatch(HorseGameEvent.RECORD_MODE);
             GameConfigModel.isRecordMode = true;
+            GameConfigModel.recordMode = (<any>window)?.recordMode || '0';
+
             console.warn('遊戲已準備就緒 錄影模式 (window.ready())');
         } else if (typeof (<any>window.parent)?.ready == 'function') {
             (<any>window.parent)?.ready();

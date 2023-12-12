@@ -121,10 +121,10 @@ export class HorseGame extends EventComponent {
             return;
         }
 
-        // if (typeof (<any>window)?.startRecording == 'function') {
-        //     (<any>window)?.startRecording();
-        //     console.warn('開始錄製');
-        // }
+        if (typeof (<any>window)?.startRecording == 'function' && GameConfigModel.recordMode == '0') {
+            (<any>window)?.startRecording();
+            console.warn(`開始錄製 (recordMode = ${'0'})`);
+        }
 
         const { framePerTime, isRecordMode } = GameConfigModel;
 
@@ -303,11 +303,8 @@ export class HorseGame extends EventComponent {
             }
 
             const index = rankCompletedFrame.horses.findIndex(data => data.horseNumber === finalFirstHorseNumber);
-            // const distance = 180 - 9 * index;
-            // const height = 90 - 1.5 * index;
             const distance = 180 - 7.5 * index;
             const height = 85 + 0.2 * index;
-            // const height = 80;
 
             this.camera.positionOffset = v3(-40, height, distance + 90);
             tween(this.camera.positionOffset)
@@ -318,9 +315,9 @@ export class HorseGame extends EventComponent {
                 .start();
 
             this.scheduleOnce(() => {
-                if (typeof (<any>window)?.startRecording == 'function') {
+                if (typeof (<any>window)?.startRecording == 'function' && GameConfigModel.recordMode == '1') {
                     (<any>window)?.startRecording();
-                    console.warn('開始錄製');
+                    console.warn(`開始錄製 (recordMode = ${'1'})`);
                 }
             }, 2);
         }, this.startSprintingDelay);
@@ -482,7 +479,7 @@ export class HorseGame extends EventComponent {
             return;
         }
 
-        console.warn('restartGame data', data);
+        // console.warn('restartGame data', data);
         this.data.setData(data);
     }
 
