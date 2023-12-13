@@ -15,7 +15,7 @@ import { Macro } from "../framework/defines/Macros";
 import HorseGameData from "./data/HorseGameData";
 import { HorseGameLanguage } from "./data/HorseGameLanguage";
 import { HorseGameEvent } from "./event/HorseGameEvent";
-import GameConfigModel from "./model/GameConfigModel";
+import GameConfigModel, { ERecordMode, ERenderMode } from "./model/GameConfigModel";
 import SocketModel from "./model/SocketModel";
 import WrapperHandler from "./net/WrapperHandler";
 import { WrapperService } from "./net/WrapperService";
@@ -118,15 +118,14 @@ class HorseGameEntry extends Entry {
 
         App.uiManager.closeExcept([HorseGameView]);
         App.gameLoading.complete();
-        dispatch(HorseGameEvent.ON_ENTER_GAME);
-        GameConfigModel.isRecordMode = false;
+
+        GameConfigModel.renderMode = (<any>window)?.renderMode || (<any>window.parent)?.renderMode || ERenderMode.Default;
         console.warn('version', GameConfigModel.getData().version);
 
         if (typeof (<any>window)?.ready == 'function') {
             (<any>window)?.ready();
             dispatch(HorseGameEvent.RECORD_MODE);
-            GameConfigModel.isRecordMode = true;
-            GameConfigModel.recordMode = (<any>window)?.recordMode || '0';
+            GameConfigModel.recordMode = (<any>window)?.recordMode || ERecordMode.Default;
 
             console.warn('遊戲已準備就緒 錄影模式 (window.ready())');
         } else if (typeof (<any>window.parent)?.ready == 'function') {
@@ -134,11 +133,7 @@ class HorseGameEntry extends Entry {
             console.warn('遊戲已準備就緒 遊戲模式 (window.parent.ready())');
         }
 
-        if (sys.isMobile) {
-            dispatch(HorseGameEvent.RECORD_MODE);
-            GameConfigModel.isRecordMode = true;
-            console.warn('sys.isMobile');
-        }
+        dispatch(HorseGameEvent.ON_ENTER_GAME);
     }
 
     /**@description 解除安裝bundle,即在自己bundle刪除之前最後的一條訊息 */

@@ -8,7 +8,7 @@ import { ThirdFreeLookCamera, ThirdPersonCameraType } from "../camera/ThirdFreeL
 import { Horse } from "../component/Horse";
 import HorseGameData from "../data/HorseGameData";
 import { HorseGameEvent } from "../event/HorseGameEvent";
-import GameConfigModel, { EMusic } from "../model/GameConfigModel";
+import GameConfigModel, { EMusic, ERecordMode, ERenderMode } from "../model/GameConfigModel";
 import { IHorse } from "../types/type";
 
 export interface IHorseConfig {
@@ -121,12 +121,12 @@ export class HorseGame extends EventComponent {
             return;
         }
 
-        if (typeof (<any>window)?.startRecording == 'function' && GameConfigModel.recordMode == '0') {
+        if (typeof (<any>window)?.startRecording == 'function' && GameConfigModel.recordMode == ERecordMode.Default) {
             (<any>window)?.startRecording();
             console.warn(`開始錄製 (recordMode = ${'0'})`);
         }
 
-        const { framePerTime, isRecordMode } = GameConfigModel;
+        const { framePerTime, renderMode } = GameConfigModel;
 
         this.frameDataIndex = 0;
         this.needSlow = false;
@@ -139,7 +139,7 @@ export class HorseGame extends EventComponent {
         this.setResult();
 
         this.schedule(this.playHorseRun, framePerTime, macro.REPEAT_FOREVER, this.startRunDelay);
-        if (!isRecordMode) this.schedule(this.setParticle, 0.5, macro.REPEAT_FOREVER, this.startRunDelay);
+        if (renderMode == ERenderMode.Default) this.schedule(this.setParticle, 0.5, macro.REPEAT_FOREVER, this.startRunDelay);
 
         dispatch(HorseGameEvent.SET_RESULT_ACTIVE, { data: false });
         dispatch(HorseGameEvent.INIT_RANK_BAR);
@@ -315,7 +315,7 @@ export class HorseGame extends EventComponent {
                 .start();
 
             this.scheduleOnce(() => {
-                if (typeof (<any>window)?.startRecording == 'function' && GameConfigModel.recordMode == '1') {
+                if (typeof (<any>window)?.startRecording == 'function' && GameConfigModel.recordMode == ERecordMode.Sprinting) {
                     (<any>window)?.startRecording();
                     console.warn(`開始錄製 (recordMode = ${'1'})`);
                 }
@@ -479,7 +479,6 @@ export class HorseGame extends EventComponent {
             return;
         }
 
-        // console.warn('restartGame data', data);
         this.data.setData(data);
     }
 
@@ -487,7 +486,16 @@ export class HorseGame extends EventComponent {
         this.people.active = false;
         this.plants.active = false;
         this.depth.active = false;
-        this.particles.removeAllChildren();
+    }
+
+    private setRenderNodes() {
+        const { renderMode } = GameConfigModel;
+
+        if (renderMode == ERenderMode.Default) {
+            this.createParticle();
+        } else if (renderMode == ERenderMode.Simplify) {
+            this.disableNodes();
+        }
     }
 
     // ---------- 外部部呼叫 ------------------------------------------------------
@@ -511,7 +519,7 @@ export class HorseGame extends EventComponent {
     /** 框架onLoad呼叫 */
     public addEvents() {
         this.on(HorseGameEvent.ON_ENTER_GAME, () => {
-            this.createParticle();
+            this.setRenderNodes();
         });
 
         this.on(HorseGameEvent.PARSE_COMPLETED, () => {
@@ -520,10 +528,6 @@ export class HorseGame extends EventComponent {
 
         this.on(CommonEvent.RESTART_HORSE_GAME, () => {
             this.restartGame();
-        });
-
-        this.on(HorseGameEvent.RECORD_MODE, () => {
-            this.disableNodes();
         });
     }
 }

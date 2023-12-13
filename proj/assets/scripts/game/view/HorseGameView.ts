@@ -209,8 +209,6 @@ export default class HorseGameView extends GameView {
         });
 
         this.on(HorseGameEvent.RECORD_MODE, () => {
-            if (sys.isMobile) return;
-
             this.musicToggle.node.active = false;
         });
     }

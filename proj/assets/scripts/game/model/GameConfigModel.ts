@@ -20,10 +20,22 @@ export interface IGameConfigModel {
     frameTimeRatio: number;
     /** 版號 */
     version: string,
-    /** 是否錄影模式 */
-    isRecordMode: boolean;
-    /** window.recordMode = '0' (從頭開始錄), window.recordMode = '1' (出彎道開始錄) */
+    /** window.recordMode = '0'(從頭開始錄), '1'(出彎道開始錄) */
     recordMode: string;
+    /** window.renderMode = '0'(完整場景版) '1'(縮減場景內容版) */
+    renderMode: string;
+}
+
+/** window.recordMode = '0'(從頭開始錄), '1'(出彎道開始錄) */
+export enum ERecordMode {
+    Default = '0',
+    Sprinting = '1',
+}
+
+/** window.renderMode = '0'(完整場景版) '1'(縮減場景內容版) */
+export enum ERenderMode {
+    Default = '0',
+    Simplify = '1',
 }
 
 export enum EMusic { //音樂路徑
@@ -57,9 +69,9 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
             isSocketInited: false,
             framePerTime: 0.05,
             frameTimeRatio: 1,
-            version: 'v.1.0.17',
-            isRecordMode: false,
-            recordMode: '0',
+            version: 'v.1.0.18',
+            recordMode: ERecordMode.Default,
+            renderMode: ERenderMode.Default,
         };
     }
 
@@ -79,11 +91,11 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
 
     public get frameTimeRatio() { return this.data.frameTimeRatio; }
 
-    public get isRecordMode() { return this.data.isRecordMode; }
-    public set isRecordMode(value: boolean) { this.data.isRecordMode = value; }
-
     public get recordMode() { return this.data.recordMode; }
     public set recordMode(value: string) { this.data.recordMode = value; }
+
+    public get renderMode() { return this.data.renderMode; }
+    public set renderMode(value: string) { this.data.renderMode = value; }
 }
 
 export default GameConfigModel.Instance();
