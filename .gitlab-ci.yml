@@ -88,9 +88,10 @@ stages:
     - echo '============== CD 開始 =============='
     - |
       ssh -o ServerAliveInterval=600 -p $CD_SSH_PORT -l $CD_SSH_USER $CD_SSH_HOST <<-EOF
+        sudo rm -rf ~/games/horse-racing-movie
         cd ~/games
-        mkdir ${CI_COMMIT_SHA}
-        cd ${CI_COMMIT_SHA}
+        mkdir horse-racing-movie
+        cd horse-racing-movie
         unzip ~/tmp/builds/${CI_PROJECT_NAME}/${CI_COMMIT_SHA}.zip
       EOF
     - echo '============== CD 完成 =============='
