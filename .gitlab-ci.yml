@@ -50,7 +50,7 @@ stages:
         npm run main
         echo '============== 封裝 ${CI_PROJECT_NAME} =============='
         cd ..
-        ${COCOS_CREATOR} --project ./proj --build configPath="./bundles/bundles/${CI_PROJECT_NAME}/buildConfig_${COCOS_BUILD_PLATFORM}.json"
+        ${COCOS_CREATOR} --project ./proj --build configPath="./buildConfig_${COCOS_BUILD_PLATFORM}.json"
         cd proj/build/${COCOS_BUILD_PLATFORM}
         zip -r ${CI_COMMIT_SHA} ./*
         cp ${CI_COMMIT_SHA}.zip /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip
