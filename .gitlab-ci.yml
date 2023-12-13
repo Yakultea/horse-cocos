@@ -34,7 +34,7 @@ stages:
     - |
       if [ -z ${CI_COMMIT_TAG+x} ]
       then
-        VERSION=$CI_COMMIT_BRANCH
+        VERSION=$CI_COMMIT_SHA
       else
         VERSION=$CI_COMMIT_TAG
       fi
@@ -44,6 +44,7 @@ stages:
         git reset --hard
         git fetch -a
         git checkout .
+        git checkout $VERSION
         echo '============== 關聯 ${CI_PROJECT_NAME} 資源 =============='
         cd ./tools
         npm i
