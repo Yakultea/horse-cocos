@@ -190,14 +190,13 @@ Prod_打包:
     - if: '$CI_COMMIT_TAG != null'
       when: manual
 
-PROD_部署:
+Prod_部署:
   extends: .cd_temp
   variables:
     CD_SSH_HOST: $HOST_aws_rgs_socket
     CD_SSH_KEY: $KEY_prod_aws_rgs_socket
   rules:
     - if: '$CI_COMMIT_TAG != null'
-      when: manual
   dependencies:
     - Prod_打包
   needs: ["Prod_打包"]
