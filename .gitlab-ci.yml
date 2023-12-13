@@ -1,0 +1,203 @@
+stages:
+  - ci
+  - cd
+
+.ci_temp:
+  stage: ci
+  image: kroniak/ssh-client
+  tags:
+    - new-rgs
+  variables:
+    CI_SSH_USER: riversense
+    CI_SSH_PORT: 3022
+    CI_SSH_HOST: $HOST_tc_riversense
+    CI_SSH_KEY: $KEY_tc_riversense
+    CD_SSH_USER: ubuntu
+    CD_SSH_PORT: 22
+    CD_SSH_HOST: target-server
+    WORK_DIR: /home/${CD_SSH_USER}/tmp/builds/${CI_PROJECT_NAME}
+    GAMES_FRAMEWORKER: ${CI_PROJECT_NAME}
+    COCOS_CREATOR_VERSION: '3.7.2'
+    COCOS_CREATOR: '/Applications/Cocos/Creator/${COCOS_CREATOR_VERSION}/CocosCreator.app/Contents/MacOS/CocosCreator'
+    COCOS_BUILD_PLATFORM: 'web-mobile'
+  before_script:
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - echo "$CI_SSH_KEY"
+    - echo "$CI_SSH_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+  script:
+    - ssh -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST -C "whoami"
+    - echo '============== CI 開始 =============='
+    - |
+      if [ -z ${CI_COMMIT_TAG+x} ]
+      then
+        VERSION=$CI_COMMIT_SHA
+      else
+        VERSION=$CI_COMMIT_TAG
+      fi
+      ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST <<-EOF
+        cd /Users/riversense/deploy/${CI_PROJECT_NAME}/${GAMES_FRAMEWORKER}
+        source ~/.nvm/nvm.sh
+        git reset --hard
+        git fetch -a
+        git checkout .
+        git checkout $VERSION
+        echo '============== 關聯 ${CI_PROJECT_NAME} 資源 =============='
+        cd ./tools
+        npm i
+        npm run main
+        echo '============== 封裝 ${CI_PROJECT_NAME} =============='
+        cd ..
+        ${COCOS_CREATOR} --project ./proj --build configPath="./buildConfig_${COCOS_BUILD_PLATFORM}.json"
+        cd proj/build/${COCOS_BUILD_PLATFORM}
+        zip -r ${CI_COMMIT_SHA} ./*
+        cp ${CI_COMMIT_SHA}.zip /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip
+        cd ..
+        rm -rf ${COCOS_BUILD_PLATFORM}
+      EOF
+    - echo '============== CI 完成 =============='
+  after_script:
+    - |
+      ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST <<-EOF
+        echo '============== 傳至 ${CI_PROJECT_NAME} 目標機 =============='
+        scp -P ${CD_SSH_PORT} /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip $CD_SSH_USER@$CD_SSH_HOST:$WORK_DIR/${CI_COMMIT_SHA}.zip
+      EOF
+  rules:
+    - if: "$CI_COMMIT_SHA != null"
+      when: never
+
+.cd_temp:
+  stage: cd
+  image: kroniak/ssh-client
+  variables:
+    CD_SSH_USER: ubuntu
+    CD_SSH_PORT: 22
+    CD_SSH_HOST: target-server
+    CD_SSH_KEY: private-key-for-target-server
+    COCOS_BUILD_PLATFORM: 'web-mobile'
+  before_script:
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - echo "$CD_SSH_KEY"
+    - echo "$CD_SSH_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+  script:
+    - echo '============== CD 開始 =============='
+    - |
+      ssh -o ServerAliveInterval=600 -p $CD_SSH_PORT -l $CD_SSH_USER $CD_SSH_HOST <<-EOF
+        sudo rm -rf ~/games/horse-racing-movie
+        cd ~/games
+        mkdir horse-racing-movie
+        cd horse-racing-movie
+        unzip ~/tmp/builds/${CI_PROJECT_NAME}/${CI_COMMIT_SHA}.zip
+      EOF
+    - echo '============== CD 完成 =============='
+  rules:
+    - if: "$CI_COMMIT_SHA != null"
+      when: never
+
+#####  develop Slot-game-Test2  #####
+DEV_打包:
+  extends: .ci_temp
+  variables:
+    CD_SSH_HOST: $HOST_slot_game_Test2_Ext
+    CD_SSH_PORT: 8022
+    COCOS_BUILD_PLATFORM: 'web-mobile'
+  rules:
+    - if: "$CI_COMMIT_BRANCH =~ /(feature|develop)/"
+      when: manual
+
+DEV_部署:
+  extends: .cd_temp
+  variables:
+    CD_SSH_HOST: $HOST_slot_game_Test2
+    CD_SSH_KEY: $KEY_slot_game_Test2
+  rules:
+    - if: "$CI_COMMIT_BRANCH =~ /(feature|develop)/"
+  dependencies:
+    - DEV_打包
+  needs: ["DEV_打包"]
+
+##### 以下為 AWS QAT RGS #####
+TAG_打包:
+  extends: .ci_temp
+  variables:
+    CD_SSH_HOST: $HOST_qat_aws_rgs_socket1
+    DEPLOY_SSH_PRIVATE_KEY: $KEY_prod_aws_rgs_socket
+    COCOS_BUILD_PLATFORM: 'web-mobile'
+  after_script:
+    - |
+      ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST <<-EOF
+        echo '============== 傳至 ${CI_PROJECT_NAME} 目標機 =============='
+        export AWS_PROFILE=aws-rgs-qat
+        scp /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip aws-rgs-qat-socket1-proxy:$WORK_DIR/${CI_COMMIT_SHA}.zip
+      EOF
+  rules:
+    - if: '$CI_COMMIT_TAG != null'
+      when: manual
+
+QAT_部署:
+  extends: .cd_temp
+  variables:
+    CD_SSH_HOST: $HOST_qat_aws_rgs_socket1
+    CD_SSH_KEY: $KEY_prod_aws_rgs_socket
+  rules:
+    - if: '$CI_COMMIT_TAG != null'
+  tags:
+    - new-rgs
+  dependencies:
+    - TAG_打包
+  needs: ["TAG_打包"]
+
+##### 以下為 AWS PROD RGS #####
+Prod_打包:
+  stage: ci
+  image: kroniak/ssh-client
+  variables:
+    CI_SSH_USER: riversense
+    CI_SSH_PORT: 3022
+    CI_SSH_HOST: $HOST_tc_riversense
+    CI_SSH_KEY: $KEY_tc_riversense
+    CD_SSH_USER: ubuntu
+    CD_SSH_HOST: $HOST_aws_rgs_socket
+    WORK_DIR: /home/${CD_SSH_USER}/tmp/builds/${CI_PROJECT_NAME}
+    DEPLOY_SSH_PRIVATE_KEY: $KEY_prod_aws_rgs_socket
+    COCOS_BUILD_PLATFORM: 'web-mobile'
+  tags:
+    - new-rgs
+  before_script:
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - echo "$CI_SSH_KEY"
+    - echo "$CI_SSH_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+  script:
+    - |
+      ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST <<-EOF
+        echo '============== 傳至 ${CI_PROJECT_NAME} 目標機 =============='
+        if [ -e "/Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip" ]; then
+            scp /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip ${CD_SSH_USER}@${CD_SSH_HOST}:${WORK_DIR}/${CI_COMMIT_SHA}.zip
+        else
+            echo "Error: 找不到檔案: /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip"
+            exit 1
+        fi
+      EOF
+  rules:
+    - if: '$CI_COMMIT_TAG != null'
+      when: manual
+
+PROD_部署:
+  extends: .cd_temp
+  variables:
+    CD_SSH_HOST: $HOST_aws_rgs_socket
+    CD_SSH_KEY: $KEY_prod_aws_rgs_socket
+  rules:
+    - if: '$CI_COMMIT_TAG != null'
+      when: manual
+  dependencies:
+    - Prod_打包
+  needs: ["Prod_打包"]
