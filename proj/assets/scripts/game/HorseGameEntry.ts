@@ -118,9 +118,9 @@ class HorseGameEntry extends Entry {
 
         App.uiManager.closeExcept([HorseGameView]);
         App.gameLoading.complete();
+        console.warn('version', GameConfigModel.getData().version);
 
         GameConfigModel.renderMode = (<any>window)?.renderMode || (<any>window.parent)?.renderMode || ERenderMode.Default;
-        console.warn('version', GameConfigModel.getData().version);
 
         if (typeof (<any>window)?.ready == 'function') {
             (<any>window)?.ready();

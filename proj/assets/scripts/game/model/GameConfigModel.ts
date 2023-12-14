@@ -32,10 +32,11 @@ export enum ERecordMode {
     Sprinting = '1',
 }
 
-/** window.renderMode = '0'(完整場景版) '1'(縮減場景內容版) */
+/** window.renderMode = '0'(自動判斷平台) '1'(完整場景版) '2'(縮減場景內容版) */
 export enum ERenderMode {
     Default = '0',
-    Simplify = '1',
+    Full = '1',
+    Simplify = '2',
 }
 
 export enum EMusic { //音樂路徑
@@ -69,7 +70,7 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
             isSocketInited: false,
             framePerTime: 0.05,
             frameTimeRatio: 1,
-            version: 'v.1.0.18',
+            version: 'v.1.0.19',
             recordMode: ERecordMode.Default,
             renderMode: ERenderMode.Default,
         };

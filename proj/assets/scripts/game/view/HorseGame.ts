@@ -1,5 +1,5 @@
 // ---------- 引用 ----------------------------------------------------------------
-import { Animation, BoxCollider, Node, ParticleSystem, Prefab, Tween, _decorator, director, instantiate, macro, tween, v3 } from "cc";
+import { Animation, BoxCollider, Node, ParticleSystem, Prefab, Tween, _decorator, director, instantiate, macro, sys, tween, v3 } from "cc";
 import { CommonEvent } from "../../common/event/CommonEvent";
 import MathUtil from "../../common/utils/MathUtil";
 import EventComponent from "../../framework/componects/EventComponent";
@@ -139,7 +139,7 @@ export class HorseGame extends EventComponent {
         this.setResult();
 
         this.schedule(this.playHorseRun, framePerTime, macro.REPEAT_FOREVER, this.startRunDelay);
-        if (renderMode == ERenderMode.Default) this.schedule(this.setParticle, 0.5, macro.REPEAT_FOREVER, this.startRunDelay);
+        if (renderMode != ERenderMode.Simplify) this.schedule(this.setParticle, 0.5, macro.REPEAT_FOREVER, this.startRunDelay);
 
         dispatch(HorseGameEvent.SET_RESULT_ACTIVE, { data: false });
         dispatch(HorseGameEvent.INIT_RANK_BAR);
@@ -491,7 +491,9 @@ export class HorseGame extends EventComponent {
     private setRenderNodes() {
         const { renderMode } = GameConfigModel;
 
-        if (renderMode == ERenderMode.Default) {
+        if (renderMode == ERenderMode.Default && !sys.isMobile) {
+            this.createParticle();
+        } else if (renderMode == ERenderMode.Full) {
             this.createParticle();
         } else if (renderMode == ERenderMode.Simplify) {
             this.disableNodes();
