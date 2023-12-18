@@ -14,6 +14,8 @@ export interface IGameConfigModel {
     isLoadResourcesCompleted: boolean;
     /** 是否socket initial成功回應 */
     isSocketInited: boolean;
+    /** 是否為錄影模式 (後端用的 window.ready()) */
+    isRecordMode: boolean;
     /** 每一幀的間隔時間 */
     framePerTime: number;
     /** 每一幀的時間倍數 (加快or變慢) 尚未實作 */
@@ -22,7 +24,7 @@ export interface IGameConfigModel {
     version: string,
     /** window.recordMode = '0'(從頭開始錄), '1'(出彎道開始錄) */
     recordMode: string;
-    /** window.renderMode = '0'(完整場景版) '1'(縮減場景內容版) */
+    /** window.renderMode = '0'(自動判斷平台) '1'(完整場景版) '2'(縮減場景內容版) */
     renderMode: string;
 }
 
@@ -68,9 +70,10 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
             },
             isLoadResourcesCompleted: false,
             isSocketInited: false,
+            isRecordMode: false,
             framePerTime: 0.05,
             frameTimeRatio: 1,
-            version: 'v.1.0.19',
+            version: 'v.1.0.20',
             recordMode: ERecordMode.Default,
             renderMode: ERenderMode.Default,
         };
@@ -87,6 +90,9 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
 
     public get isSocketInited() { return this.data.isSocketInited; }
     public set isSocketInited(value: boolean) { this.data.isSocketInited = value; }
+
+    public get isRecordMode() { return this.data.isRecordMode; }
+    public set isRecordMode(value: boolean) { this.data.isRecordMode = value; }
 
     public get framePerTime() { return this.data.framePerTime; }
 

@@ -84,7 +84,7 @@ class HorseGameEntry extends Entry {
     /** 初始化遊戲資料 */
     protected initData(): void {
         this.initUrlConfig();
-
+        GameConfigModel.isSocketInited = true;
         if (BUILD) { //打包後的不連socket
             GameConfigModel.isSocketInited = true;
             console.warn('直接不連socket');
@@ -125,8 +125,8 @@ class HorseGameEntry extends Entry {
         if (typeof (<any>window)?.ready == 'function') {
             (<any>window)?.ready();
             dispatch(HorseGameEvent.RECORD_MODE);
+            GameConfigModel.isRecordMode = true;
             GameConfigModel.recordMode = (<any>window)?.recordMode || ERecordMode.Default;
-
             console.warn('遊戲已準備就緒 錄影模式 (window.ready())');
         } else if (typeof (<any>window.parent)?.ready == 'function') {
             (<any>window.parent)?.ready();

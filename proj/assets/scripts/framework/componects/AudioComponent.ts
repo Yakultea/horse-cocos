@@ -5,6 +5,7 @@ import { DEBUG } from "cc/env";
 import { Resource } from "../core/asset/Resource";
 import { Macro } from "../defines/Macros";
 import Singleton from "../utils/Singleton";
+import GameConfigModel from "../../game/model/GameConfigModel";
 /**
  * @description 聲音元件
  */
@@ -289,6 +290,7 @@ export default class AudioComponent extends EventComponent {
                 this.audioData.musicInfos.set(key, audioInfo);
             }
             this.audioData.curMusic = audioInfo;
+
             App.cache.getCacheByAsync(url, AudioClip, bundle).then((data) => {
                 if (data) {
                     let info = new Resource.Info;
@@ -308,8 +310,16 @@ export default class AudioComponent extends EventComponent {
                         audioInfo.source.clip = data;
                         audioInfo.source.loop = loop;
                         audioInfo.volume = this.musicVolume;
-                        //如果當前音樂是開的，才播放
-                        this.play(audioInfo, true, resolve);
+
+                        if (GameConfigModel.isRecordMode) { //輸出到audio tag播放
+                            let audioElement = new Audio(audioInfo.source.clip.nativeUrl);
+
+                            audioElement.loop = true;
+                            audioElement.play();
+                        } else {
+                            //如果當前音樂是開的，才播放
+                            this.play(audioInfo, true, resolve);
+                        }
                     }
                 } else {
                     resolve(false);
@@ -356,7 +366,14 @@ export default class AudioComponent extends EventComponent {
                         audioInfo.source.clip = data;
                         audioInfo.source.loop = loop;
                         audioInfo.source.volume = this.effectVolume;
-                        this.play(audioInfo, false, resolve);
+
+                        if (GameConfigModel.isRecordMode) { //輸出到audio tag播放
+                            let audioElement = new Audio(audioInfo.source.clip.nativeUrl);
+
+                            audioElement.play();
+                        } else {
+                            this.play(audioInfo, false, resolve);
+                        }
                     }
                 } else {
                     resolve(false);
