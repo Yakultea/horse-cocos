@@ -312,10 +312,13 @@ export default class AudioComponent extends EventComponent {
                         audioInfo.volume = this.musicVolume;
 
                         if (GameConfigModel.isRecordMode) { //輸出到audio tag播放
-                            let audioElement = new Audio(audioInfo.source.clip.nativeUrl);
+                            const container = document.getElementById("Cocos3dGameContainer");
+                            const audio: HTMLAudioElement = document.createElement('audio');
 
-                            audioElement.loop = true;
-                            audioElement.play();
+                            audio.src = audioInfo.source.clip.nativeUrl;
+                            audio.loop = true;
+                            audio.play();
+                            container.append(audio);
                         } else {
                             //如果當前音樂是開的，才播放
                             this.play(audioInfo, true, resolve);
@@ -368,9 +371,12 @@ export default class AudioComponent extends EventComponent {
                         audioInfo.source.volume = this.effectVolume;
 
                         if (GameConfigModel.isRecordMode) { //輸出到audio tag播放
-                            let audioElement = new Audio(audioInfo.source.clip.nativeUrl);
+                            const container = document.getElementById("Cocos3dGameContainer");
+                            const audio: HTMLAudioElement = document.createElement('audio');
 
-                            audioElement.play();
+                            audio.src = audioInfo.source.clip.nativeUrl;
+                            audio.play();
+                            container.append(audio);
                         } else {
                             this.play(audioInfo, false, resolve);
                         }
