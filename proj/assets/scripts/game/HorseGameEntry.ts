@@ -121,7 +121,7 @@ class HorseGameEntry extends Entry {
         console.warn('version', GameConfigModel.getData().version);
 
         GameConfigModel.renderMode = (<any>window)?.renderMode || (<any>window.parent)?.renderMode || ERenderMode.Default;
-
+        // GameConfigModel.isRecordMode = true; //測試用
         if (typeof (<any>window)?.ready == 'function') {
             (<any>window)?.ready();
             dispatch(HorseGameEvent.RECORD_MODE);

@@ -394,9 +394,9 @@ export default class AudioComponent extends EventComponent {
                             container.append(audio);
 
                             this.audioEffectMap.set(url, audio);
-                            audio.addEventListener('ended', () => {
-                                audio && audio.remove();
-                            });
+                            // audio.addEventListener('ended', () => {
+                            //     audio && audio.remove();
+                            // });
                         } else {
                             this.play(audioInfo, false, resolve);
                         }

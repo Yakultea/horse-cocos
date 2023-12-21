@@ -342,7 +342,7 @@ export class HorseGame extends EventComponent {
         const { frameData } = this.data.getData();
         const { framePerTime } = GameConfigModel;
         const currentFrame = frameData[this.frameDataIndex];
-        const stopRecordingDelay = 1;
+        const stopRecordingDelay = 2;
 
         if (this.frameDataIndex == rankCompletedIndex + 8) {
             this.unschedule(this.playHorseRun);
@@ -355,6 +355,12 @@ export class HorseGame extends EventComponent {
                 this.scheduleOnce(() => {
                     (<any>window)?.stopRecording();
                     console.warn('結束錄製');
+    
+                    const audioElements = document.getElementById("Cocos3dGameContainer").getElementsByTagName('audio');
+    
+                    for (let i = audioElements.length - 1; i >= 0; i--) {
+                        audioElements[i]?.remove();
+                    }
                 }, stopRecordingDelay);
             }
             return;
