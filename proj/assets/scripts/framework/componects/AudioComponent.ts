@@ -256,12 +256,26 @@ export default class AudioComponent extends EventComponent {
 
     public save(): void { this.audioData.save(); }
 
+    private audioEffectMap: Map<string, HTMLAudioElement> = new Map();
     /**@description 停止 */
-    public stopEffect(url: string, bundle: BUNDLE_TYPE) { this.audioData.stopEffect(url, bundle); }
+    public stopEffect(url: string, bundle: BUNDLE_TYPE) {
+        this.audioData.stopEffect(url, bundle);
+
+        const audioEffect = this.audioEffectMap.get(url);
+        if (audioEffect) {
+            audioEffect.remove();
+        }
+    }
 
     public stopAllEffects() { this.audioData.stopAllEffects(); }
 
-    public stopMusic() { this.audioData.stopMusic(); }
+    private audioMusic: HTMLAudioElement[] = [];
+    public stopMusic() {
+        this.audioData.stopMusic();
+        this.audioMusic.forEach((audio) => {
+            audio && audio.remove();
+        });
+    }
 
     public pauseMusic() { this.audioData.pauseMusic(); }
 
@@ -315,6 +329,7 @@ export default class AudioComponent extends EventComponent {
                             const container = document.getElementById("Cocos3dGameContainer");
                             const audio: HTMLAudioElement = document.createElement('audio');
 
+                            this.audioMusic.push(audio);
                             audio.src = audioInfo.source.clip.nativeUrl;
                             audio.loop = true;
                             audio.play();
@@ -377,6 +392,11 @@ export default class AudioComponent extends EventComponent {
                             audio.src = audioInfo.source.clip.nativeUrl;
                             audio.play();
                             container.append(audio);
+
+                            this.audioEffectMap.set(url, audio);
+                            audio.addEventListener('ended', () => {
+                                audio && audio.remove();
+                            });
                         } else {
                             this.play(audioInfo, false, resolve);
                         }
