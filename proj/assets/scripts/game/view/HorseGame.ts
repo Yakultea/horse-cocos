@@ -121,12 +121,27 @@ export class HorseGame extends EventComponent {
             return;
         }
 
+        const { framePerTime, renderMode } = GameConfigModel;
+        const { frameData } = this.data.getData();
+        const firstFrame = frameData[0];
+
+        for (let i = 0; i < firstFrame.horses.length; i++) {
+            const { horseNumber } = firstFrame.horses[i];
+
+            if (!this.horseMap.get(horseNumber)) {
+                if (typeof (<any>window.parent)?.onError == 'function') {
+                    (<any>window.parent)?.onError();
+                }
+                console.error('this.horseMap.get(horseNumber) 有問題', this.horseMap, horseNumber);
+                return;
+            }
+        }
+
         if (typeof (<any>window)?.startRecording == 'function' && GameConfigModel.recordMode == ERecordMode.Default) {
+            this.removeAudioElements();
             (<any>window)?.startRecording();
             console.warn(`開始錄製 (recordMode = ${'0'})`);
         }
-
-        const { framePerTime, renderMode } = GameConfigModel;
 
         this.frameDataIndex = 0;
         this.needSlow = false;
@@ -134,8 +149,8 @@ export class HorseGame extends EventComponent {
         this.unscheduleAllCallbacks();
         Tween.stopAllByTag(this.tweenTag);
 
-        this.setCameraMoving();
         this.setHorses();
+        this.setCameraMoving();
         this.setResult();
 
         this.schedule(this.playHorseRun, framePerTime, macro.REPEAT_FOREVER, this.startRunDelay);
@@ -156,6 +171,15 @@ export class HorseGame extends EventComponent {
 
         for (let i = 0; i < firstFrame.horses.length; i++) {
             const { horseNumber, y } = firstFrame.horses[i];
+
+            if (!this.horseMap.get(horseNumber)) {
+                if (typeof (<any>window.parent)?.onError == 'function') {
+                    (<any>window.parent)?.onError();
+                }
+                console.error('this.horseMap.get(horseNumber) 有問題', this.horseMap, horseNumber);
+                return;
+            }
+
             const horseScript = this.horseMap.get(horseNumber).script;
             const horse = horseScript.node;
             const horseData: IHorse = {
@@ -316,6 +340,9 @@ export class HorseGame extends EventComponent {
 
             this.scheduleOnce(() => {
                 if (typeof (<any>window)?.startRecording == 'function' && GameConfigModel.recordMode == ERecordMode.Sprinting) {
+                    this.removeAudioElements();
+                    dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.RUNNING } });
+                    dispatch(HorseGameEvent.PLAY_BGM, { data: EMusic.BGM });
                     (<any>window)?.startRecording();
                     console.warn(`開始錄製 (recordMode = ${'1'})`);
                 }
@@ -355,12 +382,6 @@ export class HorseGame extends EventComponent {
                 this.scheduleOnce(() => {
                     (<any>window)?.stopRecording();
                     console.warn('結束錄製');
-    
-                    const audioElements = document.getElementById("Cocos3dGameContainer").getElementsByTagName('audio');
-    
-                    for (let i = audioElements.length - 1; i >= 0; i--) {
-                        audioElements[i]?.remove();
-                    }
                 }, stopRecordingDelay);
             }
             return;
@@ -503,6 +524,14 @@ export class HorseGame extends EventComponent {
             this.createParticle();
         } else if (renderMode == ERenderMode.Simplify) {
             this.disableNodes();
+        }
+    }
+
+    private removeAudioElements() {
+        const audioElements = document.getElementById("Cocos3dGameContainer").getElementsByTagName('audio');
+
+        for (let i = audioElements.length - 1; i >= 0; i--) {
+            audioElements[i]?.remove();
         }
     }
 
