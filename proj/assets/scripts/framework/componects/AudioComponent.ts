@@ -256,25 +256,25 @@ export default class AudioComponent extends EventComponent {
 
     public save(): void { this.audioData.save(); }
 
-    private audioEffectMap: Map<string, HTMLAudioElement> = new Map();
+    // private audioEffectMap: Map<string, HTMLAudioElement> = new Map();
     /**@description 停止 */
     public stopEffect(url: string, bundle: BUNDLE_TYPE) {
         this.audioData.stopEffect(url, bundle);
 
-        const audioEffect = this.audioEffectMap.get(url);
-        if (audioEffect) {
-            audioEffect.remove();
-        }
+        // const audioEffect = this.audioEffectMap.get(url);
+        // if (audioEffect) {
+        //     audioEffect.remove();
+        // }
     }
 
     public stopAllEffects() { this.audioData.stopAllEffects(); }
 
-    private audioMusic: HTMLAudioElement[] = [];
+    // private audioMusic: HTMLAudioElement[] = [];
     public stopMusic() {
         this.audioData.stopMusic();
-        this.audioMusic.forEach((audio) => {
-            audio && audio.remove();
-        });
+        // this.audioMusic.forEach((audio) => {
+        //     audio && audio.remove();
+        // });
     }
 
     public pauseMusic() { this.audioData.pauseMusic(); }
@@ -325,19 +325,21 @@ export default class AudioComponent extends EventComponent {
                         audioInfo.source.loop = loop;
                         audioInfo.volume = this.musicVolume;
 
-                        if (GameConfigModel.isRecordMode) { //輸出到audio tag播放
-                            const container = document.getElementById("Cocos3dGameContainer");
-                            const audio: HTMLAudioElement = document.createElement('audio');
+                        // if (GameConfigModel.isRecordMode) { //輸出到audio tag播放
+                        //     const container = document.getElementById("Cocos3dGameContainer");
+                        //     const audio: HTMLAudioElement = document.createElement('audio');
 
-                            this.audioMusic.push(audio);
-                            audio.src = audioInfo.source.clip.nativeUrl;
-                            audio.loop = true;
-                            audio.play();
-                            container.append(audio);
-                        } else {
-                            //如果當前音樂是開的，才播放
-                            this.play(audioInfo, true, resolve);
-                        }
+                        //     this.audioMusic.push(audio);
+                        //     audio.src = audioInfo.source.clip.nativeUrl;
+                        //     audio.loop = true;
+                        //     audio.play();
+                        //     container.append(audio);
+                        // } else {
+                        //     //如果當前音樂是開的，才播放
+                        //     this.play(audioInfo, true, resolve);
+                        // }
+
+                        this.play(audioInfo, true, resolve);
                     }
                 } else {
                     resolve(false);
@@ -385,21 +387,23 @@ export default class AudioComponent extends EventComponent {
                         audioInfo.source.loop = loop;
                         audioInfo.source.volume = this.effectVolume;
 
-                        if (GameConfigModel.isRecordMode) { //輸出到audio tag播放
-                            const container = document.getElementById("Cocos3dGameContainer");
-                            const audio: HTMLAudioElement = document.createElement('audio');
+                        // if (GameConfigModel.isRecordMode) { //輸出到audio tag播放
+                        //     const container = document.getElementById("Cocos3dGameContainer");
+                        //     const audio: HTMLAudioElement = document.createElement('audio');
 
-                            audio.src = audioInfo.source.clip.nativeUrl;
-                            audio.play();
-                            container.append(audio);
+                        //     audio.src = audioInfo.source.clip.nativeUrl;
+                        //     audio.play();
+                        //     container.append(audio);
 
-                            this.audioEffectMap.set(url, audio);
-                            // audio.addEventListener('ended', () => {
-                            //     audio && audio.remove();
-                            // });
-                        } else {
-                            this.play(audioInfo, false, resolve);
-                        }
+                        //     this.audioEffectMap.set(url, audio);
+                        //     // audio.addEventListener('ended', () => {
+                        //     //     audio && audio.remove();
+                        //     // });
+                        // } else {
+                        //     this.play(audioInfo, false, resolve);
+                        // }
+
+                        this.play(audioInfo, false, resolve);
                     }
                 } else {
                     resolve(false);
