@@ -115,8 +115,15 @@ export class HorseGame extends EventComponent {
         this.setCameraTarget(5);
     }
 
+    private sendWindowOnError() {
+        if (typeof (<any>window.parent)?.onError == 'function') {
+            (<any>window.parent)?.onError();
+        }
+    }
+
     private startGame() {
         if (!this.data.getData()) {
+            this.sendWindowOnError();
             console.warn('沒有資料', this.data.getData());
             return;
         }
@@ -129,16 +136,14 @@ export class HorseGame extends EventComponent {
             const { horseNumber } = firstFrame.horses[i];
 
             if (!this.horseMap.get(horseNumber)) {
-                if (typeof (<any>window.parent)?.onError == 'function') {
-                    (<any>window.parent)?.onError();
-                }
+                this.sendWindowOnError();
                 console.error('this.horseMap.get(horseNumber) 有問題', this.horseMap, horseNumber);
                 return;
             }
         }
 
         if (typeof (<any>window)?.startRecording == 'function' && GameConfigModel.recordMode == ERecordMode.Default) {
-            this.removeAudioElements();
+            // this.removeAudioElements();
             (<any>window)?.startRecording();
             console.warn(`開始錄製 (recordMode = ${'0'})`);
         }
@@ -340,9 +345,9 @@ export class HorseGame extends EventComponent {
 
             this.scheduleOnce(() => {
                 if (typeof (<any>window)?.startRecording == 'function' && GameConfigModel.recordMode == ERecordMode.Sprinting) {
-                    this.removeAudioElements();
-                    dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.RUNNING } });
-                    dispatch(HorseGameEvent.PLAY_BGM, { data: EMusic.BGM });
+                    // this.removeAudioElements();
+                    // dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.RUNNING } });
+                    // dispatch(HorseGameEvent.PLAY_BGM, { data: EMusic.BGM });
                     (<any>window)?.startRecording();
                     console.warn(`開始錄製 (recordMode = ${'1'})`);
                 }
@@ -502,6 +507,7 @@ export class HorseGame extends EventComponent {
         const data = (<any>window)?.animeData || (<any>window.parent)?.animeData;
 
         if (!data) {
+            this.sendWindowOnError();
             console.warn('restartGame data有問題', data);
             return;
         }
@@ -527,13 +533,13 @@ export class HorseGame extends EventComponent {
         }
     }
 
-    private removeAudioElements() {
-        const audioElements = document.getElementById("Cocos3dGameContainer").getElementsByTagName('audio');
+    // private removeAudioElements() {
+    //     const audioElements = document.getElementById("Cocos3dGameContainer").getElementsByTagName('audio');
 
-        for (let i = audioElements.length - 1; i >= 0; i--) {
-            audioElements[i]?.remove();
-        }
-    }
+    //     for (let i = audioElements.length - 1; i >= 0; i--) {
+    //         audioElements[i]?.remove();
+    //     }
+    // }
 
     // ---------- 外部部呼叫 ------------------------------------------------------
     /** 重置 */
