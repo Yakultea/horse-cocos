@@ -37,7 +37,7 @@ stages:
       else
         VERSION=$CI_COMMIT_TAG
       fi
-      ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST $VERSION <<-EOF
+      ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST VERSION <<-EOF
         cd /Users/riversense/deploy/${CI_PROJECT_NAME}/${GAMES_FRAMEWORKER}
         source ~/.nvm/nvm.sh
         git reset --hard
