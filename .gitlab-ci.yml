@@ -31,19 +31,23 @@ stages:
     - ssh -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST -C "whoami"
     - echo '============== CI 開始 =============='
     - |
-      if [ -z ${CI_COMMIT_TAG+x} ]
+      if [ -z ${CI_COMMIT_TAG+x} ];
       then
         VERSION=$CI_COMMIT_SHA
+        CI_COMMIT_TAG=$CI_COMMIT_SHA
       else
         VERSION=$CI_COMMIT_TAG
       fi
-      ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST $VERSION <<-EOF
+      echo "CI_COMMIT_TAG: $CI_COMMIT_TAG"
+      echo "CI_COMMIT_BRANCH: $CI_COMMIT_BRANCH"
+      echo "VERSION: $VERSION"
+      ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST <<-EOF
         cd /Users/riversense/deploy/${CI_PROJECT_NAME}/${GAMES_FRAMEWORKER}
         source ~/.nvm/nvm.sh
         git reset --hard
         git fetch -a
         git checkout .
-        git checkout $VERSION
+        git checkout $CI_COMMIT_TAG
         echo '============== 關聯 ${CI_PROJECT_NAME} 資源 =============='
         cd ./tools
         npm i
