@@ -136,7 +136,7 @@ TAG_打包:
         scp /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip aws-rgs-qat-socket1-proxy:$WORK_DIR/${CI_COMMIT_SHA}.zip
       EOF
   rules:
-    - if: '$CI_COMMIT_TAG != null'
+    - if: "$CI_COMMIT_BRANCH =~ /(release)/"
       when: manual
 
 QAT_部署:
@@ -145,7 +145,7 @@ QAT_部署:
     CD_SSH_HOST: $HOST_qat_aws_rgs_socket1
     CD_SSH_KEY: $KEY_prod_aws_rgs_socket
   rules:
-    - if: '$CI_COMMIT_TAG != null'
+    - if: "$CI_COMMIT_BRANCH =~ /(release)/"
   tags:
     - new-rgs
   dependencies:
