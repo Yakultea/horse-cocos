@@ -47,6 +47,7 @@ stages:
         git reset --hard
         git fetch -a
         git checkout .
+        echo "CI_COMMIT_TAG: $CI_COMMIT_TAG"
         git checkout $CI_COMMIT_TAG
         echo '============== 關聯 ${CI_PROJECT_NAME} 資源 =============='
         cd ./tools
