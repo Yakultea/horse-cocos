@@ -57,13 +57,13 @@ export class HorseGame extends EventComponent {
     private stopRotateDelay: number = 3;
     private startRunDelay: number = 5;
     private enterCornerDelay: number = 13;
-    private startSprintingDelay: number = 20;
+    private startSprintingDelay: number = 18;
     private rotateDirType: number = 0; //0是左到右 1是右到左
     private tweenTag: number = 1234;
     private needSlow: boolean = false;
     private particleCounts: number = 7;
     private stopUpdateTime: number = 1200;
-    private sprintingZoomInTime: number = 6;
+    private sprintingZoomInTime: number = 4.5;
     private resetNeedSlowTimeOut: any;
     private oldTick = director.tick;
 
@@ -143,7 +143,6 @@ export class HorseGame extends EventComponent {
         }
 
         if (typeof (<any>window)?.startRecording == 'function' && GameConfigModel.recordMode == ERecordMode.Default) {
-            // this.removeAudioElements();
             (<any>window)?.startRecording();
             console.warn(`開始錄製 (recordMode = ${'0'})`);
         }
@@ -332,8 +331,8 @@ export class HorseGame extends EventComponent {
             }
 
             const index = rankCompletedFrame.horses.findIndex(data => data.horseNumber === finalFirstHorseNumber);
-            const distance = 180 - 7.5 * index;
-            const height = 85 + 0.2 * index;
+            const distance = 190 - 7.5 * index;
+            const height = 85 + 0.15 * index;
 
             this.camera.positionOffset = v3(-40, height, distance + 90);
             tween(this.camera.positionOffset)
@@ -345,9 +344,6 @@ export class HorseGame extends EventComponent {
 
             this.scheduleOnce(() => {
                 if (typeof (<any>window)?.startRecording == 'function' && GameConfigModel.recordMode == ERecordMode.Sprinting) {
-                    // this.removeAudioElements();
-                    // dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.RUNNING } });
-                    // dispatch(HorseGameEvent.PLAY_BGM, { data: EMusic.BGM });
                     (<any>window)?.startRecording();
                     console.warn(`開始錄製 (recordMode = ${'1'})`);
                 }
@@ -532,14 +528,6 @@ export class HorseGame extends EventComponent {
             this.disableNodes();
         }
     }
-
-    // private removeAudioElements() {
-    //     const audioElements = document.getElementById("Cocos3dGameContainer").getElementsByTagName('audio');
-
-    //     for (let i = audioElements.length - 1; i >= 0; i--) {
-    //         audioElements[i]?.remove();
-    //     }
-    // }
 
     // ---------- 外部部呼叫 ------------------------------------------------------
     /** 重置 */
