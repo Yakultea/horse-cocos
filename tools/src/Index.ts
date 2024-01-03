@@ -22,7 +22,7 @@ async function main() {
 
     console.log(`输入参数为 : `,argv);
     if (argv.length <= 0) {
-        await Helper.instance.gitBundles();
+        // await Helper.instance.gitBundles();
         await Helper.instance.symlinkSyncCode();
         await Helper.instance.symlinkSyncExtensions();
         await Helper.instance.installProtobufJS();

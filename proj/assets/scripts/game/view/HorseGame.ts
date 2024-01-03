@@ -370,7 +370,7 @@ export class HorseGame extends EventComponent {
         const { frameData } = this.data.getData();
         const { framePerTime } = GameConfigModel;
         const currentFrame = frameData[this.frameDataIndex];
-        const stopRecordingDelay = 2;
+        const stopRecordingDelay = 4;
 
         if (this.frameDataIndex == rankCompletedIndex + 8) {
             this.unschedule(this.playHorseRun);
