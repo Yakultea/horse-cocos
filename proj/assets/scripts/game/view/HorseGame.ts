@@ -115,28 +115,30 @@ export class HorseGame extends EventComponent {
         this.setCameraTarget(5);
     }
 
-    private sendWindowOnError() {
+    private sendWindowOnError(data: any) {
         if (typeof (<any>window.parent)?.onError == 'function') {
-            (<any>window.parent)?.onError();
+            (<any>window.parent)?.onError(data);
         }
     }
 
     private startGame() {
-        if (!this.data.getData()) {
-            this.sendWindowOnError();
-            console.warn('沒有資料', this.data.getData());
+        const horseAnimeData = this.data.getData();
+
+        if (!horseAnimeData) {
+            this.sendWindowOnError(horseAnimeData);
+            console.error('沒有資料', horseAnimeData);
             return;
         }
 
         const { framePerTime, renderMode } = GameConfigModel;
-        const { frameData } = this.data.getData();
+        const { frameData } = horseAnimeData;
         const firstFrame = frameData[0];
 
         for (let i = 0; i < firstFrame.horses.length; i++) {
             const { horseNumber } = firstFrame.horses[i];
 
             if (!this.horseMap.get(horseNumber)) {
-                this.sendWindowOnError();
+                this.sendWindowOnError(horseAnimeData);
                 console.error('this.horseMap.get(horseNumber) 有問題', this.horseMap, horseNumber);
                 return;
             }
@@ -500,15 +502,15 @@ export class HorseGame extends EventComponent {
     }
 
     private restartGame() { //給window.restart()使用的
-        const data = (<any>window)?.animeData || (<any>window.parent)?.animeData;
+        const horseAnimeData = (<any>window)?.animeData || (<any>window.parent)?.animeData;
 
-        if (!data) {
-            this.sendWindowOnError();
-            console.warn('restartGame data有問題', data);
+        if (!horseAnimeData) {
+            this.sendWindowOnError(horseAnimeData);
+            console.error('restartGame data有問題', horseAnimeData);
             return;
         }
 
-        this.data.setData(data);
+        this.data.setData(horseAnimeData);
     }
 
     private disableNodes() {
