@@ -71,9 +71,9 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
             isLoadResourcesCompleted: false,
             isSocketInited: false,
             isRecordMode: false,
-            framePerTime: 0.06,
+            framePerTime: 0.05,
             frameTimeRatio: 1,
-            version: 'v.1.0.29',
+            version: 'v.1.0.31',
             recordMode: ERecordMode.Default,
             renderMode: ERenderMode.Default,
         };

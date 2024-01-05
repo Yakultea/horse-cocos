@@ -62,8 +62,8 @@ export class HorseGame extends EventComponent {
     private tweenTag: number = 1234;
     private needSlow: boolean = false;
     private particleCounts: number = 7;
-    private stopUpdateTime: number = 1200;
-    private sprintingZoomInTime: number = 4.5;
+    private stopUpdateTime: number = 1000;
+    private sprintingZoomInTime: number = 4;
     private resetNeedSlowTimeOut: any;
     private oldTick = director.tick;
 
@@ -288,11 +288,11 @@ export class HorseGame extends EventComponent {
             if (movePathType == 0 || movePathType == 3) {
                 this.camera.positionOffset = v3(50, 30, 120);
                 tween(this.camera.positionOffset)
-                    .to(4, {
+                    .to(3, {
                         x: -70,
                         z: 80
                     })
-                    .to(4, {
+                    .to(3, {
                         x: -100,
                         z: -30
                     })
@@ -301,11 +301,11 @@ export class HorseGame extends EventComponent {
             } else {
                 this.camera.positionOffset = v3(50, 30, -120);
                 tween(this.camera.positionOffset)
-                    .to(3, {
+                    .to(2.5, {
                         x: 90,
                         z: 100
                     })
-                    .to(3, {
+                    .to(2.5, {
                         x: -90,
                     })
                     .to(2, {
