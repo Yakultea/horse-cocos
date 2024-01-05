@@ -28,6 +28,7 @@ export default class HorseGameData extends GameDataBase<IHorseGameData> {
     public orientation: EOrientationType = null;
 
     public rankCompletedIndex: number = 0; //每隻馬排名都出現的frame index
+    public firstCompletedIndex: number = 0; //第一名的馬排名確定的frame index
 
     // ---------- 框架呼叫 ------------------------------------------------------
     /** 初始化 Enryt自動執行 */
@@ -63,6 +64,13 @@ export default class HorseGameData extends GameDataBase<IHorseGameData> {
         for (let i = 0; i < res.frameData.length; i++) {
             if (res.frameData[i].goalNumbers.length == 10) {
                 this.rankCompletedIndex = i;
+                break;
+            }
+        }
+
+        for (let i = 0; i < res.frameData.length; i++) {
+            if (res.frameData[i].goalNumbers.length >= 1) {
+                this.firstCompletedIndex = i;
                 break;
             }
         }
