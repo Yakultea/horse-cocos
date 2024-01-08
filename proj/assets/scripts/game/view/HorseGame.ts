@@ -342,10 +342,6 @@ export class HorseGame extends EventComponent {
                     x: 0,
                     z: distance
                 })
-                // .call(() => {
-                //     console.error('PPPPPPPPPP', firstCompletedFrame.horses, index)
-                //     console.error('PPPPPPPPPP', this.camera.node.position)
-                // })
                 .start();
 
             this.scheduleOnce(() => {
