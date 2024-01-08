@@ -56,14 +56,14 @@ export class HorseGame extends EventComponent {
     private frameDataIndex: number = 0;
     private stopRotateDelay: number = 3;
     private startRunDelay: number = 5;
-    private enterCornerDelay: number = 13;
-    private startSprintingDelay: number = 18;
+    private enterCornerDelay: number = 12;
+    private startSprintingDelay: number = 17;
     private rotateDirType: number = 0; //0是左到右 1是右到左
     private tweenTag: number = 1234;
     private needSlow: boolean = false;
     private particleCounts: number = 7;
-    private stopUpdateTime: number = 1000;
-    private sprintingZoomInTime: number = 4;
+    private stopUpdateTime: number = 800;
+    private sprintingZoomInTime: number = 3;
     private resetNeedSlowTimeOut: any;
     private oldTick = director.tick;
 
@@ -317,13 +317,13 @@ export class HorseGame extends EventComponent {
         }, this.enterCornerDelay);
 
         this.scheduleOnce(() => {
-            const { rankCompletedIndex } = this.data;
+            const { firstCompletedIndex } = this.data;
             const totalFrames = this.data.getData().frameData.length;
             const { goalNumbers } = this.data.getData().frameData[totalFrames - 1];
             const finalFirstHorseNumber = Number(goalNumbers[0]);
-            let rankCompletedFrame = this.data.getData().frameData[rankCompletedIndex];
+            let firstCompletedFrame = this.data.getData().frameData[firstCompletedIndex];
 
-            rankCompletedFrame.horses.sort((a, b) => { return a.y - b.y });
+            firstCompletedFrame.horses.sort((a, b) => { return a.y - b.y });
 
             if (goalNumbers?.length) {
                 const horseCube = this.horseMap.get(finalFirstHorseNumber).script.getHorseCube();
@@ -332,16 +332,20 @@ export class HorseGame extends EventComponent {
                 this.camera.lookAt = horseCube;
             }
 
-            const index = rankCompletedFrame.horses.findIndex(data => data.horseNumber === finalFirstHorseNumber);
-            const distance = 190 - 7.5 * index;
-            const height = 85 + 0.15 * index;
+            const index = firstCompletedFrame.horses.findIndex(data => data.horseNumber === finalFirstHorseNumber);
+            const distance = 190 - 8.5 * index;
+            const height = 85 + 0.2 * index;
 
-            this.camera.positionOffset = v3(-40, height, distance + 90);
+            this.camera.positionOffset = v3(-40, height, distance + 100);
             tween(this.camera.positionOffset)
                 .to(this.sprintingZoomInTime, {
                     x: 0,
                     z: distance
                 })
+                // .call(() => {
+                //     console.error('PPPPPPPPPP', firstCompletedFrame.horses, index)
+                //     console.error('PPPPPPPPPP', this.camera.node.position)
+                // })
                 .start();
 
             this.scheduleOnce(() => {
