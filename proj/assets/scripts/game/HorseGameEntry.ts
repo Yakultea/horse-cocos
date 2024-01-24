@@ -83,13 +83,13 @@ class HorseGameEntry extends Entry {
 
     /** 初始化遊戲資料 */
     protected initData(): void {
-        this.initUrlConfig();
-        GameConfigModel.isSocketInited = true;
+        // GameConfigModel.isSocketInited = true; //測試用
         if (BUILD) { //打包後的不連socket
             GameConfigModel.isSocketInited = true;
             console.warn('直接不連socket');
         } else {
             // 初始化 wrapper socket
+            this.initUrlConfig();
             App.serviceManager.get(WrapperService, true);
             this.serviceInit();
         }
@@ -157,6 +157,7 @@ class HorseGameEntry extends Entry {
         } else {
             localStorage.clear();
             SocketModel.currentToken = urlToken;
+            console.warn('initUrlConfig')
         }
     }
 

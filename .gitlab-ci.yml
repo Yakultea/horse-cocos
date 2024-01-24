@@ -167,7 +167,7 @@ Prod_打包:
     CI_SSH_HOST: $HOST_tc_riversense
     CI_SSH_KEY: $KEY_tc_riversense
     CD_SSH_USER: ubuntu
-    CD_SSH_HOST: $HOST_aws_rgs_socket
+    CD_SSH_HOST: $HOST_prod_aws_atg_socket1
     WORK_DIR: /home/${CD_SSH_USER}/tmp/builds/${CI_PROJECT_NAME}
     DEPLOY_SSH_PRIVATE_KEY: $KEY_prod_aws_rgs_socket
     COCOS_BUILD_PLATFORM: 'web-mobile'
@@ -177,7 +177,8 @@ Prod_打包:
     - |
       ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST <<-EOF
         echo '============== 傳至 ${CI_PROJECT_NAME} 目標機 =============='
-        scp /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip ${CD_SSH_USER}@${CD_SSH_HOST}:${WORK_DIR}/${CI_COMMIT_SHA}.zip
+        export AWS_PROFILE=aws-rgs-qat
+        scp /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip aws-rgs-prod-socket1-proxy:$WORK_DIR/${CI_COMMIT_SHA}.zip
       EOF
   rules:
     - if: '$CI_COMMIT_TAG != null'
@@ -186,10 +187,12 @@ Prod_打包:
 Prod_部署:
   extends: .cd_temp
   variables:
-    CD_SSH_HOST: $HOST_aws_rgs_socket
+    CD_SSH_HOST: $HOST_prod_aws_atg_socket1
     CD_SSH_KEY: $KEY_prod_aws_rgs_socket
   rules:
     - if: '$CI_COMMIT_TAG != null'
+  tags:
+    - new-rgs
   dependencies:
     - Prod_打包
   needs: ["Prod_打包"]
