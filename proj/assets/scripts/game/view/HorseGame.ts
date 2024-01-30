@@ -223,8 +223,11 @@ export class HorseGame extends EventComponent {
     }
 
     private setCameraMoving() {
-        const { periodId } = this.data.getData();
-        const movePathType = Number(periodId) % 4; //4種
+        // const { periodId } = this.data.getData();
+        // const movePathType = Number(periodId) % 4; //4種
+        const { id } = this.data.getData();
+        const lastFiveChars = id.substring(id.length - 5);
+        const movePathType = Number(lastFiveChars) % 4; //4種
 
         this.camera.enabled = true;
         this.camera.cameraType = ThirdPersonCameraType.RotationAround;
