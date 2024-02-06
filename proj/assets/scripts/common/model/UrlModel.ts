@@ -81,7 +81,8 @@ class UrlModel extends BaseModel<IUrlModel> {
             this.data.socket_url = `${protocol}//${socketUrl}`;
         } else {
             // 開發用 直接寫死
-            this.data.socket_url = `https://socket-lottery.riversense.tw`;
+            // this.data.socket_url = `https://socket-lottery.riversense.tw`;
+            this.data.socket_url = `https://socket-lottery.atg-qat.com`;
         }
 
         Log.d("url data ==> ", this.data);

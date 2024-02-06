@@ -105,7 +105,7 @@ export class HorseGame extends EventComponent {
     private init() {
         for (let i = 1; i <= this.horses.children.length; i++) {
             const config: IHorseConfig = {
-                script: this.horses.children[i - 1].getComponent(Horse),
+                script: this.horses.children[i - 1].children[0].getComponent(Horse),
                 horseData: null,
             }
 
@@ -173,7 +173,7 @@ export class HorseGame extends EventComponent {
     private setHorses() {
         const { frameData, rider, skin } = this.data.getData();
         const firstFrame = frameData[0];
-        const horsePosx = 650;
+        const horsePosx = 670; //原本是650 但馬的錨點設定在馬頭 所以變成670
 
         for (let i = 0; i < firstFrame.horses.length; i++) {
             const { horseNumber, y } = firstFrame.horses[i];
@@ -187,7 +187,7 @@ export class HorseGame extends EventComponent {
             }
 
             const horseScript = this.horseMap.get(horseNumber).script;
-            const horse = horseScript.node;
+            const horse = horseScript.node.parent;
             const horseData: IHorse = {
                 horseNumber: horseNumber,
                 saddle: horseNumber,
@@ -223,8 +223,6 @@ export class HorseGame extends EventComponent {
     }
 
     private setCameraMoving() {
-        // const { periodId } = this.data.getData();
-        // const movePathType = Number(periodId) % 4; //4種
         const { id } = this.data.getData();
         const lastFiveChars = id.substring(id.length - 5);
         const movePathType = parseInt(lastFiveChars, 16) % 4; //4種
@@ -402,7 +400,7 @@ export class HorseGame extends EventComponent {
         for (let i = 0; i < currentFrame.horses.length; i++) {
             const { horseNumber, x, y, rotation } = currentFrame.horses[i];
             const { script, horseData } = this.horseMap.get(horseNumber);
-            const horse = script.node;
+            const horse = script.node.parent;
             const newConfig: IHorseConfig = {
                 script: script,
                 horseData: horseData,
@@ -435,7 +433,7 @@ export class HorseGame extends EventComponent {
     }
 
     private setCameraTarget(horseNumber: number) {
-        const horse = this.horseMap.get(horseNumber).script.node;
+        const horse = this.horseMap.get(horseNumber).script.node.parent;
 
         this.camera.target = horse;
         this.camera.lookAt = horse;
@@ -473,7 +471,7 @@ export class HorseGame extends EventComponent {
 
         for (let i = 0; i < this.particleCounts; i++) {
             this.scheduleOnce(() => {
-                const horsePos = this.horseMap.get(randomHorseNumbers[i]).script.node.position;
+                const horsePos = this.horseMap.get(randomHorseNumbers[i]).script.node.parent.position;
                 const particles = this.particleMap.get(i);
 
                 particles.forEach((particle) => {
