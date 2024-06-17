@@ -25,8 +25,8 @@ export default class HorseGameView extends GameView {
     @inject("content/result", Node)
     private result: Node = null;
 
-    @inject("content/result/topInfo/periodId", Label)
-    private resultPeriodId: Label = null;
+    // @inject("content/result/topInfo/periodId", Label)
+    // private resultPeriodId: Label = null;
 
     @inject("content/result/rankContent", Node)
     private rankContent: Node = null;
@@ -37,8 +37,8 @@ export default class HorseGameView extends GameView {
     @inject("content/musicToggle", Toggle)
     private musicToggle: Toggle = null;
 
-    @inject("content/periodId", Label)
-    private periodId: Label = null;
+    // @inject("content/periodId", Label)
+    // private periodId: Label = null;
 
     @inject("content/version", Label)
     private version: Label = null;
@@ -90,14 +90,14 @@ export default class HorseGameView extends GameView {
     }
 
     private setResult(data: IHorse[]) {
-        const { periodId } = this.data.getData();
+        // const { periodId } = this.data.getData();
 
         for (let i = 0; i < this.rankContent.children.length; i++) {
             this.rankContent.children[i].getComponent(RankItem).setData(data[i]);
         }
 
-        this.resultPeriodId.string = `${periodId}  期`;
-        this.periodId.string = periodId;
+        // this.resultPeriodId.string = `${periodId}  期`;
+        // this.periodId.string = periodId;
     }
 
     private initRankBar() {
@@ -179,7 +179,7 @@ export default class HorseGameView extends GameView {
 
         this.on(HorseGameEvent.SET_RESULT_ACTIVE, (event: HorseGameEvent) => {
             this.result.active = event.data;
-            this.periodId.node.active = !event.data;
+            // this.periodId.node.active = !event.data;
         });
 
         this.on(HorseGameEvent.INIT_RANK_BAR, () => {
