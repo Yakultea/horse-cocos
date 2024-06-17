@@ -4,6 +4,7 @@
  */
 
 import { DEBUG } from "cc/env";
+import { Config } from "../../../common/config/Config";
 
 interface IEvent {
     type: string, // 事件型別
@@ -86,7 +87,7 @@ export class Dispatcher implements ISingleton {
         if (arguments.length < 1) {
             return;
         }
-        if (DEBUG) {
+        if (DEBUG && Config.NEED_DISPATCH_LOG) {
             // DEBUG使用 排除特定包含log
             const exclude: string[] = ['WrapperEvent:NOTIFY_JACKPOT_RESPONSE'];// ['G1001', 'Slot']
             if (!exclude.some(str => arguments[0].includes(str))) {
