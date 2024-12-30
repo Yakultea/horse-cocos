@@ -50,9 +50,6 @@ export namespace Config {
 
     /** token 保留時間 (天) */
     export const TOKEN_EXPIRED_TIME = 3;
-
-    /**@description 是否需要顯示dispatch的log */
-    export const NEED_DISPATCH_LOG = false;
 }
 
 /**

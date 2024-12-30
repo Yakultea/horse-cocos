@@ -78,7 +78,7 @@ class UrlModel extends BaseModel<IUrlModel> {
 
         if (socketUrl) {
             let protocol = UrlUtils.getUrlProtocol();
-            this.data.socket_url = `https://${socketUrl}`;
+            this.data.socket_url = `${protocol}//${socketUrl}`;
         } else {
             // 開發用 直接寫死
             // this.data.socket_url = `https://socket-lottery.riversense.tw`;
