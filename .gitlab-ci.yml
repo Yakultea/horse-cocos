@@ -12,11 +12,6 @@ stages:
     CI_SSH_PORT: 3022
     CI_SSH_HOST: $HOST_tc_riversense
     CI_SSH_KEY: $KEY_tc_riversense
-    CD_SSH_USER: ubuntu
-    CD_SSH_PORT: 22
-    CD_SSH_HOST: target-server
-    WORK_DIR: /home/${CD_SSH_USER}/tmp/builds/${CI_PROJECT_NAME}
-    GAMES_FRAMEWORKER: ${CI_PROJECT_NAME}
     COCOS_CREATOR_VERSION: '3.7.2'
     COCOS_CREATOR: '/Applications/Cocos/Creator/${COCOS_CREATOR_VERSION}/CocosCreator.app/Contents/MacOS/CocosCreator'
     COCOS_BUILD_PLATFORM: 'web-mobile'
@@ -28,7 +23,6 @@ stages:
     - echo "$CI_SSH_KEY" > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
   script:
-    - ssh -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST -C "whoami"
     - echo '============== CI 開始 =============='
     - |
       if [ -z ${CI_COMMIT_TAG+x} ];
@@ -38,11 +32,8 @@ stages:
       else
         VERSION=$CI_COMMIT_TAG
       fi
-      echo "CI_COMMIT_TAG: $CI_COMMIT_TAG"
-      echo "CI_COMMIT_BRANCH: $CI_COMMIT_BRANCH"
-      echo "VERSION: $VERSION"
       ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST <<-EOF
-        cd /Users/riversense/deploy/${CI_PROJECT_NAME}/${GAMES_FRAMEWORKER}
+        cd /Users/riversense/deploy/${CI_PROJECT_NAME}/${CI_PROJECT_NAME}
         source ~/.nvm/nvm.sh
         git reset --hard
         git fetch -a
@@ -59,20 +50,15 @@ stages:
         ${COCOS_CREATOR} --project ./proj --build configPath="./buildConfig_${COCOS_BUILD_PLATFORM}.json"
         cd proj/build/${COCOS_BUILD_PLATFORM}
         zip -r ${CI_COMMIT_SHA} ./*
-        cp ${CI_COMMIT_SHA}.zip /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip
-        cd ..
-        rm -rf ${COCOS_BUILD_PLATFORM}
       EOF
-    - echo '============== CI 完成 =============='
-  after_script:
-    - |
-      ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST <<-EOF
-        echo '============== 傳至 ${CI_PROJECT_NAME} 目標機 =============='
-        scp -P ${CD_SSH_PORT} /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip $CD_SSH_USER@$CD_SSH_HOST:$WORK_DIR/${CI_COMMIT_SHA}.zip
-      EOF
+    - scp -P $CI_SSH_PORT -r $CI_SSH_USER@$CI_SSH_HOST:/Users/${CI_SSH_USER}/deploy/${CI_PROJECT_NAME}/${CI_PROJECT_NAME}/proj/build/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip ./${CI_COMMIT_SHA}.zip
+    - unzip ${CI_COMMIT_SHA}.zip -d ./${CI_COMMIT_SHA}
   rules:
     - if: "$CI_COMMIT_SHA != null"
       when: never
+  artifacts:
+    paths:
+      - ${CI_COMMIT_SHA}
 
 .cd_temp:
   stage: cd
@@ -82,7 +68,6 @@ stages:
     CD_SSH_PORT: 22
     CD_SSH_HOST: target-server
     CD_SSH_KEY: private-key-for-target-server
-    COCOS_BUILD_PLATFORM: 'web-mobile'
   before_script:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
@@ -92,14 +77,9 @@ stages:
     - chmod 600 ~/.ssh/id_rsa
   script:
     - echo '============== CD 開始 =============='
-    - |
-      ssh -o ServerAliveInterval=600 -p $CD_SSH_PORT -l $CD_SSH_USER $CD_SSH_HOST <<-EOF
-        sudo rm -rf ~/games/horse-racing-movie
-        cd ~/games
-        mkdir horse-racing-movie
-        cd horse-racing-movie
-        unzip ~/tmp/builds/${CI_PROJECT_NAME}/${CI_COMMIT_SHA}.zip
-      EOF
+    - ssh -p $CD_SSH_PORT -l $CD_SSH_USER $CD_SSH_HOST "sudo rm -rf ~/games/horse-racing-movie"
+    - scp -r -P $CD_SSH_PORT ${CI_COMMIT_SHA} $CD_SSH_USER@$CD_SSH_HOST:~/games/horse-racing-movie
+    - ssh -p $CD_SSH_PORT -l $CD_SSH_USER $CD_SSH_HOST 'sudo chown -R $CD_SSH_USER:$CD_SSH_USER ~/games/horse-racing-movie/*'
     - echo '============== CD 完成 =============='
   rules:
     - if: "$CI_COMMIT_SHA != null"
@@ -108,10 +88,6 @@ stages:
 #####  develop Slot-game-Test2  #####
 DEV_打包:
   extends: .ci_temp
-  variables:
-    CD_SSH_HOST: $HOST_slot_game_Test2_Ext
-    CD_SSH_PORT: 8022
-    COCOS_BUILD_PLATFORM: 'web-mobile'
   rules:
     - if: "$CI_COMMIT_BRANCH =~ /(feature|develop)/"
       when: manual
@@ -127,20 +103,11 @@ DEV_部署:
     - DEV_打包
   needs: ["DEV_打包"]
 
-##### 以下為 AWS QAT RGS #####
+##### 以下為 GCP QAT #####
 QAT_打包:
   extends: .ci_temp
-  variables:
-    CD_SSH_HOST: $HOST_qat_aws_rgs_socket1
-    DEPLOY_SSH_PRIVATE_KEY: $KEY_prod_aws_rgs_socket
-    COCOS_BUILD_PLATFORM: 'web-mobile'
-  after_script:
-    - |
-      ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST <<-EOF
-        echo '============== 傳至 ${CI_PROJECT_NAME} 目標機 =============='
-        export AWS_PROFILE=aws-rgs-qat
-        scp /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip aws-rgs-qat-socket1-proxy:$WORK_DIR/${CI_COMMIT_SHA}.zip
-      EOF
+  tags:
+    - gcp
   rules:
     - if: "$CI_COMMIT_BRANCH =~ /(release|hotfix)/"
       when: manual
@@ -148,51 +115,34 @@ QAT_打包:
 QAT_部署:
   extends: .cd_temp
   variables:
-    CD_SSH_HOST: $HOST_qat_aws_rgs_socket1
-    CD_SSH_KEY: $KEY_prod_aws_rgs_socket
+    CD_SSH_HOST: $HOST_qat_gcp_atg_socket1
+    CD_SSH_KEY: $KEY_prod_gcp_atg_ec2
   rules:
     - if: "$CI_COMMIT_BRANCH =~ /(release|hotfix)/"
   tags:
-    - new-rgs
+    - gcp
   dependencies:
     - QAT_打包
   needs: ["QAT_打包"]
 
-##### 以下為 AWS PROD RGS #####
-Prod_打包:
+##### 以下為 AWS PROD #####
+PROD_打包:
   extends: .ci_temp
-  variables:
-    CI_SSH_USER: riversense
-    CI_SSH_PORT: 3022
-    CI_SSH_HOST: $HOST_tc_riversense
-    CI_SSH_KEY: $KEY_tc_riversense
-    CD_SSH_USER: ubuntu
-    CD_SSH_HOST: $HOST_prod_aws_atg_socket1
-    WORK_DIR: /home/${CD_SSH_USER}/tmp/builds/${CI_PROJECT_NAME}
-    DEPLOY_SSH_PRIVATE_KEY: $KEY_prod_aws_rgs_socket
-    COCOS_BUILD_PLATFORM: 'web-mobile'
   tags:
     - new-rgs
-  after_script:
-    - |
-      ssh -o ServerAliveInterval=600 -p $CI_SSH_PORT -l $CI_SSH_USER $CI_SSH_HOST <<-EOF
-        echo '============== 傳至 ${CI_PROJECT_NAME} 目標機 =============='
-        export AWS_PROFILE=aws-rgs-qat
-        scp /Users/riversense/deploy/${CI_PROJECT_NAME}/tmp/${COCOS_BUILD_PLATFORM}/${CI_COMMIT_SHA}.zip aws-rgs-prod-socket1-proxy:$WORK_DIR/${CI_COMMIT_SHA}.zip
-      EOF
   rules:
     - if: '$CI_COMMIT_TAG != null'
       when: manual
 
-Prod_部署:
+PROD_部署:
   extends: .cd_temp
   variables:
     CD_SSH_HOST: $HOST_prod_aws_atg_socket1
     CD_SSH_KEY: $KEY_prod_aws_rgs_socket
-  rules:
-    - if: '$CI_COMMIT_TAG != null'
   tags:
     - new-rgs
+  rules:
+    - if: '$CI_COMMIT_TAG != null'
   dependencies:
-    - Prod_打包
-  needs: ["Prod_打包"]
+    - PROD_打包
+  needs: ["PROD_打包"]
