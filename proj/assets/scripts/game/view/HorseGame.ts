@@ -167,7 +167,6 @@ export class HorseGame extends EventComponent {
         dispatch(HorseGameEvent.INIT_RANK_BAR);
         dispatch(HorseGameEvent.STOP_BGM);
         dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.RUNNING });
-        // dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.CHEER } });
         dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.BRASS } });
         dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.NOISE } });
     }
@@ -397,15 +396,9 @@ export class HorseGame extends EventComponent {
             this.unschedule(this.setParticle);
             dispatch(HorseGameEvent.SET_RESULT_ACTIVE, { data: true });
             dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.HORSE } });
+            dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.ACHIEVE } });
+            dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.CHEER } });
             this.showResultCamera();
-
-            this.scheduleOnce(() => {
-                dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.ACHIEVE } });
-            }, 0.5);
-
-            this.scheduleOnce(() => {
-                dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.CHEER } });
-            }, 1);
 
             if (typeof (<any>window)?.stopRecording == 'function') {
                 this.scheduleOnce(() => {
@@ -413,6 +406,15 @@ export class HorseGame extends EventComponent {
                     console.warn('結束錄製');
                 }, stopRecordingDelay);
             }
+
+            this.scheduleOnce(() => {
+                dispatch(HorseGameEvent.STOP_BTM, { data: { url: EMusic.CHEER } });
+                console.warn('CHEER 結束');
+                if (typeof (<any>window.parent)?.gameComplete == 'function') {
+                    (<any>window.parent)?.gameComplete();
+                    console.warn('遊戲已經結束 遊戲模式 (window.parent.gameComplete())');
+                }
+            }, 7);
             return;
         }
 
