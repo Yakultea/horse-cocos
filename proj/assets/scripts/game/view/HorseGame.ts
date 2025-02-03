@@ -408,7 +408,7 @@ export class HorseGame extends EventComponent {
             }
 
             this.scheduleOnce(() => {
-                dispatch(HorseGameEvent.STOP_BTM, { data: { url: EMusic.CHEER } });
+                dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.CHEER });
                 console.warn('CHEER 結束');
                 if (typeof (<any>window.parent)?.gameComplete == 'function') {
                     (<any>window.parent)?.gameComplete();
