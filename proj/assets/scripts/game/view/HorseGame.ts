@@ -84,7 +84,7 @@ export class HorseGame extends EventComponent {
             }
 
             this.setNeedSlow();
-            dispatch(HorseGameEvent.STOP_BGM);
+            // dispatch(HorseGameEvent.STOP_BGM);
             dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.RUNNING });
             dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.NOISE });
             dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.GOAL } });
@@ -414,7 +414,7 @@ export class HorseGame extends EventComponent {
                     (<any>window.parent)?.gameComplete();
                     console.warn('遊戲已經結束 遊戲模式 (window.parent.gameComplete())');
                 }
-            }, 7);
+            }, 2);
             return;
         }
 
