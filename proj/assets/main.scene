@@ -294,7 +294,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 389.35361216730035,
+    "_orthoHeight": 462.6183844011142,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -12195,7 +12195,7 @@
     "_target": null,
     "_left": 0,
     "_right": 0,
-    "_top": 58.70722433460071,
+    "_top": 205.23676880222843,
     "_bottom": 0,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
@@ -25148,7 +25148,7 @@
     "asset": null,
     "fileId": "98fa17d8-70db-4b60-aae0-288a6e364e15",
     "instance": null,
-    "targetOverrides": [],
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": [
       {
         "__id__": 400
@@ -25334,14 +25334,8 @@
     "_enabled": true,
     "_useHDR": true,
     "_editableMaterial": null,
-    "_reflectionHDR": {
-      "__uuid__": "ada768e4-67f1-4f5c-a5f9-c10edea8ea8f@b47c0",
-      "__expectedType__": "cc.TextureCube"
-    },
-    "_reflectionLDR": {
-      "__uuid__": "ada768e4-67f1-4f5c-a5f9-c10edea8ea8f@b47c0",
-      "__expectedType__": "cc.TextureCube"
-    },
+    "_reflectionHDR": null,
+    "_reflectionLDR": null,
     "_rotationAngle": 0
   },
   {
