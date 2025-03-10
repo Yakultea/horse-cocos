@@ -84,8 +84,9 @@ export class HorseGame extends EventComponent {
             }
 
             this.setNeedSlow();
-            dispatch(HorseGameEvent.STOP_BGM);
+            // dispatch(HorseGameEvent.STOP_BGM);
             dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.RUNNING });
+            dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.NOISE });
             dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.GOAL } });
         }, this);
     }
@@ -166,8 +167,8 @@ export class HorseGame extends EventComponent {
         dispatch(HorseGameEvent.INIT_RANK_BAR);
         dispatch(HorseGameEvent.STOP_BGM);
         dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.RUNNING });
-        dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.CHEER } });
         dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.BRASS } });
+        dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.NOISE } });
     }
 
     private setHorses() {
@@ -248,7 +249,7 @@ export class HorseGame extends EventComponent {
         this.scheduleOnce(() => {
             this.camera.cameraType = ThirdPersonCameraType.Follow;
             tween(this.camera.positionOffset)
-                .to(2, {
+                .to(1.5, {
                     x: 180,
                     y: 50,
                     z: 0
@@ -351,7 +352,22 @@ export class HorseGame extends EventComponent {
                     console.warn(`開始錄製 (recordMode = ${'1'})`);
                 }
             }, 2);
+
+            this.setFinalHorseAniSpeed();
         }, this.startSprintingDelay);
+    }
+
+    private setFinalHorseAniSpeed() {
+        const { frameData } = this.data.getData();
+        const lastFrame = frameData[frameData.length - 1];
+
+        for (let i = 0; i < lastFrame.horses.length; i++) {
+            const { horseNumber } = lastFrame.horses[i];
+            const horseScript = this.horseMap.get(horseNumber).script;
+            const aniSpeed = Math.random() + 4.2 - i * 0.25;
+
+            horseScript.setAniSpeed(aniSpeed);
+        }
     }
 
     private setResult() {
@@ -379,7 +395,9 @@ export class HorseGame extends EventComponent {
             this.unschedule(this.playHorseRun);
             this.unschedule(this.setParticle);
             dispatch(HorseGameEvent.SET_RESULT_ACTIVE, { data: true });
+            dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.HORSE } });
             dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.ACHIEVE } });
+            dispatch(HorseGameEvent.PLAY_BTM, { data: { url: EMusic.CHEER } });
             this.showResultCamera();
 
             if (typeof (<any>window)?.stopRecording == 'function') {
@@ -388,6 +406,16 @@ export class HorseGame extends EventComponent {
                     console.warn('結束錄製');
                 }, stopRecordingDelay);
             }
+
+            this.scheduleOnce(() => {
+                dispatch(HorseGameEvent.STOP_BTM, { data: EMusic.CHEER });
+                dispatch(HorseGameEvent.STOP_BGM);
+                console.warn('CHEER 結束');
+                if (typeof (<any>window.parent)?.gameComplete == 'function') {
+                    (<any>window.parent)?.gameComplete();
+                    console.warn('遊戲已經結束 遊戲模式 (window.parent.gameComplete())');
+                }
+            }, 2);
             return;
         }
 

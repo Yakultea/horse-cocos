@@ -48,6 +48,8 @@ export enum EMusic { //音樂路徑
     GATE = 'game/music/btm_gate',
     GOAL = 'game/music/btm_goal',
     ACHIEVE = 'game/music/btm_achieve',
+    HORSE = 'game/music/btm_horse',
+    NOISE = 'game/music/btm_noise',
     BGM = 'game/music/bgm_mg',
 }
 
@@ -73,7 +75,7 @@ class GameConfigModel extends BaseModel<IGameConfigModel> {
             isRecordMode: false,
             framePerTime: 0.05,
             frameTimeRatio: 1,
-            version: 'v.1.0.36',
+            version: 'v.1.0.43',
             recordMode: ERecordMode.Default,
             renderMode: ERenderMode.Default,
         };
