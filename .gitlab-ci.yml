@@ -131,7 +131,7 @@ PROD_打包:
   tags:
     - new-rgs
   rules:
-    - if: '$CI_COMMIT_TAG != null'
+    - if: $CI_COMMIT_TAG =~ /^[0-9]{6}(?:_([0-9]*))?$/
       when: manual
 
 PROD_部署:
@@ -142,7 +142,29 @@ PROD_部署:
   tags:
     - new-rgs
   rules:
-    - if: '$CI_COMMIT_TAG != null'
+    - if: $CI_COMMIT_TAG =~ /^[0-9]{6}(?:_([0-9]*))?$/
   dependencies:
     - PROD_打包
   needs: ["PROD_打包"]
+
+##### 以下為 AWS PROD ZONE1 #####
+PROD_ZONE1_打包:
+  extends: .ci_temp
+  tags:
+    - zone1
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^[0-9]{6}(?:_([0-9]*))?$/
+      when: manual
+
+PROD_ZONE1_部署:
+  extends: .cd_temp
+  variables:
+    CD_SSH_HOST: $HOST_prod_aws_zone1_socket1
+    CD_SSH_KEY: $KEY_prod_aws_zone1_socket
+  tags:
+    - zone1
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^[0-9]{6}(?:_([0-9]*))?$/
+  dependencies:
+    - PROD_ZONE1_打包
+  needs: ["PROD_ZONE1_打包"]
