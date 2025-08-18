@@ -108,6 +108,8 @@ DEV_AWS_部署:
   variables:
     CD_SSH_HOST: $HOST_dev_aws_socket1
     CD_SSH_KEY: $KEY_dev_aws
+  tags:
+    - gcp
   rules:
     - if: '$CI_COMMIT_BRANCH == "feature/dev"'
   dependencies:
