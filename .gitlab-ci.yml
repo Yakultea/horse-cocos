@@ -103,6 +103,17 @@ DEV_部署:
     - DEV_打包
   needs: ["DEV_打包"]
 
+DEV_AWS_部署:
+  extends: .cd_temp
+  variables:
+    CD_SSH_HOST: $HOST_dev_aws_socket1
+    CD_SSH_KEY: $KEY_dev_aws
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "feature/dev"'
+  dependencies:
+    - DEV_打包
+  needs: ["DEV_打包"]
+
 ##### 以下為 GCP QAT #####
 QAT_打包:
   extends: .ci_temp
