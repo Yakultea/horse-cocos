@@ -95,19 +95,11 @@ DEV_打包:
 DEV_部署:
   extends: .cd_temp
   variables:
-    CD_SSH_HOST: $HOST_slot_game_Test2
-    CD_SSH_KEY: $KEY_slot_game_Test2
-  rules:
-    - if: "$CI_COMMIT_BRANCH =~ /(feature|develop)/"
-  dependencies:
-    - DEV_打包
-  needs: ["DEV_打包"]
-
-DEV_AWS_部署:
-  extends: .cd_temp
-  variables:
     CD_SSH_HOST: $HOST_dev_aws_socket1
     CD_SSH_KEY: $KEY_dev_aws
+  environment:
+    deployment_tier: development
+    name: DEV
   rules:
     - if: '$CI_COMMIT_BRANCH == "feature/dev"'
   dependencies:
@@ -120,7 +112,7 @@ QAT_打包:
   tags:
     - gcp
   rules:
-    - if: "$CI_COMMIT_BRANCH =~ /(release|hotfix)/"
+    - if: '$CI_COMMIT_BRANCH == "release"'
       when: manual
 
 QAT_部署:
@@ -128,8 +120,11 @@ QAT_部署:
   variables:
     CD_SSH_HOST: $HOST_qat_gcp_atg_socket1
     CD_SSH_KEY: $KEY_prod_gcp_atg_ec2
+  environment:
+    deployment_tier: testing
+    name: QAT
   rules:
-    - if: "$CI_COMMIT_BRANCH =~ /(release|hotfix)/"
+    - if: '$CI_COMMIT_BRANCH == "release"'
   tags:
     - gcp
   dependencies:
@@ -150,6 +145,9 @@ PROD_部署:
   variables:
     CD_SSH_HOST: $HOST_prod_aws_atg_socket1
     CD_SSH_KEY: $KEY_prod_aws_rgs_socket
+  environment:
+    deployment_tier: production
+    name: PROD
   tags:
     - new-rgs
   rules:
@@ -172,6 +170,9 @@ PROD_ZONE1_部署:
   variables:
     CD_SSH_HOST: $HOST_prod_aws_zone1_socket1
     CD_SSH_KEY: $KEY_prod_aws_zone1_socket
+  environment:
+    deployment_tier: production
+    name: PROD_ZONE1
   tags:
     - zone1
   rules:
