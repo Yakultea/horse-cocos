@@ -89,7 +89,7 @@ stages:
 DEV_打包:
   extends: .ci_temp
   rules:
-    - if: "$CI_COMMIT_BRANCH =~ /(feature|develop)/"
+    - if: '$CI_COMMIT_BRANCH == "feature/dev"'
       when: manual
 
 DEV_部署:
