@@ -106,6 +106,31 @@ DEV_部署:
     - DEV_打包
   needs: ["DEV_打包"]
 
+#####  develop 037275999657  #####
+DEV_037275999657_打包:
+  extends: .ci_temp
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "feature/dev"'
+      when: manual
+  tags:
+    - "037275999657"
+
+DEV_037275999657_部署:
+  extends: .cd_temp
+  variables:
+    CD_SSH_HOST: $HOST_dev_037275999657_socket1
+    CD_SSH_KEY: $KEY_dev_037275999657
+  tags:
+    - "037275999657"
+  environment:
+    deployment_tier: development
+    name: DEV
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "feature/dev"'
+  dependencies:
+    - DEV_037275999657_打包
+  needs: ["DEV_037275999657_打包"]
+
 ##### 以下為 GCP QAT #####
 QAT_打包:
   extends: .ci_temp
