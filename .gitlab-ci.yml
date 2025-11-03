@@ -131,6 +131,19 @@ QAT_部署:
     - QAT_打包
   needs: ["QAT_打包"]
 
+QAT_208202859590_部署:
+  extends: .cd_temp
+  variables:
+    CD_SSH_HOST: $HOST_qat_208202859590_socket1
+    CD_SSH_KEY: $KEY_qat_208202859590
+  tags:
+    - "208202859590"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "release"'
+  dependencies:
+    - QAT_打包
+  needs: ["QAT_打包"]
+
 ##### 以下為 AWS PROD #####
 PROD_打包:
   extends: .ci_temp
